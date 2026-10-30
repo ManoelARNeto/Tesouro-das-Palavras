@@ -4,8 +4,8 @@
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
  <meta name="theme-color" content="#172e39">
- <meta name="description" content="O Tesouro das Palavras — RPG educativo de exploração. Etapa 3 com mapas e pistas.">
- <title>O Tesouro das Palavras · Etapa 3</title>
+ <meta name="description" content="O Tesouro das Palavras — RPG educativo de exploração. Etapa 4 com 90 questões, 30 baús e progressão.">
+ <title>O Tesouro das Palavras · Etapa 4</title>
  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
  <link rel="stylesheet" href="styles/main.css">
 </head>
@@ -15,7 +15,7 @@
   <div class="screen-vignette" aria-hidden="true"></div>
 
   <header id="hud" class="hud" hidden>
-   <div class="hud-brand"><span class="hud-symbol">✦</span><div><strong class="full-brand">O TESOURO DAS PALAVRAS</strong><strong class="short-brand">TESOURO</strong><span>ETAPA 3 • MAPAS E PISTAS</span></div></div>
+   <div class="hud-brand"><span class="hud-symbol">✦</span><div><strong class="full-brand">O TESOURO DAS PALAVRAS</strong><strong class="short-brand">TESOURO</strong><span>ETAPA 4 • BAÚS E QUESTÕES</span></div></div>
    <div class="hud-location"><span class="hud-caption">LOCALIZAÇÃO</span><strong id="area-label">Praia dos Náufragos</strong></div>
    <div class="hud-progress"><span class="hud-caption">ESTÁGIO</span><strong id="stage-label-hud">1 / 10</strong></div>
    <div class="hud-buttons"><button type="button" id="btn-map-hud" class="hud-button" title="Abrir o mapa">🗺 <span>Mapa</span></button><button type="button" id="btn-journal-hud" class="hud-button" title="Abrir o diário">▤ <span>Diário</span></button><button type="button" id="btn-pause" class="hud-button" title="Pausar o jogo">Ⅱ <span>Pausa</span></button></div>
@@ -37,9 +37,9 @@
     <h1 id="game-title">O TESOURO<br><em>DAS PALAVRAS</em></h1>
     <div class="divider-ornament" aria-hidden="true">✧ ━━━━━ ✦ ━━━━━ ✧</div>
     <p>Dez estágios, trinta tesouros e pistas em mapas antigos.<br>Cada descoberta aproxima o jogador do Tesouro Lendário.</p>
-    <p class="shovel-info">🪏 &nbsp; A PÁ JÁ ESTÁ COM VOCÊ. APERTE E OU AÇÃO PARA CAVAR.</p><div class="stage-label">CAMPANHA COMPLETA <span>—</span> 10 ESTÁGIOS • 3 TESOUROS CADA</div>
-    <div class="main-actions"><button type="button" id="btn-new" class="button primary">✦ &nbsp; NOVA CAMPANHA</button><button type="button" id="btn-continue" class="button secondary" disabled>↳ &nbsp; CONTINUAR</button><button type="button" id="btn-stage-menu" class="button secondary">🗺 &nbsp; ESCOLHER ESTÁGIO</button><button type="button" id="btn-main-settings" class="button subtle">⚙ &nbsp; CONFIGURAÇÕES</button></div>
-    <div class="panel-footer">PROTÓTIPO JOGÁVEL • ETAPA 3 DE 6 • MAPAS INSPIRADOS NO MODELO ENVIADO</div>
+    <p class="shovel-info">🪏 &nbsp; A PÁ REVELA O BAÚ; UMA RESPOSTA CORRETA ABRE A FECHADURA.</p><div class="stage-label">CAMPANHA COMPLETA <span>—</span> 10 ESTÁGIOS • 3 TESOUROS CADA</div>
+    <div class="main-actions"><button type="button" id="btn-new" class="button primary">✦ &nbsp; NOVA CAMPANHA</button><button type="button" id="btn-continue" class="button secondary" disabled>↳ &nbsp; CONTINUAR</button><button type="button" id="btn-stage-menu" class="button secondary">🗺 &nbsp; ESCOLHER ESTÁGIO</button><button type="button" id="btn-library-menu" class="button secondary">▤ &nbsp; ACERVO DE 90 QUESTÕES</button><button type="button" id="btn-main-settings" class="button subtle">⚙ &nbsp; CONFIGURAÇÕES</button></div>
+    <div class="panel-footer">ETAPA 4 DE 6 • 30 DESAFIOS FUNCIONAIS • 90 QUESTÕES NO ACERVO</div>
    </div>
   </section>
 
@@ -47,7 +47,7 @@
    <div class="panel dialog"><div class="eyebrow">EXPEDIÇÃO INTERROMPIDA</div><h2>PAUSA</h2><p>Abra o mapa ou o seletor de estágios para decidir o próximo passo.</p>
     <button type="button" id="btn-resume" class="button primary">▶ &nbsp; VOLTAR À AVENTURA</button>
     <button type="button" id="btn-stages-pause" class="button secondary">🗺 &nbsp; SELETOR DE ESTÁGIOS</button>
-    <button type="button" id="btn-settings-pause" class="button secondary">⚙ &nbsp; CONFIGURAÇÕES</button>
+    <button type="button" id="btn-library-pause" class="button secondary">▤ &nbsp; ACERVO DE QUESTÕES</button><button type="button" id="btn-settings-pause" class="button secondary">⚙ &nbsp; CONFIGURAÇÕES</button>
     <button type="button" id="btn-go-menu" class="button subtle">⌂ &nbsp; MENU PRINCIPAL</button>
    </div>
   </section>
@@ -62,7 +62,7 @@
 
   <section id="journal-screen" class="overlay" aria-label="Diário de exploração" hidden>
    <div class="panel journal-panel"><div class="eyebrow">CADERNO DO AVENTUREIRO</div><h2 id="journal-title">CAMPANHA</h2><p id="journal-count">0 de 10 estágios desbloqueados</p><ol id="journal-items" class="journal-items"></ol>
-     <h3>Pistas do estágio atual</h3><p id="journal-treasure-count">0 de 3 tesouros encontrados</p><ol id="journal-treasure-items" class="journal-items"></ol>
+     <h3>Pistas do estágio atual</h3><p id="journal-treasure-count">0 de 3 baús abertos</p><ol id="journal-treasure-items" class="journal-items"></ol>
      <h3>Marcos reconhecidos</h3><p id="journal-secret-count">0 de 0 marcos reconhecidos</p><ol id="journal-secret-items" class="journal-items"></ol><button type="button" id="btn-journal-close" class="button primary">← &nbsp; VOLTAR À EXPEDIÇÃO</button></div>
   </section>
 
@@ -74,7 +74,44 @@
   </section>
 
   <section id="stages-screen" class="overlay" aria-label="Seletor de estágios" hidden>
-   <div class="panel journal-panel"><div class="eyebrow">SELETOR DE ESTÁGIOS</div><h2>DEZ CENÁRIOS DE EXPLORAÇÃO</h2><p>Escolha um estágio desbloqueado para explorar. Cada estágio possui 3 tesouros: fácil, médio e difícil.</p><div id="stage-grid" class="stage-grid"></div><button type="button" id="btn-stage-close" class="button primary">← &nbsp; VOLTAR</button></div>
+   <div class="panel journal-panel"><div class="eyebrow">SELETOR DE ESTÁGIOS</div><h2>DEZ CENÁRIOS DE EXPLORAÇÃO</h2><p>Escolha um estágio desbloqueado para explorar. Cada estágio possui 3 baús com questões: fácil, médio e difícil.</p><div id="stage-grid" class="stage-grid"></div><button type="button" id="btn-stage-close" class="button primary">← &nbsp; VOLTAR</button></div>
+  </section>
+
+
+  <section id="question-screen" class="overlay" aria-label="Desafio de Língua Portuguesa" hidden>
+   <div id="question-panel" class="panel question-panel" role="dialog" aria-modal="true" aria-labelledby="question-title">
+    <div class="eyebrow">FECHADURA DO CONHECIMENTO</div>
+    <h2 id="question-title">BAÚ 1 • FÁCIL</h2>
+    <p id="question-meta" class="question-meta"></p>
+    <div id="question-content" class="question-content"></div>
+    <form id="question-form">
+     <fieldset class="question-fieldset"><legend>Escolha uma alternativa</legend><div id="question-options" class="question-options"></div></fieldset>
+     <div id="question-feedback" class="question-feedback" aria-live="polite" role="status"></div>
+     <div class="question-actions">
+      <button type="submit" id="btn-question-confirm" class="button primary">CONFIRMAR RESPOSTA</button>
+      <button type="button" id="btn-question-switch" class="button secondary" hidden>OUTRA QUESTÃO DO DESCRITOR</button>
+      <button type="button" id="btn-question-close" class="button subtle">VOLTAR À EXPLORAÇÃO</button>
+     </div>
+    </form>
+   </div>
+  </section>
+
+  <section id="library-screen" class="overlay" aria-label="Acervo de questões" hidden>
+   <div class="panel library-panel" role="dialog" aria-modal="true" aria-label="Banco de questões">
+    <div class="eyebrow">BANCO PEDAGÓGICO</div><h2>ACERVO DE 90 QUESTÕES</h2>
+    <p id="library-summary"></p><label class="library-label" for="library-question-select">Selecione uma questão</label>
+    <select id="library-question-select"></select><p id="library-item-meta" class="question-meta"></p>
+    <div id="library-item-preview" class="question-content"></div>
+    <h3>Alternativas extraídas</h3><ol id="library-item-alternatives" class="library-alternatives"></ol>
+    <button type="button" id="btn-library-close" class="button primary">← &nbsp; VOLTAR</button>
+   </div>
+  </section>
+
+  <section id="win-screen" class="overlay" aria-label="Vitória na campanha" hidden>
+   <div class="panel dialog"><div class="eyebrow">CAMINHO DO CONHECIMENTO</div><h2>TESOURO LENDÁRIO ABERTO!</h2>
+    <p>Você concluiu os 10 estágios, interpretou os mapas e abriu os 30 baús respondendo corretamente aos desafios de Língua Portuguesa.</p>
+    <button type="button" id="btn-win-menu" class="button primary">VOLTAR AO MENU</button>
+   </div>
   </section>
 
   <section id="error-screen" class="overlay" aria-label="Erro ao carregar" hidden><div class="panel dialog"><h2>ERRO DE CARREGAMENTO</h2><p id="error-message"></p><button type="button" id="btn-error-retry" class="button primary">TENTAR NOVAMENTE</button></div></section>

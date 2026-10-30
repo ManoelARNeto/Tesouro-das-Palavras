@@ -1,5 +1,5 @@
 import {TILE, TILE_ID as T} from '../world/world-config.js';
-const OBJECT_NAMES=['tree','pine','palm','rock','bush','sign','pillar','crate','tent','boat','mound','chest','sandpile','log','stump','mushroom','reeds','rune'];
+const OBJECT_NAMES=['tree','pine','palm','rock','bush','sign','pillar','crate','tent','boat','mound','chest','chest_open','sandpile','log','stump','mushroom','reeds','rune'];
 export class Renderer {
  constructor(canvas){ this.canvas=canvas; this.ctx=canvas.getContext('2d',{alpha:false}); this.width=1; this.height=1; this.assets={}; this.land=null; }
  async load(){

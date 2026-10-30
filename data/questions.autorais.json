@@ -1,0 +1,1393 @@
+{
+  "schemaVersion": 2,
+  "tipo": "autorais",
+  "total": 33,
+  "questions": [
+    {
+      "id": "AUT-2026-001",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "A antiga estação virou biblioteca",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D021_P",
+      "dificuldade": "Fácil",
+      "texto_base": "Durante décadas, a estação ferroviária de Vila Esperança foi ponto de encontro de viajantes e trabalhadores. Depois que os trens deixaram de circular, o prédio passou anos fechado. Neste semestre, moradores, professores e estudantes organizaram um mutirão para transformar o espaço em biblioteca comunitária. As plataformas foram preservadas; o antigo guichê recebeu computadores para pesquisa; e o depósito virou uma sala de leitura. O acervo começou com 430 livros doados. Aos sábados, voluntários oferecem rodas de leitura e orientações para quem deseja utilizar serviços digitais. Segundo a associação de moradores, recuperar a estação não significa apagar sua história, mas dar a ela uma nova função pública. O grupo pretende realizar, no próximo mês, uma exposição de fotografias sobre a memória ferroviária.",
+      "enunciado": "Com quantos livros doados o acervo da biblioteca começou?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "120 livros."
+        },
+        {
+          "id": "B",
+          "texto": "300 livros."
+        },
+        {
+          "id": "C",
+          "texto": "430 livros."
+        },
+        {
+          "id": "D",
+          "texto": "600 livros."
+        },
+        {
+          "id": "E",
+          "texto": "900 livros."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "C",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "O texto informa explicitamente que o acervo começou com 430 livros.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-002",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "A antiga estação virou biblioteca",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D023_P",
+      "dificuldade": "Médio",
+      "texto_base": "Durante décadas, a estação ferroviária de Vila Esperança foi ponto de encontro de viajantes e trabalhadores. Depois que os trens deixaram de circular, o prédio passou anos fechado. Neste semestre, moradores, professores e estudantes organizaram um mutirão para transformar o espaço em biblioteca comunitária. As plataformas foram preservadas; o antigo guichê recebeu computadores para pesquisa; e o depósito virou uma sala de leitura. O acervo começou com 430 livros doados. Aos sábados, voluntários oferecem rodas de leitura e orientações para quem deseja utilizar serviços digitais. Segundo a associação de moradores, recuperar a estação não significa apagar sua história, mas dar a ela uma nova função pública. O grupo pretende realizar, no próximo mês, uma exposição de fotografias sobre a memória ferroviária.",
+      "enunciado": "Pode-se inferir que a manutenção das plataformas da estação pretende",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "reduzir o horário de funcionamento."
+        },
+        {
+          "id": "B",
+          "texto": "preservar uma referência histórica da comunidade."
+        },
+        {
+          "id": "C",
+          "texto": "impedir o acesso de novos leitores."
+        },
+        {
+          "id": "D",
+          "texto": "substituir as atividades culturais por comércio."
+        },
+        {
+          "id": "E",
+          "texto": "retomar imediatamente a circulação de trens."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "B",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "A preservação das plataformas e a exposição sobre memória ferroviária evidenciam valorização da história local.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-003",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "A antiga estação virou biblioteca",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D032_P",
+      "dificuldade": "Difícil",
+      "texto_base": "Durante décadas, a estação ferroviária de Vila Esperança foi ponto de encontro de viajantes e trabalhadores. Depois que os trens deixaram de circular, o prédio passou anos fechado. Neste semestre, moradores, professores e estudantes organizaram um mutirão para transformar o espaço em biblioteca comunitária. As plataformas foram preservadas; o antigo guichê recebeu computadores para pesquisa; e o depósito virou uma sala de leitura. O acervo começou com 430 livros doados. Aos sábados, voluntários oferecem rodas de leitura e orientações para quem deseja utilizar serviços digitais. Segundo a associação de moradores, recuperar a estação não significa apagar sua história, mas dar a ela uma nova função pública. O grupo pretende realizar, no próximo mês, uma exposição de fotografias sobre a memória ferroviária.",
+      "enunciado": "Qual é a ideia central defendida pela associação de moradores?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "A memória ferroviária deve ser esquecida para construir novos espaços."
+        },
+        {
+          "id": "B",
+          "texto": "O acervo físico deve ser substituído integralmente por computadores."
+        },
+        {
+          "id": "C",
+          "texto": "Toda antiga estação deve voltar a receber trens."
+        },
+        {
+          "id": "D",
+          "texto": "O patrimônio histórico pode ganhar uso coletivo sem perder sua memória."
+        },
+        {
+          "id": "E",
+          "texto": "A visitação deve ficar restrita aos antigos ferroviários."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "D",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "A associação relaciona preservação da história à atribuição de uma função pública ao prédio.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-004",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Cisterna na escola",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D021_P",
+      "dificuldade": "Fácil",
+      "texto_base": "Em uma escola do interior capixaba, os estudantes do ensino médio passaram a acompanhar o consumo de água do jardim. Eles verificaram que a irrigação em dias de pouca chuva elevava a conta da unidade. Com orientação dos professores, a turma instalou uma pequena cisterna ligada às calhas do telhado. A água recolhida passou a ser utilizada apenas na limpeza externa e na irrigação, sem destinação ao consumo humano. Em um painel no corredor, os alunos registraram a quantidade de chuva e o volume armazenado. O projeto não eliminou a necessidade de abastecimento público, mas tornou visível uma relação antes pouco discutida: os hábitos cotidianos influenciam o uso dos recursos naturais. A direção afirmou que pretende usar os dados para planejar campanhas de consumo consciente.",
+      "enunciado": "Para quais atividades a escola passou a utilizar a água da cisterna?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "Preparação da merenda e consumo humano."
+        },
+        {
+          "id": "B",
+          "texto": "Limpeza externa e irrigação."
+        },
+        {
+          "id": "C",
+          "texto": "Higienização dos alimentos."
+        },
+        {
+          "id": "D",
+          "texto": "Abastecimento integral das salas."
+        },
+        {
+          "id": "E",
+          "texto": "Distribuição de água potável à comunidade."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "B",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "O texto cita especificamente a limpeza externa e a irrigação.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-005",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Cisterna na escola",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D061_P",
+      "dificuldade": "Médio",
+      "texto_base": "Em uma escola do interior capixaba, os estudantes do ensino médio passaram a acompanhar o consumo de água do jardim. Eles verificaram que a irrigação em dias de pouca chuva elevava a conta da unidade. Com orientação dos professores, a turma instalou uma pequena cisterna ligada às calhas do telhado. A água recolhida passou a ser utilizada apenas na limpeza externa e na irrigação, sem destinação ao consumo humano. Em um painel no corredor, os alunos registraram a quantidade de chuva e o volume armazenado. O projeto não eliminou a necessidade de abastecimento público, mas tornou visível uma relação antes pouco discutida: os hábitos cotidianos influenciam o uso dos recursos naturais. A direção afirmou que pretende usar os dados para planejar campanhas de consumo consciente.",
+      "enunciado": "Qual situação motivou a instalação da cisterna?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "A necessidade de substituir todos os professores."
+        },
+        {
+          "id": "B",
+          "texto": "A intenção de ampliar o estacionamento."
+        },
+        {
+          "id": "C",
+          "texto": "O aumento do consumo de água na irrigação durante a estiagem."
+        },
+        {
+          "id": "D",
+          "texto": "A proibição de registrar dados no corredor."
+        },
+        {
+          "id": "E",
+          "texto": "A falta de interesse dos alunos por questões ambientais."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "C",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "O consumo elevado associado à irrigação em períodos de pouca chuva foi o problema observado.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-006",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Cisterna na escola",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D055_P",
+      "dificuldade": "Difícil",
+      "texto_base": "Em uma escola do interior capixaba, os estudantes do ensino médio passaram a acompanhar o consumo de água do jardim. Eles verificaram que a irrigação em dias de pouca chuva elevava a conta da unidade. Com orientação dos professores, a turma instalou uma pequena cisterna ligada às calhas do telhado. A água recolhida passou a ser utilizada apenas na limpeza externa e na irrigação, sem destinação ao consumo humano. Em um painel no corredor, os alunos registraram a quantidade de chuva e o volume armazenado. O projeto não eliminou a necessidade de abastecimento público, mas tornou visível uma relação antes pouco discutida: os hábitos cotidianos influenciam o uso dos recursos naturais. A direção afirmou que pretende usar os dados para planejar campanhas de consumo consciente.",
+      "enunciado": "Qual informação sustenta a ideia de que o projeto possui valor educativo além da economia de água?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "A cisterna foi ligada às calhas do telhado."
+        },
+        {
+          "id": "B",
+          "texto": "A água não foi destinada ao consumo humano."
+        },
+        {
+          "id": "C",
+          "texto": "A direção decidiu retirar o painel de registros."
+        },
+        {
+          "id": "D",
+          "texto": "A escola dispensou o abastecimento público."
+        },
+        {
+          "id": "E",
+          "texto": "Os estudantes passaram a produzir e analisar registros de chuva e armazenamento."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "E",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "A produção e a análise de dados tornam o projeto também uma atividade de investigação e aprendizagem.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-007",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Dois olhares sobre a feira rural",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D021_P",
+      "dificuldade": "Fácil",
+      "texto_base": "TEXTO 1 — Comunicado da escola: “A Feira de Saberes do Campo acontecerá no sábado, às 8 horas, no pátio da escola. Famílias poderão conhecer pesquisas sobre sementes crioulas, receitas tradicionais e formas de cultivo. A entrada será gratuita.”\n\nTEXTO 2 — Opinião de uma estudante: “Quando mostramos nossas pesquisas na feira, percebemos que o conhecimento dos agricultores merece o mesmo respeito que qualquer pesquisa feita em laboratório. O mais importante não é apenas expor produtos, mas ouvir quem aprende com a terra todos os dias.”",
+      "enunciado": "Segundo o Texto 1, quando ocorrerá a feira?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "Na segunda-feira, às 10 horas."
+        },
+        {
+          "id": "B",
+          "texto": "Na sexta-feira, às 18 horas."
+        },
+        {
+          "id": "C",
+          "texto": "No domingo, às 8 horas."
+        },
+        {
+          "id": "D",
+          "texto": "No sábado, às 8 horas."
+        },
+        {
+          "id": "E",
+          "texto": "No sábado, às 14 horas."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "D",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "A data relativa e o horário estão informados no comunicado.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-008",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Dois olhares sobre a feira rural",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D019_P",
+      "dificuldade": "Médio",
+      "texto_base": "TEXTO 1 — Comunicado da escola: “A Feira de Saberes do Campo acontecerá no sábado, às 8 horas, no pátio da escola. Famílias poderão conhecer pesquisas sobre sementes crioulas, receitas tradicionais e formas de cultivo. A entrada será gratuita.”\n\nTEXTO 2 — Opinião de uma estudante: “Quando mostramos nossas pesquisas na feira, percebemos que o conhecimento dos agricultores merece o mesmo respeito que qualquer pesquisa feita em laboratório. O mais importante não é apenas expor produtos, mas ouvir quem aprende com a terra todos os dias.”",
+      "enunciado": "Em relação ao mesmo evento, os textos se diferenciam porque",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "o primeiro informa a programação, e o segundo valoriza um aspecto formativo da feira."
+        },
+        {
+          "id": "B",
+          "texto": "ambos anunciam a venda obrigatória de ingressos."
+        },
+        {
+          "id": "C",
+          "texto": "o primeiro critica os agricultores, e o segundo apresenta o preço de entrada."
+        },
+        {
+          "id": "D",
+          "texto": "o primeiro é um relato ficcional, e o segundo é um regulamento."
+        },
+        {
+          "id": "E",
+          "texto": "ambos afirmam que a feira acontecerá em um laboratório."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "A",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "O comunicado divulga a realização do evento; a estudante interpreta seu significado educativo.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-009",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Dois olhares sobre a feira rural",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D038_P",
+      "dificuldade": "Difícil",
+      "texto_base": "TEXTO 1 — Comunicado da escola: “A Feira de Saberes do Campo acontecerá no sábado, às 8 horas, no pátio da escola. Famílias poderão conhecer pesquisas sobre sementes crioulas, receitas tradicionais e formas de cultivo. A entrada será gratuita.”\n\nTEXTO 2 — Opinião de uma estudante: “Quando mostramos nossas pesquisas na feira, percebemos que o conhecimento dos agricultores merece o mesmo respeito que qualquer pesquisa feita em laboratório. O mais importante não é apenas expor produtos, mas ouvir quem aprende com a terra todos os dias.”",
+      "enunciado": "Qual trecho do Texto 2 expressa uma opinião, e não um dado verificável da programação?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "“Quando mostramos nossas pesquisas na feira”."
+        },
+        {
+          "id": "B",
+          "texto": "“O conhecimento dos agricultores merece o mesmo respeito que qualquer pesquisa feita em laboratório”."
+        },
+        {
+          "id": "C",
+          "texto": "“A Feira de Saberes do Campo acontecerá no sábado”."
+        },
+        {
+          "id": "D",
+          "texto": "“A entrada será gratuita”."
+        },
+        {
+          "id": "E",
+          "texto": "“Às 8 horas, no pátio da escola”."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "B",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "A afirmação de que o conhecimento merece determinado reconhecimento é um julgamento de valor.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-010",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "A ponte e o desvio",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D021_P",
+      "dificuldade": "Fácil",
+      "texto_base": "A ponte que liga dois bairros foi interditada depois que uma inspeção encontrou rachaduras em sua estrutura. A prefeitura divulgou um desvio provisório e pediu que motoristas respeitassem a sinalização. Nas redes sociais, alguém publicou uma fotografia antiga da ponte e escreveu: “Está tudo normal, podem passar”. A imagem começou a circular sem data, e alguns moradores entenderam que a interdição havia terminado. No dia seguinte, uma equipe da escola pesquisou o comunicado oficial e a data da fotografia. Os estudantes produziram cartazes explicando que uma imagem verdadeira também pode provocar uma interpretação falsa quando retirada de seu contexto. O trabalho foi apresentado em uma reunião aberta à comunidade.",
+      "enunciado": "O que motivou a interdição da ponte?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "Uma corrida de rua."
+        },
+        {
+          "id": "B",
+          "texto": "A construção de uma biblioteca."
+        },
+        {
+          "id": "C",
+          "texto": "A descoberta de rachaduras durante uma inspeção."
+        },
+        {
+          "id": "D",
+          "texto": "O fechamento das escolas do bairro."
+        },
+        {
+          "id": "E",
+          "texto": "Um festival de fotografias."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "C",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "A causa expressamente informada foi a identificação de rachaduras.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-011",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "A ponte e o desvio",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D023_P",
+      "dificuldade": "Médio",
+      "texto_base": "A ponte que liga dois bairros foi interditada depois que uma inspeção encontrou rachaduras em sua estrutura. A prefeitura divulgou um desvio provisório e pediu que motoristas respeitassem a sinalização. Nas redes sociais, alguém publicou uma fotografia antiga da ponte e escreveu: “Está tudo normal, podem passar”. A imagem começou a circular sem data, e alguns moradores entenderam que a interdição havia terminado. No dia seguinte, uma equipe da escola pesquisou o comunicado oficial e a data da fotografia. Os estudantes produziram cartazes explicando que uma imagem verdadeira também pode provocar uma interpretação falsa quando retirada de seu contexto. O trabalho foi apresentado em uma reunião aberta à comunidade.",
+      "enunciado": "Por que a fotografia antiga contribuiu para a circulação de uma informação enganosa?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "Porque mostrava um bairro inexistente."
+        },
+        {
+          "id": "B",
+          "texto": "Porque foi acompanhada de uma legenda que ignorava a data e a interdição atual."
+        },
+        {
+          "id": "C",
+          "texto": "Porque todas as fotografias são falsas."
+        },
+        {
+          "id": "D",
+          "texto": "Porque o comunicado oficial não mencionava a ponte."
+        },
+        {
+          "id": "E",
+          "texto": "Porque os alunos impediram sua verificação."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "B",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "A legenda atribuía situação atual a uma imagem antiga, removendo seu contexto temporal.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-012",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "A ponte e o desvio",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D060_P",
+      "dificuldade": "Difícil",
+      "texto_base": "A ponte que liga dois bairros foi interditada depois que uma inspeção encontrou rachaduras em sua estrutura. A prefeitura divulgou um desvio provisório e pediu que motoristas respeitassem a sinalização. Nas redes sociais, alguém publicou uma fotografia antiga da ponte e escreveu: “Está tudo normal, podem passar”. A imagem começou a circular sem data, e alguns moradores entenderam que a interdição havia terminado. No dia seguinte, uma equipe da escola pesquisou o comunicado oficial e a data da fotografia. Os estudantes produziram cartazes explicando que uma imagem verdadeira também pode provocar uma interpretação falsa quando retirada de seu contexto. O trabalho foi apresentado em uma reunião aberta à comunidade.",
+      "enunciado": "Que estratégia fortalece o argumento dos estudantes de que uma imagem pode induzir ao erro?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "A substituição da inspeção por opiniões anônimas."
+        },
+        {
+          "id": "B",
+          "texto": "A repetição da legenda sem verificar a data."
+        },
+        {
+          "id": "C",
+          "texto": "A omissão do comunicado municipal."
+        },
+        {
+          "id": "D",
+          "texto": "A comparação entre a data da imagem e o documento oficial sobre a interdição."
+        },
+        {
+          "id": "E",
+          "texto": "A exclusão de todas as fotografias do trabalho."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "D",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "O confronto de evidências documentais permite sustentar a crítica à descontextualização.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-013",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "O silêncio do manguezal",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D021_P",
+      "dificuldade": "Fácil",
+      "texto_base": "Ao amanhecer, a bióloga caminhava pela passarela de madeira e anotava a presença de caranguejos entre as raízes do mangue. Na semana anterior, os moradores haviam retirado resíduos deixados pela maré. Agora, a área parecia respirar melhor. “O manguezal não é um terreno vazio à espera de construção”, explicou a pesquisadora aos estudantes. “É um lugar de abrigo, alimentação e reprodução de inúmeras espécies.” Enquanto falava, um pescador apontou para as pequenas árvores junto à água e contou como acompanhara seu crescimento ao longo dos anos. A visita terminou com uma proposta: cada turma elaboraria uma legenda para uma fotografia, usando informações verificáveis sobre a importância ecológica do local.",
+      "enunciado": "Onde a bióloga observava os caranguejos?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "Entre as raízes do mangue."
+        },
+        {
+          "id": "B",
+          "texto": "Dentro de uma biblioteca."
+        },
+        {
+          "id": "C",
+          "texto": "Em uma praça asfaltada."
+        },
+        {
+          "id": "D",
+          "texto": "Em uma montanha sem vegetação."
+        },
+        {
+          "id": "E",
+          "texto": "No estacionamento da escola."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "A",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "A localização aparece no primeiro período do texto.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-014",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "O silêncio do manguezal",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D022_P",
+      "dificuldade": "Médio",
+      "texto_base": "Ao amanhecer, a bióloga caminhava pela passarela de madeira e anotava a presença de caranguejos entre as raízes do mangue. Na semana anterior, os moradores haviam retirado resíduos deixados pela maré. Agora, a área parecia respirar melhor. “O manguezal não é um terreno vazio à espera de construção”, explicou a pesquisadora aos estudantes. “É um lugar de abrigo, alimentação e reprodução de inúmeras espécies.” Enquanto falava, um pescador apontou para as pequenas árvores junto à água e contou como acompanhara seu crescimento ao longo dos anos. A visita terminou com uma proposta: cada turma elaboraria uma legenda para uma fotografia, usando informações verificáveis sobre a importância ecológica do local.",
+      "enunciado": "No trecho “a área parecia respirar melhor”, a expressão sugere que o manguezal",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "passou a produzir sons humanos."
+        },
+        {
+          "id": "B",
+          "texto": "foi coberto por concreto."
+        },
+        {
+          "id": "C",
+          "texto": "se tornou uma área de estacionamento."
+        },
+        {
+          "id": "D",
+          "texto": "teve suas condições ambientais favorecidas pela retirada de resíduos."
+        },
+        {
+          "id": "E",
+          "texto": "deixou de abrigar seres vivos."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "D",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "A metáfora associa o cuidado ambiental à recuperação das condições da área.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-015",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "O silêncio do manguezal",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D043_P",
+      "dificuldade": "Difícil",
+      "texto_base": "Ao amanhecer, a bióloga caminhava pela passarela de madeira e anotava a presença de caranguejos entre as raízes do mangue. Na semana anterior, os moradores haviam retirado resíduos deixados pela maré. Agora, a área parecia respirar melhor. “O manguezal não é um terreno vazio à espera de construção”, explicou a pesquisadora aos estudantes. “É um lugar de abrigo, alimentação e reprodução de inúmeras espécies.” Enquanto falava, um pescador apontou para as pequenas árvores junto à água e contou como acompanhara seu crescimento ao longo dos anos. A visita terminou com uma proposta: cada turma elaboraria uma legenda para uma fotografia, usando informações verificáveis sobre a importância ecológica do local.",
+      "enunciado": "Qual efeito de sentido é produzido pela personificação em “a área parecia respirar melhor”?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "Apresentar um cálculo exato de oxigênio na água."
+        },
+        {
+          "id": "B",
+          "texto": "Criar uma imagem expressiva da recuperação ambiental."
+        },
+        {
+          "id": "C",
+          "texto": "Negar a existência de vida no mangue."
+        },
+        {
+          "id": "D",
+          "texto": "Informar que a passarela estava interditada."
+        },
+        {
+          "id": "E",
+          "texto": "Demonstrar que as árvores falam literalmente."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "B",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "A personificação atribui ao ambiente uma ação humana para intensificar a ideia de recuperação.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-016",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Aviso na estação de bicicletas",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D021_P",
+      "dificuldade": "Fácil",
+      "texto_base": "AVISO AOS USUÁRIOS\n\nAntes de retirar uma bicicleta compartilhada, confira os freios, ajuste o banco e observe as condições dos pneus. Utilize capacete e respeite a sinalização. Em caso de defeito, não inicie a viagem: informe o problema pelo aplicativo.\n\nAs bicicletas devem ser devolvidas em uma estação autorizada. Se a estação estiver cheia, consulte no aplicativo o ponto disponível mais próximo. O serviço funciona diariamente, das 6h às 22h. O objetivo dessas orientações é contribuir para viagens mais seguras e para o uso responsável do equipamento coletivo.",
+      "enunciado": "Em qual horário o serviço de bicicletas funciona?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "Das 4h às 18h."
+        },
+        {
+          "id": "B",
+          "texto": "Das 6h às 22h."
+        },
+        {
+          "id": "C",
+          "texto": "Das 8h às 16h."
+        },
+        {
+          "id": "D",
+          "texto": "Das 10h às 20h."
+        },
+        {
+          "id": "E",
+          "texto": "Durante 24 horas."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "B",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "O horário é explicitado no último parágrafo do aviso.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-017",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Aviso na estação de bicicletas",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D016_P",
+      "dificuldade": "Médio",
+      "texto_base": "AVISO AOS USUÁRIOS\n\nAntes de retirar uma bicicleta compartilhada, confira os freios, ajuste o banco e observe as condições dos pneus. Utilize capacete e respeite a sinalização. Em caso de defeito, não inicie a viagem: informe o problema pelo aplicativo.\n\nAs bicicletas devem ser devolvidas em uma estação autorizada. Se a estação estiver cheia, consulte no aplicativo o ponto disponível mais próximo. O serviço funciona diariamente, das 6h às 22h. O objetivo dessas orientações é contribuir para viagens mais seguras e para o uso responsável do equipamento coletivo.",
+      "enunciado": "Qual é a finalidade principal desse aviso?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "Narrar uma aventura vivida por um ciclista."
+        },
+        {
+          "id": "B",
+          "texto": "Divulgar uma pesquisa histórica sobre transportes."
+        },
+        {
+          "id": "C",
+          "texto": "Criticar o uso de bicicletas nas cidades."
+        },
+        {
+          "id": "D",
+          "texto": "Orientar usuários sobre procedimentos e segurança."
+        },
+        {
+          "id": "E",
+          "texto": "Promover um concurso literário."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "D",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "O texto instrui os usuários por meio de recomendações e procedimentos.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-018",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Aviso na estação de bicicletas",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D102_P",
+      "dificuldade": "Difícil",
+      "texto_base": "AVISO AOS USUÁRIOS\n\nAntes de retirar uma bicicleta compartilhada, confira os freios, ajuste o banco e observe as condições dos pneus. Utilize capacete e respeite a sinalização. Em caso de defeito, não inicie a viagem: informe o problema pelo aplicativo.\n\nAs bicicletas devem ser devolvidas em uma estação autorizada. Se a estação estiver cheia, consulte no aplicativo o ponto disponível mais próximo. O serviço funciona diariamente, das 6h às 22h. O objetivo dessas orientações é contribuir para viagens mais seguras e para o uso responsável do equipamento coletivo.",
+      "enunciado": "Em “não inicie a viagem: informe o problema pelo aplicativo”, o emprego das formas verbais contribui para",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "expressar recomendações e comandos dirigidos ao usuário."
+        },
+        {
+          "id": "B",
+          "texto": "relatar ações concluídas no passado."
+        },
+        {
+          "id": "C",
+          "texto": "apresentar hipóteses sem ligação com o leitor."
+        },
+        {
+          "id": "D",
+          "texto": "marcar uma conversa entre personagens fictícios."
+        },
+        {
+          "id": "E",
+          "texto": "substituir orientações por perguntas retóricas."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "A",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "As formas no imperativo orientam diretamente o comportamento do destinatário.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-019",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Carta sobre o primeiro emprego",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D017_P",
+      "dificuldade": "Fácil",
+      "texto_base": "Prezada equipe de seleção,\n\nParticipei da oficina de tecnologia da escola e, nela, desenvolvi um pequeno sistema de organização de empréstimos da biblioteca. Sei que minha experiência profissional ainda é limitada, mas aprendi a trabalhar com prazos, ouvir sugestões e corrigir problemas depois dos testes. Gostaria de concorrer à vaga de jovem aprendiz porque desejo conhecer a rotina de uma equipe e continuar estudando.\n\nAgradeço a oportunidade e permaneço à disposição para conversar sobre o projeto.\n\nAtenciosamente,\nUma estudante do ensino médio.",
+      "enunciado": "A que gênero textual pertence o texto apresentado?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "Crônica humorística."
+        },
+        {
+          "id": "B",
+          "texto": "Notícia policial."
+        },
+        {
+          "id": "C",
+          "texto": "Carta de apresentação profissional."
+        },
+        {
+          "id": "D",
+          "texto": "Receita culinária."
+        },
+        {
+          "id": "E",
+          "texto": "Poema narrativo."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "C",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "A estrutura de saudação, apresentação de experiência, candidatura e despedida caracteriza uma carta de apresentação.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-020",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Carta sobre o primeiro emprego",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D023_P",
+      "dificuldade": "Médio",
+      "texto_base": "Prezada equipe de seleção,\n\nParticipei da oficina de tecnologia da escola e, nela, desenvolvi um pequeno sistema de organização de empréstimos da biblioteca. Sei que minha experiência profissional ainda é limitada, mas aprendi a trabalhar com prazos, ouvir sugestões e corrigir problemas depois dos testes. Gostaria de concorrer à vaga de jovem aprendiz porque desejo conhecer a rotina de uma equipe e continuar estudando.\n\nAgradeço a oportunidade e permaneço à disposição para conversar sobre o projeto.\n\nAtenciosamente,\nUma estudante do ensino médio.",
+      "enunciado": "Ao mencionar os testes e correções do sistema, a candidata procura demonstrar",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "desinteresse pelas atividades escolares."
+        },
+        {
+          "id": "B",
+          "texto": "experiência obrigatória em uma grande empresa."
+        },
+        {
+          "id": "C",
+          "texto": "desconhecimento das tarefas realizadas."
+        },
+        {
+          "id": "D",
+          "texto": "capacidade de aprender com resultados e melhorar o próprio trabalho."
+        },
+        {
+          "id": "E",
+          "texto": "intenção de abandonar os estudos."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "D",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "A referência a ouvir sugestões e corrigir problemas evidencia aprendizagem e responsabilidade.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-021",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Carta sobre o primeiro emprego",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D103_P",
+      "dificuldade": "Difícil",
+      "texto_base": "Prezada equipe de seleção,\n\nParticipei da oficina de tecnologia da escola e, nela, desenvolvi um pequeno sistema de organização de empréstimos da biblioteca. Sei que minha experiência profissional ainda é limitada, mas aprendi a trabalhar com prazos, ouvir sugestões e corrigir problemas depois dos testes. Gostaria de concorrer à vaga de jovem aprendiz porque desejo conhecer a rotina de uma equipe e continuar estudando.\n\nAgradeço a oportunidade e permaneço à disposição para conversar sobre o projeto.\n\nAtenciosamente,\nUma estudante do ensino médio.",
+      "enunciado": "A saudação “Prezada equipe de seleção” e a despedida “Atenciosamente” indicam",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "um diálogo íntimo entre amigos da mesma idade."
+        },
+        {
+          "id": "B",
+          "texto": "adequação da linguagem a interlocutores em situação formal de candidatura."
+        },
+        {
+          "id": "C",
+          "texto": "uma fala espontânea típica de conversa informal."
+        },
+        {
+          "id": "D",
+          "texto": "um pedido dirigido aos leitores de uma revista de humor."
+        },
+        {
+          "id": "E",
+          "texto": "a intenção de narrar fatos fictícios sem destinatário."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "B",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "As escolhas de tratamento indicam o interlocutor e o registro formal esperado no contexto profissional.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-022",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Memórias do rio",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D021_P",
+      "dificuldade": "Fácil",
+      "texto_base": "Quando criança, eu media as tardes pelo barulho da água passando sob a ponte. Naquele tempo, o rio parecia maior do que todas as ruas do bairro. Hoje, depois de tantos anos, volto à mesma margem e encontro casas onde havia terrenos vazios. O rio continua ali, embora suas águas sigam outro ritmo. Um senhor que pesca perto da ponte me conta que, nos períodos de chuva, a correnteza muda de direção nas curvas. Escuto sua explicação e penso que a cidade também é assim: muda de forma, mas conserva sinais do que fomos. Antes de ir embora, recolho uma garrafa deixada na margem. Talvez recordar um lugar também signifique cuidar dele.",
+      "enunciado": "Qual objeto o narrador recolhe antes de ir embora?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "Uma rede de pesca."
+        },
+        {
+          "id": "B",
+          "texto": "Uma fotografia."
+        },
+        {
+          "id": "C",
+          "texto": "Uma bicicleta."
+        },
+        {
+          "id": "D",
+          "texto": "Uma pedra rara."
+        },
+        {
+          "id": "E",
+          "texto": "Uma garrafa."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "E",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "No último período, o narrador menciona recolher uma garrafa.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-023",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Memórias do rio",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D023_P",
+      "dificuldade": "Médio",
+      "texto_base": "Quando criança, eu media as tardes pelo barulho da água passando sob a ponte. Naquele tempo, o rio parecia maior do que todas as ruas do bairro. Hoje, depois de tantos anos, volto à mesma margem e encontro casas onde havia terrenos vazios. O rio continua ali, embora suas águas sigam outro ritmo. Um senhor que pesca perto da ponte me conta que, nos períodos de chuva, a correnteza muda de direção nas curvas. Escuto sua explicação e penso que a cidade também é assim: muda de forma, mas conserva sinais do que fomos. Antes de ir embora, recolho uma garrafa deixada na margem. Talvez recordar um lugar também signifique cuidar dele.",
+      "enunciado": "A comparação entre o rio e a cidade sugere que",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "as transformações apagam necessariamente toda memória."
+        },
+        {
+          "id": "B",
+          "texto": "o ambiente urbano permanece idêntico ao longo dos anos."
+        },
+        {
+          "id": "C",
+          "texto": "lugares podem mudar sem perder completamente seus vínculos com o passado."
+        },
+        {
+          "id": "D",
+          "texto": "o rio deixou de existir após a construção de casas."
+        },
+        {
+          "id": "E",
+          "texto": "a memória depende apenas de registros escritos."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "C",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "A comparação destaca mudança e permanência como aspectos simultâneos da experiência dos lugares.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-024",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Memórias do rio",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D043_P",
+      "dificuldade": "Difícil",
+      "texto_base": "Quando criança, eu media as tardes pelo barulho da água passando sob a ponte. Naquele tempo, o rio parecia maior do que todas as ruas do bairro. Hoje, depois de tantos anos, volto à mesma margem e encontro casas onde havia terrenos vazios. O rio continua ali, embora suas águas sigam outro ritmo. Um senhor que pesca perto da ponte me conta que, nos períodos de chuva, a correnteza muda de direção nas curvas. Escuto sua explicação e penso que a cidade também é assim: muda de forma, mas conserva sinais do que fomos. Antes de ir embora, recolho uma garrafa deixada na margem. Talvez recordar um lugar também signifique cuidar dele.",
+      "enunciado": "Na passagem “eu media as tardes pelo barulho da água”, a construção produz o efeito de",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "indicar uma medição cronológica precisa por equipamentos."
+        },
+        {
+          "id": "B",
+          "texto": "associar a passagem do tempo a uma experiência sensorial e afetiva."
+        },
+        {
+          "id": "C",
+          "texto": "provar que os relógios não existiam no bairro."
+        },
+        {
+          "id": "D",
+          "texto": "descrever um cálculo do nível do rio."
+        },
+        {
+          "id": "E",
+          "texto": "afirmar que o narrador era responsável pela estação meteorológica."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "B",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "A lembrança transforma o som do rio em referência subjetiva para o tempo vivido.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-025",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Tecnologia e convivência",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D021_P",
+      "dificuldade": "Fácil",
+      "texto_base": "TEXTO 1 — Editorial estudantil: “Os grupos de mensagens facilitam a circulação de avisos importantes. No entanto, publicar a mesma informação em muitos canais pode confundir quem precisa saber o que mudou. É melhor concentrar os comunicados oficiais em um espaço consultável por toda a comunidade.”\n\nTEXTO 2 — Comentário de um aluno: “Prefiro receber os avisos em vários grupos. Às vezes não consigo consultar o mural digital, mas vejo as mensagens quando meus colegas compartilham. Para mim, repetir é uma forma de garantir que a informação chegue.”",
+      "enunciado": "Segundo o Texto 1, qual é uma vantagem dos grupos de mensagens?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "Facilitar a circulação de avisos importantes."
+        },
+        {
+          "id": "B",
+          "texto": "Eliminar o acesso dos estudantes aos comunicados."
+        },
+        {
+          "id": "C",
+          "texto": "Impedir a existência de canais oficiais."
+        },
+        {
+          "id": "D",
+          "texto": "Tornar todos os avisos obrigatoriamente impressos."
+        },
+        {
+          "id": "E",
+          "texto": "Substituir a participação de professores."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "A",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "O benefício aparece na frase inicial do editorial.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-026",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Tecnologia e convivência",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D019_P",
+      "dificuldade": "Médio",
+      "texto_base": "TEXTO 1 — Editorial estudantil: “Os grupos de mensagens facilitam a circulação de avisos importantes. No entanto, publicar a mesma informação em muitos canais pode confundir quem precisa saber o que mudou. É melhor concentrar os comunicados oficiais em um espaço consultável por toda a comunidade.”\n\nTEXTO 2 — Comentário de um aluno: “Prefiro receber os avisos em vários grupos. Às vezes não consigo consultar o mural digital, mas vejo as mensagens quando meus colegas compartilham. Para mim, repetir é uma forma de garantir que a informação chegue.”",
+      "enunciado": "Os dois textos tratam do mesmo tema, mas apresentam perspectivas diferentes sobre",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "o conteúdo das disciplinas escolares."
+        },
+        {
+          "id": "B",
+          "texto": "o horário dos intervalos."
+        },
+        {
+          "id": "C",
+          "texto": "a substituição de livros por telas."
+        },
+        {
+          "id": "D",
+          "texto": "a quantidade de canais usados para divulgar avisos."
+        },
+        {
+          "id": "E",
+          "texto": "a necessidade de mudar o calendário letivo."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "D",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "Um texto defende centralização, enquanto o outro valoriza circulação em diferentes grupos.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-027",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "Tecnologia e convivência",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D033_P",
+      "dificuldade": "Difícil",
+      "texto_base": "TEXTO 1 — Editorial estudantil: “Os grupos de mensagens facilitam a circulação de avisos importantes. No entanto, publicar a mesma informação em muitos canais pode confundir quem precisa saber o que mudou. É melhor concentrar os comunicados oficiais em um espaço consultável por toda a comunidade.”\n\nTEXTO 2 — Comentário de um aluno: “Prefiro receber os avisos em vários grupos. Às vezes não consigo consultar o mural digital, mas vejo as mensagens quando meus colegas compartilham. Para mim, repetir é uma forma de garantir que a informação chegue.”",
+      "enunciado": "A divergência entre os autores pode ser sintetizada corretamente em:",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "Ambos rejeitam a divulgação digital de comunicados."
+        },
+        {
+          "id": "B",
+          "texto": "O editorial valoriza um canal único e consultável; o aluno defende o compartilhamento repetido para ampliar o alcance."
+        },
+        {
+          "id": "C",
+          "texto": "O editorial afirma que avisos não devem circular; o aluno exige apenas cartazes de papel."
+        },
+        {
+          "id": "D",
+          "texto": "Ambos consideram que mensagens repetidas sempre provocam desinformação."
+        },
+        {
+          "id": "E",
+          "texto": "O aluno afirma que os grupos de mensagens são inacessíveis aos estudantes."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "B",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "O contraste articula duas posições explícitas sobre a mesma prática de comunicação.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-028",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "A trilha da restinga",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D021_P",
+      "dificuldade": "Fácil",
+      "texto_base": "Um grupo de estudantes organizou uma caminhada guiada pela restinga próxima à escola. Durante o percurso, a professora explicou que algumas plantas possuem raízes capazes de fixar a areia e resistir à salinidade. Um visitante sugeriu abrir um atalho entre os arbustos, porque o caminho oficial parecia longo. O guia respondeu que, embora o desvio fosse mais curto, atravessar a vegetação poderia danificar mudas em crescimento. Por isso, a turma decidiu manter o trajeto sinalizado. No relatório da visita, os alunos registraram espécies observadas e anotaram uma conclusão: preservar o ambiente exige escolhas que nem sempre parecem mais fáceis no momento.",
+      "enunciado": "Por que algumas plantas da restinga conseguem permanecer no ambiente arenoso?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "Porque dependem de asfalto para crescer."
+        },
+        {
+          "id": "B",
+          "texto": "Porque não apresentam raízes."
+        },
+        {
+          "id": "C",
+          "texto": "Porque possuem adaptações, como raízes que fixam a areia."
+        },
+        {
+          "id": "D",
+          "texto": "Porque crescem apenas em água doce."
+        },
+        {
+          "id": "E",
+          "texto": "Porque foram todas plantadas na mesma data."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "C",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "A professora cita explicitamente adaptações das plantas, incluindo raízes que fixam a areia.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-029",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "A trilha da restinga",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D039_P",
+      "dificuldade": "Médio",
+      "texto_base": "Um grupo de estudantes organizou uma caminhada guiada pela restinga próxima à escola. Durante o percurso, a professora explicou que algumas plantas possuem raízes capazes de fixar a areia e resistir à salinidade. Um visitante sugeriu abrir um atalho entre os arbustos, porque o caminho oficial parecia longo. O guia respondeu que, embora o desvio fosse mais curto, atravessar a vegetação poderia danificar mudas em crescimento. Por isso, a turma decidiu manter o trajeto sinalizado. No relatório da visita, os alunos registraram espécies observadas e anotaram uma conclusão: preservar o ambiente exige escolhas que nem sempre parecem mais fáceis no momento.",
+      "enunciado": "No trecho “embora o desvio fosse mais curto, atravessar a vegetação poderia danificar mudas”, o termo “embora” estabelece relação de",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "adição."
+        },
+        {
+          "id": "B",
+          "texto": "conclusão."
+        },
+        {
+          "id": "C",
+          "texto": "comparação de igualdade."
+        },
+        {
+          "id": "D",
+          "texto": "causa direta."
+        },
+        {
+          "id": "E",
+          "texto": "concessão."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "E",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "“Embora” introduz uma circunstância concedida que não altera a orientação principal.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-030",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "A trilha da restinga",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D055_P",
+      "dificuldade": "Difícil",
+      "texto_base": "Um grupo de estudantes organizou uma caminhada guiada pela restinga próxima à escola. Durante o percurso, a professora explicou que algumas plantas possuem raízes capazes de fixar a areia e resistir à salinidade. Um visitante sugeriu abrir um atalho entre os arbustos, porque o caminho oficial parecia longo. O guia respondeu que, embora o desvio fosse mais curto, atravessar a vegetação poderia danificar mudas em crescimento. Por isso, a turma decidiu manter o trajeto sinalizado. No relatório da visita, os alunos registraram espécies observadas e anotaram uma conclusão: preservar o ambiente exige escolhas que nem sempre parecem mais fáceis no momento.",
+      "enunciado": "Qual argumento justifica a decisão de não abrir o atalho?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "O caminho oficial passa obrigatoriamente por todas as praias do estado."
+        },
+        {
+          "id": "B",
+          "texto": "O desvio era mais demorado do que o trajeto sinalizado."
+        },
+        {
+          "id": "C",
+          "texto": "A vegetação da restinga pode ser danificada pela passagem de visitantes."
+        },
+        {
+          "id": "D",
+          "texto": "O guia não permitia que estudantes escrevessem relatórios."
+        },
+        {
+          "id": "E",
+          "texto": "O relatório não exigia identificação de espécies."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "C",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "O risco de danificar mudas sustenta a escolha de preservar o trajeto existente.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-031",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "O cartaz da oficina",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D021_P",
+      "dificuldade": "Fácil",
+      "texto_base": "CARTAZ DA ESCOLA\n\nOFICINA DE LEITURA CRÍTICA — “Antes de compartilhar, confira!”\n\nQuinta-feira, às 14 horas, na sala multimídia.\n\nTraga uma notícia encontrada na internet e compare suas informações com pelo menos duas fontes independentes. A atividade é aberta aos estudantes da 3ª série do ensino médio. Participação gratuita.\n\nAo pé do cartaz, aparece a ilustração de uma lupa sobre um telefone e a frase: “Uma informação sem contexto pode esconder mais do que revela.”",
+      "enunciado": "Quem pode participar da oficina, segundo o cartaz?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "Apenas professores universitários."
+        },
+        {
+          "id": "B",
+          "texto": "Somente estudantes do ensino fundamental."
+        },
+        {
+          "id": "C",
+          "texto": "Todos os moradores de outras cidades."
+        },
+        {
+          "id": "D",
+          "texto": "Estudantes da 3ª série do ensino médio."
+        },
+        {
+          "id": "E",
+          "texto": "Exclusivamente jornalistas profissionais."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "D",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "O público-alvo consta expressamente no texto do cartaz.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-032",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "O cartaz da oficina",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D016_P",
+      "dificuldade": "Médio",
+      "texto_base": "CARTAZ DA ESCOLA\n\nOFICINA DE LEITURA CRÍTICA — “Antes de compartilhar, confira!”\n\nQuinta-feira, às 14 horas, na sala multimídia.\n\nTraga uma notícia encontrada na internet e compare suas informações com pelo menos duas fontes independentes. A atividade é aberta aos estudantes da 3ª série do ensino médio. Participação gratuita.\n\nAo pé do cartaz, aparece a ilustração de uma lupa sobre um telefone e a frase: “Uma informação sem contexto pode esconder mais do que revela.”",
+      "enunciado": "Qual é a finalidade predominante do cartaz?",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "Apresentar um anúncio de venda de aparelhos celulares."
+        },
+        {
+          "id": "B",
+          "texto": "Convidar estudantes para uma oficina e orientar a participação."
+        },
+        {
+          "id": "C",
+          "texto": "Narrar uma história sobre um jornalista."
+        },
+        {
+          "id": "D",
+          "texto": "Publicar resultados de uma pesquisa concluída."
+        },
+        {
+          "id": "E",
+          "texto": "Descrever o funcionamento técnico de uma lupa."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "B",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "O cartaz divulga a oficina e oferece instruções aos interessados.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    },
+    {
+      "id": "AUT-2026-033",
+      "origem": "autoral_baseada_em_descritores_da_coletanea",
+      "titulo": "O cartaz da oficina",
+      "numero_original": null,
+      "fonte": "Questão autoral elaborada para O Tesouro das Palavras (2026); não é questão oficial PAEBES.",
+      "descritor": "D025_P",
+      "dificuldade": "Difícil",
+      "texto_base": "CARTAZ DA ESCOLA\n\nOFICINA DE LEITURA CRÍTICA — “Antes de compartilhar, confira!”\n\nQuinta-feira, às 14 horas, na sala multimídia.\n\nTraga uma notícia encontrada na internet e compare suas informações com pelo menos duas fontes independentes. A atividade é aberta aos estudantes da 3ª série do ensino médio. Participação gratuita.\n\nAo pé do cartaz, aparece a ilustração de uma lupa sobre um telefone e a frase: “Uma informação sem contexto pode esconder mais do que revela.”",
+      "enunciado": "Na frase “Antes de compartilhar, confira!”, o ponto de exclamação contribui para",
+      "alternativas": [
+        {
+          "id": "A",
+          "texto": "atenuar completamente a orientação, transformando-a em dúvida."
+        },
+        {
+          "id": "B",
+          "texto": "indicar uma citação indireta de um pesquisador."
+        },
+        {
+          "id": "C",
+          "texto": "marcar a intensidade e a força de uma recomendação ao leitor."
+        },
+        {
+          "id": "D",
+          "texto": "expressar uma interrogação sobre o horário da oficina."
+        },
+        {
+          "id": "E",
+          "texto": "sugerir que a informação já foi verificada."
+        }
+      ],
+      "gabarito": {
+        "alternativa": "C",
+        "validado": true,
+        "situacao": "autoral_com_resposta_justificada"
+      },
+      "justificativa": "A exclamação enfatiza a recomendação expressa no enunciado.",
+      "dica": "Releia o texto-base, localize as evidências e compare com o que cada alternativa afirma.",
+      "avaliavel": true,
+      "imagens_original": []
+    }
+  ]
+}

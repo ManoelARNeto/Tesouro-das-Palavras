@@ -3,11 +3,19 @@ const $=id=>document.getElementById(id);
 
 export class UI {
  constructor(game){
-  this.game=game; this.stageReturn='menu';
+  this.game=game; this.stageReturn='menu'; this.libraryReturn='menu';
   $('btn-new').addEventListener('click',()=>game.newGame());
   $('btn-continue').addEventListener('click',()=>game.continueGame());
   $('btn-stage-menu').addEventListener('click',()=>game.openStages('menu'));
   $('btn-main-settings').addEventListener('click',()=>this.openSettings('menu'));
+  $('btn-library-menu').addEventListener('click',()=>this.openLibrary('menu'));
+  $('btn-library-pause').addEventListener('click',()=>this.openLibrary('pause'));
+  $('btn-library-close').addEventListener('click',()=>this.closeLibrary());
+  $('library-question-select').addEventListener('change',e=>this.showLibraryQuestion(e.target.value));
+  $('btn-question-close').addEventListener('click',()=>game.closeQuestion());
+  $('btn-question-switch').addEventListener('click',()=>game.changeQuestion());
+  $('question-form').addEventListener('submit',e=>{e.preventDefault(); const selected=document.querySelector('input[name=question-answer]:checked');this.showQuestionResult(game.answerQuestion(selected?.value));});
+  $('btn-win-menu').addEventListener('click',()=>game.backToMenu());
   $('btn-settings-pause').addEventListener('click',()=>this.openSettings('pause'));
   $('btn-back-settings').addEventListener('click',()=>this.show(this.settingsReturn));
   $('btn-pause').addEventListener('click',()=>game.pause());
@@ -23,7 +31,7 @@ export class UI {
   $('setting-motion').addEventListener('change',e=>game.setReducedMotion(e.target.checked));
   $('btn-error-retry').addEventListener('click',()=>location.reload());
  }
- show(screen){ for(const name of ['menu','pause','settings','journal','map','stages','error']) $(name+'-screen').hidden=name!==screen; this.screen=screen; }
+ show(screen){ for(const name of ['menu','pause','settings','journal','map','stages','question','library','win','error']) $(name+'-screen').hidden=name!==screen; this.screen=screen; }
  hud(visible){ $('hud').hidden=!visible; $('touch-controls').hidden=!visible; $('hud-tip').hidden=!visible; }
  updateContinue(hasSave){ $('btn-continue').disabled=!hasSave; }
  openSettings(origin){ this.settingsReturn=origin; $('setting-zoom').value=String(this.game.settings.zoom); $('setting-motion').checked=this.game.settings.reducedMotion; this.show('settings'); }
@@ -33,11 +41,11 @@ export class UI {
   $('stage-label-hud').textContent=`${game.stage.number} / ${STAGES.length}`;
   $('dig-progress').textContent=`${game.world.found.size} / ${game.stage.treasures.length}`;
   $('global-progress').textContent=`${game.totalFound()} / ${TOTAL_TREASURES}`;
-  $('mission-label').textContent=current ? `Siga a pista do tesouro ${current.difficulty.toLowerCase()} deste estágio.` : 'Estágio concluído. Você já pode seguir para o próximo cenário.';
+  $('mission-label').textContent=current ? (game.world.dug.has(current.id) ? `Baú ${current.difficulty.toLowerCase()} encontrado! Interaja para responder à questão.` : `Siga a pista do tesouro ${current.difficulty.toLowerCase()} deste estágio.`) : 'Estágio concluído. Você já pode seguir para o próximo cenário.';
   $('travel-time').textContent=this.formatTime(game.seconds);
   const target=game.world.nearestInteractive(game.player.x,game.player.y);
   $('interaction-prompt').hidden=!target||!!game.pendingExcavation;
-  if(target){ const label=target.signId?'Ler marco':target.kind==='buried'?'Cavar com a pá':'Inspecionar tesouro'; $('interaction-label').textContent=label; $('mobile-action').setAttribute('aria-label',label); }
+  if(target){ const label=target.signId?'Ler marco':target.kind==='buried'?'Cavar com a pá':game.world.opened.has(target.id)?'Baú já aberto':'Resolver questão do baú'; $('interaction-label').textContent=label; $('mobile-action').setAttribute('aria-label',label); }
  }
  formatTime(seconds){ const mm=Math.floor(seconds/60),ss=Math.floor(seconds%60); return `${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`; }
  updateJournal(game){
@@ -45,18 +53,18 @@ export class UI {
   $('journal-count').textContent=`${game.unlockedStages.size} de ${STAGES.length} estágios desbloqueados`;
   const list=$('journal-items'); list.replaceChildren();
   STAGES.forEach((stage,index)=>{
-    const state=game.stageStates[stage.id] || {found:[]}; const li=document.createElement('li');
-    li.className=game.unlockedStages.has(index)?(state.found.length===3?'found':'partial'):'unknown';
-    const mark=document.createElement('span'); mark.className='journal-mark'; mark.textContent=state.found.length===3?'✓':game.unlockedStages.has(index)?stage.number:'?';
+    const state=game.stageStates[stage.id] || {opened:[]}; const li=document.createElement('li');
+    li.className=game.unlockedStages.has(index)?((state.opened||[]).length===3?'found':'partial'):'unknown';
+    const mark=document.createElement('span'); mark.className='journal-mark'; mark.textContent=(state.opened||[]).length===3?'✓':game.unlockedStages.has(index)?stage.number:'?';
     const body=document.createElement('div'); const title=document.createElement('strong'); title.textContent=`${stage.number}. ${stage.name}`;
-    const desc=document.createElement('p'); desc.textContent=`${stage.stageHint} Progresso: ${state.found.length}/3 tesouros.`;
+    const desc=document.createElement('p'); desc.textContent=`${stage.stageHint} Progresso: ${(state.opened||[]).length}/3 tesouros.`;
     body.append(title,desc); li.append(mark,body); list.append(li);
   });
   const clueList=$('journal-treasure-items'); clueList.replaceChildren();
   for(const treasure of game.stage.treasures){ const found=game.world.found.has(treasure.id); const li=document.createElement('li'); li.className=found?'found':'unknown';
     const mark=document.createElement('span'); mark.className='journal-mark'; mark.textContent=found?'✦':treasure.difficulty[0];
     const body=document.createElement('div'); const title=document.createElement('strong'); title.textContent=`${treasure.difficulty} — ${found?treasure.name:'Tesouro ainda não localizado'}`;
-    const desc=document.createElement('p'); desc.textContent=found?'Tesouro escavado e registrado na campanha.':treasure.clue;
+    const desc=document.createElement('p'); desc.textContent=found?'Baú aberto após resposta correta.':game.world.currentTreasure()?.id===treasure.id?treasure.clue:'Pista bloqueada até abrir o baú anterior.';
     body.append(title,desc); li.append(mark,body); clueList.append(li); }
   const landmarkList=$('journal-secret-items'); landmarkList.replaceChildren();
   for(const area of game.world.areas){ const found=game.discovered.has(area.id); const li=document.createElement('li'); li.className=found?'found':'unknown';
@@ -64,7 +72,7 @@ export class UI {
     const body=document.createElement('div'); const title=document.createElement('strong'); title.textContent=found?area.name:'Marco ainda não reconhecido';
     const desc=document.createElement('p'); desc.textContent=found?'Você já usou esse ponto de referência para interpretar o mapa.':'Explore o estágio e aproxime-se dos marcos para reconhecê-los.';
     body.append(title,desc); li.append(mark,body); landmarkList.append(li); }
-  $('journal-treasure-count').textContent=`${game.world.found.size} de ${game.stage.treasures.length} tesouros encontrados neste estágio`;
+  $('journal-treasure-count').textContent=`${game.world.opened.size} de ${game.stage.treasures.length} baús abertos neste estágio`;
   $('journal-secret-count').textContent=`${game.discovered.size} de ${game.world.areas.length} marcos reconhecidos neste estágio`;
  }
  updateMap(game){
@@ -121,11 +129,82 @@ export class UI {
   }
   ctx.restore();
  }
+
+ showQuestion(game,q){
+  $('question-title').textContent=`BAÚ ${game.stage.number} • ${q.dificuldade.toUpperCase()}`;
+  $('question-meta').textContent=`${q.id}  |  ${q.descritor||'Sem descritor'}  |  ${q.origem.startsWith('autoral')?'Autoral':'Coletânea 2024'}`;
+  $('question-panel').scrollTop=0;
+  const content=$('question-content');this.renderQuestionContent(content,q);
+  const options=$('question-options');options.replaceChildren();
+  for(const alt of q.alternativas){
+   const label=document.createElement('label');label.className='answer-option';
+   const radio=document.createElement('input');radio.type='radio';radio.name='question-answer';radio.value=alt.id;
+   const span=document.createElement('span');span.textContent=`${alt.id}) ${alt.texto}`;
+   label.append(radio,span);options.append(label);
+  }
+  $('btn-question-confirm').disabled=false;$('btn-question-close').textContent='Voltar à exploração';
+  $('question-feedback').replaceChildren();$('question-feedback').className='question-feedback';
+  const alternative=game.questions.alternative(q,new Set([q.id,...Object.keys(game.questionStats).filter(id=>game.questionStats[id].ultimaEtapa===game.stage.id)]),game.answeredCorrect);
+  $('btn-question-switch').hidden=!alternative;
+ }
+ renderQuestionContent(target,q){
+  target.replaceChildren();
+  const heading=document.createElement('h3');heading.textContent=q.titulo||'Questão de Língua Portuguesa';target.append(heading);
+  if(q.origem==='coletanea_paebes_2024'){
+   const info=document.createElement('p');info.className='source-notice';info.textContent='Reprodução visual fiel do PDF enviado, com texto-base, enunciado, alternativas e recursos gráficos. O gabarito está pendente de validação docente.';target.append(info);
+   for(const resource of q.imagens_original||[]){
+    const figure=document.createElement('figure');figure.className='original-figure';
+    const link=document.createElement('a');link.href=resource.src;link.target='_blank';link.rel='noopener';link.title='Ampliar página original';
+    const img=document.createElement('img');img.src=resource.src;img.alt=`Questão ${q.numero_original||q.id}, trecho da página ${resource.pagina_pdf} do PDF`;img.loading='lazy';
+    link.append(img);figure.append(link);target.append(figure);
+   }
+  }else{
+   const text=document.createElement('div');text.className='question-text';text.textContent=q.texto_base||'';target.append(text);
+   const prompt=document.createElement('p');prompt.className='question-stem';prompt.textContent=q.enunciado||'';target.append(prompt);
+  }
+ }
+ showQuestionResult(result){
+  if(!result)return;
+  const feedback=$('question-feedback');feedback.replaceChildren();feedback.className='question-feedback '+(result.correct?'correct':'incorrect');
+  const title=document.createElement('strong');title.textContent=result.message||'';feedback.append(title);
+  if(result.correct){
+   const why=document.createElement('p');why.textContent=result.why||'O desafio foi concluído.';feedback.append(why);
+   $('btn-question-confirm').disabled=true;$('btn-question-switch').hidden=true;
+   document.querySelectorAll('input[name=question-answer]').forEach(input=>input.disabled=true);
+   $('btn-question-close').textContent=result.campaignComplete?'Ver conclusão':'Continuar aventura';
+  }else{
+   const hint=document.createElement('p');hint.textContent=result.hint||'Leia novamente o texto-base.';feedback.append(hint);
+   $('btn-question-confirm').disabled=false;
+  }
+  feedback.scrollIntoView({block:'nearest',behavior:'auto'});
+ }
+ openLibrary(origin){
+  this.libraryReturn=origin;
+  const select=$('library-question-select');select.replaceChildren();
+  for(const q of this.game.questions.questions){
+   const option=document.createElement('option');option.value=q.id;
+   const type=q.origem==='coletanea_paebes_2024'?'PDF • pendente':'Autoral • '+q.dificuldade;
+   option.textContent=`${type} — ${q.id} — ${q.descritor||'—'}`;select.append(option);
+  }
+  const count=this.game.questions.statistics();
+  $('library-summary').textContent=`${count.originais} itens do PDF (${count.pendentes} pendentes) + ${count.autorais} autorais = ${this.game.questions.questions.length} questões. O acervo do PDF só entra na avaliação após validação do gabarito.`;
+  if(select.value)this.showLibraryQuestion(select.value);
+  this.show('library');this.game.input.clear();this.hud(false);
+ }
+ showLibraryQuestion(id){
+  const q=this.game.questions.find(id);if(!q)return;
+  $('library-item-meta').textContent=`${q.id} • ${q.descritor||'Sem descritor'} • ${this.game.questions.assessable(q)?'Gabarito validado':'Aguardando gabarito validado'}`;
+  this.renderQuestionContent($('library-item-preview'),q);
+  const list=$('library-item-alternatives');list.replaceChildren();
+  for(const a of q.alternativas){const item=document.createElement('li');item.textContent=`${a.id}) ${a.texto}`;list.append(item);}
+ }
+ closeLibrary(){this.show(this.libraryReturn);this.hud(false);}
+
  refreshStageSelect(game){
   const grid=$('stage-grid'); grid.replaceChildren();
   STAGES.forEach((stage,index)=>{
     const button=document.createElement('button'); button.type='button';
-    const unlocked=game.unlockedStages.has(index); const found=game.stageStates[stage.id]?.found?.length||0;
+    const unlocked=game.unlockedStages.has(index); const found=game.stageStates[stage.id]?.opened?.length||0;
     button.className='stage-card '+(unlocked?'':'locked')+(found===3?' complete':''); button.disabled=!unlocked;
     button.innerHTML=`<span class="stage-card-top">ESTÁGIO ${stage.number}</span><strong>${stage.name}</strong><small>${found}/3 tesouros</small><span class="stage-card-foot">${unlocked?(found===3?'Concluído':'Disponível'):'Bloqueado'}</span>`;
     if(unlocked) button.addEventListener('click',()=>game.openStage(index));

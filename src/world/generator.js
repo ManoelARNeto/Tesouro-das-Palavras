@@ -130,6 +130,33 @@ function decorateTerrain(stage, tiles){
   }
 }
 
+/** Corredores transitáveis: cada ponto escavável deve ter um acesso conectado à trilha.
+ * Em água, a trilha torna-se ponte; nas rochas, piso de cascalho.
+ * Preserva o desenho geral de cada bioma, corrigindo cortes do mapa da Etapa 3.
+ */
+function ensureTreasureRoutes(stage, tiles){
+  const cols=stage.cols, rows=stage.rows;
+  const before=tiles.slice();
+  const roadPoints=stage.roads.flat();
+  const paths=[...stage.roads.map(points=>points)];
+  for(const t of stage.treasures){
+    const closest=roadPoints.reduce((best,point)=>
+      Math.hypot(point[0]-t.col,point[1]-t.row)<Math.hypot(best[0]-t.col,best[1]-t.row)?point:best,roadPoints[0]);
+    paths.push([closest,[t.col,t.row]]);
+  }
+  paths.push([[stage.start.col,stage.start.row],stage.roads[0][0]]);
+  for(const path of paths)paintPath(tiles,cols,rows,path,1.35,T.PATH);
+  for(const t of stage.treasures)paintCircle(tiles,cols,rows,t.col,t.row,1.65,T.PATH);
+  paintCircle(tiles,cols,rows,stage.start.col,stage.start.row,1.65,T.PATH);
+  for(let row=0;row<rows;row++)for(let col=0;col<cols;col++){
+    const k=idx(cols,col,row);
+    if(tiles[k]!==T.PATH)continue;
+    if([T.OCEAN,T.COAST,T.RIVER,T.SHALLOW].includes(before[k]))tiles[k]=T.BRIDGE;
+    else if(before[k]===T.CLIFF)tiles[k]=T.GRAVEL;
+    else if(stage.biome==='cave')tiles[k]=T.GRAVEL;
+  }
+}
+
 function addLandmarkObjects(stage, tiles, objects){
   const cols=stage.cols, rows=stage.rows;
   const land=v=>!BLOCK_LAND.has(v);
@@ -180,6 +207,7 @@ function addFillerObjects(stage, tiles, objects){
 export function generateStageWorld(stage){
   const tiles=setupBase(stage);
   decorateTerrain(stage, tiles);
+  ensureTreasureRoutes(stage, tiles);
   const objects=[];
   const signs=addLandmarkObjects(stage, tiles, objects);
   addFillerObjects(stage, tiles, objects);

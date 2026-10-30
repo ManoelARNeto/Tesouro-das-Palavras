@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "version": "Etapa 4",
+  "treasureQuestions": {
+    "s1-t1": "AUT-2026-001",
+    "s1-t2": "AUT-2026-002",
+    "s1-t3": "AUT-2026-003",
+    "s2-t1": "AUT-2026-004",
+    "s2-t2": "AUT-2026-005",
+    "s2-t3": "AUT-2026-006",
+    "s3-t1": "AUT-2026-007",
+    "s3-t2": "AUT-2026-008",
+    "s3-t3": "AUT-2026-009",
+    "s4-t1": "AUT-2026-010",
+    "s4-t2": "AUT-2026-011",
+    "s4-t3": "AUT-2026-012",
+    "s5-t1": "AUT-2026-013",
+    "s5-t2": "AUT-2026-014",
+    "s5-t3": "AUT-2026-015",
+    "s6-t1": "AUT-2026-016",
+    "s6-t2": "AUT-2026-017",
+    "s6-t3": "AUT-2026-018",
+    "s7-t1": "AUT-2026-019",
+    "s7-t2": "AUT-2026-020",
+    "s7-t3": "AUT-2026-021",
+    "s8-t1": "AUT-2026-022",
+    "s8-t2": "AUT-2026-023",
+    "s8-t3": "AUT-2026-024",
+    "s9-t1": "AUT-2026-025",
+    "s9-t2": "AUT-2026-026",
+    "s9-t3": "AUT-2026-027",
+    "s10-t1": "AUT-2026-028",
+    "s10-t2": "AUT-2026-029",
+    "s10-t3": "AUT-2026-030"
+  },
+  "reserveQuestions": [
+    "AUT-2026-031",
+    "AUT-2026-032",
+    "AUT-2026-033"
+  ],
+  "nota": "Uma questão autoral validada por baú; itens do PDF aguardam gabarito oficial para serem sorteados."
+}
