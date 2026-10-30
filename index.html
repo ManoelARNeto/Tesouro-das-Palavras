@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+ <meta name="theme-color" content="#172e39">
+ <meta name="description" content="O Tesouro das Palavras — RPG educativo de exploração. Etapa 3 com mapas e pistas.">
+ <title>O Tesouro das Palavras · Etapa 3</title>
+ <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+ <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+ <main id="game-shell">
+  <canvas id="game-canvas" aria-label="Cenários 2D exploráveis, controlados pelo teclado ou joystick" tabindex="-1">Seu navegador precisa oferecer suporte ao Canvas 2D.</canvas>
+  <div class="screen-vignette" aria-hidden="true"></div>
+
+  <header id="hud" class="hud" hidden>
+   <div class="hud-brand"><span class="hud-symbol">✦</span><div><strong class="full-brand">O TESOURO DAS PALAVRAS</strong><strong class="short-brand">TESOURO</strong><span>ETAPA 3 • MAPAS E PISTAS</span></div></div>
+   <div class="hud-location"><span class="hud-caption">LOCALIZAÇÃO</span><strong id="area-label">Praia dos Náufragos</strong></div>
+   <div class="hud-progress"><span class="hud-caption">ESTÁGIO</span><strong id="stage-label-hud">1 / 10</strong></div>
+   <div class="hud-buttons"><button type="button" id="btn-map-hud" class="hud-button" title="Abrir o mapa">🗺 <span>Mapa</span></button><button type="button" id="btn-journal-hud" class="hud-button" title="Abrir o diário">▤ <span>Diário</span></button><button type="button" id="btn-pause" class="hud-button" title="Pausar o jogo">Ⅱ <span>Pausa</span></button></div>
+  </header>
+  <div class="objective-chip" id="hud-tip" hidden><span class="objective-icon">🪏</span><div><small>OBJETIVO ATUAL</small><span id="mission-label">Abra o mapa e siga a próxima pista</span><span class="dig-counter">TESOUROS DO ESTÁGIO <strong id="dig-progress">0 / 3</strong> • CAMPANHA <strong id="global-progress">0 / 30</strong></span></div><time id="travel-time">00:00</time></div>
+  <div id="interaction-prompt" class="interaction-prompt" hidden><span class="keyboard-key">E</span> <span id="interaction-label">Interagir</span> <span class="mobile-hint">ou toque em Ação</span></div>
+  <div id="toasts" class="toast-stack" role="status" aria-live="polite"></div>
+  <div id="touch-controls" class="touch-controls" hidden>
+   <div id="joystick" class="joystick" aria-label="Controle virtual direcional"><div class="joystick-ring"></div><div id="joystick-stick" class="joystick-stick"></div></div>
+   <button type="button" id="mobile-action" class="action-button" aria-label="Interagir ou cavar com a pá">AÇÃO</button>
+  </div>
+  <div class="desktop-controls" id="desktop-controls" aria-hidden="true">WASD / SETAS <span>•</span> CAMINHAR <span>•</span> E USAR A PÁ / INTERAGIR <span>•</span> ESC PAUSAR</div>
+
+  <section id="menu-screen" class="overlay menu-overlay" aria-labelledby="game-title">
+   <div class="menu-decoration" aria-hidden="true">✥</div>
+   <div class="panel title-panel">
+    <div class="eyebrow"><span class="line"></span> AVENTURA DE LEITURA, MAPAS E TESOUROS <span class="line"></span></div>
+    <div class="treasure-icon" aria-hidden="true">✦</div>
+    <h1 id="game-title">O TESOURO<br><em>DAS PALAVRAS</em></h1>
+    <div class="divider-ornament" aria-hidden="true">✧ ━━━━━ ✦ ━━━━━ ✧</div>
+    <p>Dez estágios, trinta tesouros e pistas em mapas antigos.<br>Cada descoberta aproxima o jogador do Tesouro Lendário.</p>
+    <p class="shovel-info">🪏 &nbsp; A PÁ JÁ ESTÁ COM VOCÊ. APERTE E OU AÇÃO PARA CAVAR.</p><div class="stage-label">CAMPANHA COMPLETA <span>—</span> 10 ESTÁGIOS • 3 TESOUROS CADA</div>
+    <div class="main-actions"><button type="button" id="btn-new" class="button primary">✦ &nbsp; NOVA CAMPANHA</button><button type="button" id="btn-continue" class="button secondary" disabled>↳ &nbsp; CONTINUAR</button><button type="button" id="btn-stage-menu" class="button secondary">🗺 &nbsp; ESCOLHER ESTÁGIO</button><button type="button" id="btn-main-settings" class="button subtle">⚙ &nbsp; CONFIGURAÇÕES</button></div>
+    <div class="panel-footer">PROTÓTIPO JOGÁVEL • ETAPA 3 DE 6 • MAPAS INSPIRADOS NO MODELO ENVIADO</div>
+   </div>
+  </section>
+
+  <section id="pause-screen" class="overlay" aria-label="Jogo pausado" hidden>
+   <div class="panel dialog"><div class="eyebrow">EXPEDIÇÃO INTERROMPIDA</div><h2>PAUSA</h2><p>Abra o mapa ou o seletor de estágios para decidir o próximo passo.</p>
+    <button type="button" id="btn-resume" class="button primary">▶ &nbsp; VOLTAR À AVENTURA</button>
+    <button type="button" id="btn-stages-pause" class="button secondary">🗺 &nbsp; SELETOR DE ESTÁGIOS</button>
+    <button type="button" id="btn-settings-pause" class="button secondary">⚙ &nbsp; CONFIGURAÇÕES</button>
+    <button type="button" id="btn-go-menu" class="button subtle">⌂ &nbsp; MENU PRINCIPAL</button>
+   </div>
+  </section>
+
+  <section id="settings-screen" class="overlay" aria-label="Configurações" hidden>
+   <div class="panel dialog"><div class="eyebrow">PREFERÊNCIAS DE JOGO</div><h2>CONFIGURAÇÕES</h2>
+    <label class="setting-row" for="setting-zoom"><span><strong>Ampliação da câmera</strong><small>Altere o tamanho dos elementos do cenário.</small></span><select id="setting-zoom"><option value="1.5">Afastada</option><option value="2" selected>Normal</option><option value="2.5">Próxima</option></select></label>
+    <label class="setting-row" for="setting-motion"><span><strong>Reduzir animações ambientais</strong><small>Desativa o movimento de brilho da água.</small></span><input id="setting-motion" type="checkbox"></label>
+    <button type="button" id="btn-back-settings" class="button primary">← &nbsp; VOLTAR</button>
+   </div>
+  </section>
+
+  <section id="journal-screen" class="overlay" aria-label="Diário de exploração" hidden>
+   <div class="panel journal-panel"><div class="eyebrow">CADERNO DO AVENTUREIRO</div><h2 id="journal-title">CAMPANHA</h2><p id="journal-count">0 de 10 estágios desbloqueados</p><ol id="journal-items" class="journal-items"></ol>
+     <h3>Pistas do estágio atual</h3><p id="journal-treasure-count">0 de 3 tesouros encontrados</p><ol id="journal-treasure-items" class="journal-items"></ol>
+     <h3>Marcos reconhecidos</h3><p id="journal-secret-count">0 de 0 marcos reconhecidos</p><ol id="journal-secret-items" class="journal-items"></ol><button type="button" id="btn-journal-close" class="button primary">← &nbsp; VOLTAR À EXPEDIÇÃO</button></div>
+  </section>
+
+  <section id="map-screen" class="overlay" aria-label="Mapa do tesouro" hidden>
+   <div class="panel map-panel"><div class="eyebrow">MAPA ANTIGO</div><h2 id="map-stage-title">ESTÁGIO 1 — PRAIA DOS NÁUFRAGOS</h2><p id="map-stage-subtitle">Observe os marcos e siga a rota pontilhada até o X.</p>
+     <canvas id="map-canvas" width="520" height="360" aria-label="Mapa do tesouro ilustrado"></canvas>
+     <div class="map-info"><div><span class="hud-caption">DIFICULDADE DA PISTA</span><strong id="map-difficulty">Fácil</strong></div><p id="map-clue-text">A pista atual aparecerá aqui.</p></div>
+     <button type="button" id="btn-map-close" class="button primary">← &nbsp; VOLTAR À EXPEDIÇÃO</button></div>
+  </section>
+
+  <section id="stages-screen" class="overlay" aria-label="Seletor de estágios" hidden>
+   <div class="panel journal-panel"><div class="eyebrow">SELETOR DE ESTÁGIOS</div><h2>DEZ CENÁRIOS DE EXPLORAÇÃO</h2><p>Escolha um estágio desbloqueado para explorar. Cada estágio possui 3 tesouros: fácil, médio e difícil.</p><div id="stage-grid" class="stage-grid"></div><button type="button" id="btn-stage-close" class="button primary">← &nbsp; VOLTAR</button></div>
+  </section>
+
+  <section id="error-screen" class="overlay" aria-label="Erro ao carregar" hidden><div class="panel dialog"><h2>ERRO DE CARREGAMENTO</h2><p id="error-message"></p><button type="button" id="btn-error-retry" class="button primary">TENTAR NOVAMENTE</button></div></section>
+ </main>
+ <script type="module" src="src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "notice": "ITENS AUTORAIS DEMONSTRATIVOS. NÃO SÃO QUESTÕES OFICIAIS DO PAEBES. NÃO UTILIZADOS NA ETAPA 1.",
+  "questions": [
+    {
+      "id": "autoral-demo-001",
+      "fonte": "Elaboração autoral demonstrativa, versão 0.1",
+      "prova": null,
+      "numeroOriginal": null,
+      "textoBase": "Em tempos de notificações constantes, a leitura longa tornou-se um gesto deliberado. Não se trata de rejeitar a tecnologia, mas de escolher quando interromper o fluxo de mensagens para dedicar atenção integral a um argumento.",
+      "enunciado": "No texto, a expressão 'gesto deliberado' indica que a leitura longa depende, principalmente, de",
+      "alternativas": [
+        {"id":"A","texto":"isolamento definitivo das ferramentas digitais."},
+        {"id":"B","texto":"decisão consciente de concentrar a atenção."},
+        {"id":"C","texto":"abandono de qualquer debate coletivo."},
+        {"id":"D","texto":"redução da variedade de textos disponíveis."},
+        {"id":"E","texto":"substituição dos argumentos por mensagens curtas."}
+      ],
+      "gabarito":{"alternativa":"B","validado":true,"origem":"resolução autoral"},
+      "descritor":null,
+      "habilidadeSugerida":"Inferência do sentido de expressão em contexto",
+      "dica":"Observe o sentido de 'deliberado' e o contraste entre atenção e interrupções.",
+      "recursosVisuais":[]
+    },
+    {
+      "id":"autoral-demo-002","fonte":"Elaboração autoral demonstrativa, versão 0.1","prova":null,"numeroOriginal":null,
+      "textoBase":"O museu do bairro abriu suas portas aos moradores antes de inaugurar a nova exposição. Ao escutar memórias de antigos trabalhadores, a equipe percebeu que parte da história local não estava registrada em documentos oficiais. As entrevistas passaram, então, a integrar o acervo.",
+      "enunciado":"A principal finalidade do texto é",
+      "alternativas":[{"id":"A","texto":"defender a exclusão de documentos escritos do museu."},{"id":"B","texto":"criticar os moradores que não guardam fotografias."},{"id":"C","texto":"informar como relatos orais ampliaram o acervo do museu."},{"id":"D","texto":"descrever as regras de visitação da exposição."}],
+      "gabarito":{"alternativa":"C","validado":true,"origem":"resolução autoral"},"descritor":null,"habilidadeSugerida":"Identificação da finalidade de um texto","dica":"Considere qual informação organiza os fatos narrados.","recursosVisuais":[]
+    },
+    {
+      "id":"autoral-demo-003","fonte":"Elaboração autoral demonstrativa, versão 0.1","prova":null,"numeroOriginal":null,
+      "textoBase":"A biblioteca recebeu computadores novos; entretanto, a maior mudança aconteceu quando os estudantes passaram a organizar clubes de leitura semanais.",
+      "enunciado":"O conectivo 'entretanto' estabelece entre as duas orações uma relação de",
+      "alternativas":[{"id":"A","texto":"causa."},{"id":"B","texto":"finalidade."},{"id":"C","texto":"adição."},{"id":"D","texto":"contraste."},{"id":"E","texto":"conclusão."}],
+      "gabarito":{"alternativa":"D","validado":true,"origem":"resolução autoral"},"descritor":null,"habilidadeSugerida":"Relações lógico-discursivas entre partes do texto","dica":"Compare a novidade material com a mudança apresentada como mais importante.","recursosVisuais":[]
+    },
+    {
+      "id":"autoral-demo-004","fonte":"Elaboração autoral demonstrativa, versão 0.1","prova":null,"numeroOriginal":null,
+      "textoBase":"Na reunião, alguém perguntou: 'A praça está limpa?'. A resposta foi: 'Os cestos de lixo continuam vazios e o chão, cheio de embalagens.'",
+      "enunciado":"A resposta sugere que",
+      "alternativas":[{"id":"A","texto":"há lixo no chão apesar de existirem cestos disponíveis."},{"id":"B","texto":"não existe qualquer equipamento para recolher resíduos."},{"id":"C","texto":"a praça está limpa e os visitantes aprovam sua conservação."},{"id":"D","texto":"a limpeza não foi mencionada pelo interlocutor."}],
+      "gabarito":{"alternativa":"A","validado":true,"origem":"resolução autoral"},"descritor":null,"habilidadeSugerida":"Inferência de informação implícita","dica":"Relacione a condição dos cestos com a condição do chão.","recursosVisuais":[]
+    },
+    {
+      "id":"autoral-demo-005","fonte":"Elaboração autoral demonstrativa, versão 0.1","prova":null,"numeroOriginal":null,
+      "textoBase":"'Que bela pontualidade!', comentou a professora quando a apresentação começou quarenta minutos após o horário previsto.",
+      "enunciado":"A fala da professora constrói um efeito de sentido de",
+      "alternativas":[{"id":"A","texto":"elogio literal à organização do evento."},{"id":"B","texto":"dúvida sobre a duração da apresentação."},{"id":"C","texto":"ironia diante do atraso registrado."},{"id":"D","texto":"neutralidade na descrição de uma programação."},{"id":"E","texto":"satisfação com a mudança de horário."}],
+      "gabarito":{"alternativa":"C","validado":true,"origem":"resolução autoral"},"descritor":null,"habilidadeSugerida":"Identificação de efeitos de ironia","dica":"Compare o elogio com o fato ocorrido.","recursosVisuais":[]
+    }
+  ]
+}

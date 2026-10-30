@@ -1,0 +1,5 @@
+export const TILE = 32;
+export const TILE_ID = Object.freeze({
+  OCEAN:0, COAST:1, SAND:2, GRASS:3, FOREST:4, PATH:5, ROCK:6,
+  CLIFF:7, RIVER:8, BRIDGE:9, FLOWERS:10, RUINS:11, GRAVEL:12, SHALLOW:13
+});
