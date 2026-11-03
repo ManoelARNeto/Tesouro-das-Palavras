@@ -40,7 +40,7 @@ stored['tesouro-das-palavras-v3']=JSON.stringify({version:3,currentStage:0,unloc
 const migrated=saver.load();
 assert.deepEqual(migrated.stageStates['praia-naufragos'].dug,['s1-t1']);
 assert.deepEqual(migrated.stageStates['praia-naufragos'].opened,[],'Baús já cavados na etapa 3 não são considerados respondidos');
-saver.save(migrated);assert.equal(saver.load().version,4);
+saver.save(migrated);assert.equal(saver.load().version,6);
 // Mock fetch to check public API
 const oldFetch=globalThis.fetch;
 globalThis.fetch=async url=>({ok:true,json:async()=>read(url)});

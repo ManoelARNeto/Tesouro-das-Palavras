@@ -10,7 +10,7 @@ const BLOCK_LAND = new Set([T.OCEAN, T.COAST, T.RIVER, T.SHALLOW, T.CLIFF]);
 const defaultHitbox = {
   tree:[19,13], pine:[18,13], palm:[14,12], rock:[30,21], bush:[18,12], sign:[13,8], pillar:[25,18],
   crate:[25,16], tent:[54,18], boat:[56,21], mound:[23,8], chest:[25,16], sandpile:[27,15], log:[38,14],
-  stump:[20,12], mushroom:[6,5], reeds:[6,4], rune:[6,4]
+  stump:[20,12], mushroom:[6,5], reeds:[6,4], rune:[6,4], altar_livro:[28,13]
 };
 
 function addObject(objects, cols, rows, type, col, row, opts={}){
@@ -57,9 +57,9 @@ function setupBase(stage){
   const cols=stage.cols, rows=stage.rows;
   const tiles=new Uint8Array(cols*rows);
   const biomeBase={ beach:T.SAND, forest:T.GRASS, lagoon:T.GRASS, ruins:T.GRASS, cave:T.GRAVEL,
-    dunes:T.SAND, swamp:T.GRASS, cliffs:T.GRAVEL, garden:T.GRASS, sanctuary:T.GRASS };
+    dunes:T.SAND, swamp:T.GRASS, cliffs:T.GRAVEL, garden:T.GRASS, sanctuary:T.GRASS, secret:T.FOREST };
   tiles.fill(biomeBase[stage.biome] ?? T.GRASS);
-  const edgeTile=(stage.biome==='beach'||stage.biome==='lagoon') ? T.OCEAN : (stage.biome==='cave'||stage.biome==='cliffs' ? T.CLIFF : T.FOREST);
+  const edgeTile=(stage.biome==='beach'||stage.biome==='lagoon'||stage.biome==='secret') ? T.OCEAN : (stage.biome==='cave'||stage.biome==='cliffs' ? T.CLIFF : T.FOREST);
   for(let y=0;y<rows;y++) for(let x=0;x<cols;x++){
     const d=Math.min(x,y,cols-1-x,rows-1-y);
     if(d<2) tiles[idx(cols,x,y)] = edgeTile;
@@ -111,6 +111,13 @@ function decorateTerrain(stage, tiles){
     case 'garden':
       paintRect(tiles, cols, rows, 12, 18, 50, 32, T.FLOWERS, v=>land(v));
       paintCircle(tiles, cols, rows, 22, 28, 4, T.RUINS, v=>land(v));
+      break;
+    case 'secret':
+      paintCircle(tiles,cols,rows,30,22,17,T.GRASS,v=>land(v));
+      paintCircle(tiles,cols,rows,30,22,10,T.FLOWERS,v=>land(v));
+      paintCircle(tiles,cols,rows,30,22,5,T.RUINS,v=>land(v));
+      paintCircle(tiles,cols,rows,46,15,5,T.RUINS,v=>land(v));
+      paintCircle(tiles,cols,rows,9,35,5,T.SAND,v=>land(v));
       break;
     case 'sanctuary':
       paintRect(tiles, cols, rows, 22, 18, 39, 30, T.RUINS, v=>land(v));
@@ -165,9 +172,9 @@ function addLandmarkObjects(stage, tiles, objects){
       temple:'pillar', altar:'rune', fountain:'rune', maze:'bush', oasis:'palm', obelisk:'pillar',
       hut:'tent', cliff:'rock', stairs:'sign', gem:'rune', plaza:'rune', gate:'pillar', well:'rock',
       waves:'boat', reeds:'reeds', log:'log', tree:'tree', isle:'palm', pillars:'pillar', dune:'sign', arch:'rock' };
-    let type = lm.type;
+    let type = stage.secret&&lm.id==='altar-livro'?'altar_livro':lm.type;
     if(['camp','bridge','cave','rocks','stones','ruin','temple','altar','fountain','maze','oasis','obelisk','hut','cliff','stairs','gem','plaza','gate','well','waves','reeds','log','tree','isle','pillars','dune','arch'].includes(lm.icon)){
-      type = typeMap[lm.icon] || lm.type;
+      if(!(stage.secret&&lm.id==='altar-livro'))type = typeMap[lm.icon] || lm.type;
     }
     // ensure landmark ground is walkable around it
     if(land(tiles[idx(cols,lm.col,lm.row)])) addObject(objects, cols, rows, type, lm.col, lm.row, {landmarkId:lm.id, label:lm.label, signId:lm.signText?lm.id:null, solid:type!=='boat'&&type!=='reeds'&&type!=='mushroom'&&type!=='rune'});
@@ -195,10 +202,10 @@ function addFillerObjects(stage, tiles, objects){
   for(let y=3;y<rows-3;y++) for(let x=3;x<cols-3;x++){
     if(occupied.has(`${x},${y}`) || !walkable(tiles[idx(cols,x,y)])) continue;
     const n=noise(x,y,stage.number*3);
-    if(stage.biome in {beach:1,dunes:1,sanctuary:1} && tiles[idx(cols,x,y)]===T.SAND && n>.965) tryAdd('palm',x,y,true);
+    if(stage.biome in {beach:1,dunes:1,sanctuary:1,secret:1} && tiles[idx(cols,x,y)]===T.SAND && n>.965) tryAdd('palm',x,y,true);
     if((stage.biome==='forest'||stage.biome==='swamp'||stage.biome==='garden') && (tiles[idx(cols,x,y)]===T.FOREST||tiles[idx(cols,x,y)]===T.GRASS) && n>.978) tryAdd('tree',x,y,true);
     if(stage.biome==='lagoon' && tiles[idx(cols,x,y)]===T.GRASS && n>.982) tryAdd('reeds',x,y,false);
-    if((stage.biome==='ruins'||stage.biome==='sanctuary') && tiles[idx(cols,x,y)]===T.RUINS && n>.988) tryAdd('crate',x,y,true);
+    if((stage.biome==='ruins'||stage.biome==='sanctuary'||stage.biome==='secret') && tiles[idx(cols,x,y)]===T.RUINS && n>.988) tryAdd('crate',x,y,true);
     if((stage.biome==='cave'||stage.biome==='cliffs'||stage.biome==='dunes') && (tiles[idx(cols,x,y)]===T.GRAVEL||tiles[idx(cols,x,y)]===T.ROCK) && n>.976) tryAdd('rock',x,y,true);
     if(n<.009) tryAdd('bush',x,y,false);
   }

@@ -1,20 +1,24 @@
 export class Input {
  constructor(){
-  this.down=new Set();this.joy={x:0,y:0};this.actionRequested=false;this.pauseRequested=false;
+  this.down=new Set();this.joy={x:0,y:0};this.actionRequested=false;this.pauseRequested=false;this.menuRequested=null;
   const blockedKeys=new Set(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' ']);
   window.addEventListener('keydown',e=>{
-    if(['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName))return;
-    if(blockedKeys.has(e.key))e.preventDefault();
+    const focus=document.activeElement?.tagName;
+    const field=['INPUT','TEXTAREA','SELECT'].includes(focus);
+    if(e.key==='Escape'){if(!e.repeat)this.pauseRequested=true;return;}
+    if(field)return;
+    if(blockedKeys.has(e.key)&&focus!=='BUTTON')e.preventDefault();
+    if(focus==='BUTTON'&&(e.code==='Space'||e.code==='KeyE'))return;
     this.down.add(e.key.toLowerCase());
     if(!e.repeat&&(e.code==='KeyE'||e.code==='Space'))this.actionRequested=true;
-    if(!e.repeat&&e.key==='Escape')this.pauseRequested=true;
+    if(!e.repeat&&['KeyM','KeyI','KeyJ'].includes(e.code))this.menuRequested={KeyM:'map',KeyI:'inventory',KeyJ:'journal'}[e.code];
   });
   window.addEventListener('keyup',e=>this.down.delete(e.key.toLowerCase()));
   window.addEventListener('blur',()=>this.clear());
   this.setupJoystick();
   document.getElementById('mobile-action').addEventListener('pointerdown',e=>{e.preventDefault();this.actionRequested=true;});
  }
- clear(){this.down.clear();this.joy={x:0,y:0};this.actionRequested=false;this.pauseRequested=false;this.centerStick();}
+ clear(){this.down.clear();this.joy={x:0,y:0};this.actionRequested=false;this.pauseRequested=false;this.menuRequested=null;this.centerStick();}
  vector(){
   let x=(this.down.has('d')||this.down.has('arrowright')?1:0)-(this.down.has('a')||this.down.has('arrowleft')?1:0);
   let y=(this.down.has('s')||this.down.has('arrowdown')?1:0)-(this.down.has('w')||this.down.has('arrowup')?1:0);
@@ -22,6 +26,7 @@ export class Input {
  }
  consumeAction(){const v=this.actionRequested;this.actionRequested=false;return v;}
  consumePause(){const v=this.pauseRequested;this.pauseRequested=false;return v;}
+ consumeMenu(){const v=this.menuRequested;this.menuRequested=null;return v;}
  centerStick(){const stick=document.querySelector('#joystick-stick');if(stick)stick.style.transform='translate(0px, 0px)';}
  setupJoystick(){
   const area=document.getElementById('joystick'),stick=document.getElementById('joystick-stick');

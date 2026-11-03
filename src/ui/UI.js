@@ -1,4 +1,6 @@
 import { STAGES, TOTAL_TREASURES } from '../world/stages.js';
+import {SECRET_STAGE} from '../world/secret-stage.js';
+import {FRAGMENTS_NEEDED,COINS_BY_DIFFICULTY,SECRET_STAGE_INDEX} from '../core/Rewards.js';
 const $=id=>document.getElementById(id);
 
 export class UI {
@@ -23,6 +25,17 @@ export class UI {
   $('btn-go-menu').addEventListener('click',()=>game.backToMenu());
   $('btn-journal-close').addEventListener('click',()=>game.closeJournal());
   $('btn-journal-hud').addEventListener('click',()=>game.openJournal());
+  $('btn-inventory-hud').addEventListener('click',()=>game.openInventory());
+  $('btn-next-stage').addEventListener('click',()=>game.advanceStage());
+  $('btn-save-export').addEventListener('click',()=>this.exportSave());
+  $('btn-save-import').addEventListener('click',()=>$('save-file-input').click());
+  $('save-file-input').addEventListener('change',e=>this.importSave(e.target.files?.[0]));
+  $('btn-inventory-pause').addEventListener('click',()=>game.openInventory());
+  $('btn-inventory-close').addEventListener('click',()=>game.closeInventory());
+  $('btn-secret-from-inventory').addEventListener('click',()=>game.openStage(SECRET_STAGE_INDEX));
+  $('btn-win-secret').addEventListener('click',()=>game.openStage(SECRET_STAGE_INDEX));
+  $('btn-secret-win-inventory').addEventListener('click',()=>game.openInventory());
+  $('btn-secret-win-menu').addEventListener('click',()=>game.backToMenu());
   $('btn-map-hud').addEventListener('click',()=>game.openMap());
   $('btn-map-close').addEventListener('click',()=>game.closeMap());
   $('btn-stage-close').addEventListener('click',()=>game.closeStages());
@@ -31,17 +44,40 @@ export class UI {
   $('setting-motion').addEventListener('change',e=>game.setReducedMotion(e.target.checked));
   $('btn-error-retry').addEventListener('click',()=>location.reload());
  }
- show(screen){ for(const name of ['menu','pause','settings','journal','map','stages','question','library','win','error']) $(name+'-screen').hidden=name!==screen; this.screen=screen; }
- hud(visible){ $('hud').hidden=!visible; $('touch-controls').hidden=!visible; $('hud-tip').hidden=!visible; }
+ show(screen){ for(const name of ['menu','pause','settings','journal','inventory','map','stages','question','library','win','secret-win','error']) $(name+'-screen').hidden=name!==screen; this.screen=screen; if(screen)$('toasts').replaceChildren(); }
+ hud(visible){ $('hud').hidden=!visible; $('touch-controls').hidden=!visible; $('hud-tip').hidden=!visible;$('economy-chip').hidden=!visible; }
  updateContinue(hasSave){ $('btn-continue').disabled=!hasSave; }
- openSettings(origin){ this.settingsReturn=origin; $('setting-zoom').value=String(this.game.settings.zoom); $('setting-motion').checked=this.game.settings.reducedMotion; this.show('settings'); }
+ openSettings(origin){ this.settingsReturn=origin; $('setting-zoom').value=String(this.game.settings.zoom); $('setting-motion').checked=this.game.settings.reducedMotion; $('backup-feedback').textContent='';this.show('settings'); }
+ exportSave(){
+  const data=this.game.exportBackup();
+  if(!data){$('backup-feedback').textContent='Não foi possível acessar o salvamento local. Verifique as permissões do navegador.';return;}
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const href=URL.createObjectURL(blob),link=document.createElement('a');
+  link.href=href;link.download='Tesouro_das_Palavras_Progresso_v6.json';document.body.append(link);link.click();link.remove();
+  setTimeout(()=>URL.revokeObjectURL(href),1000);
+  $('backup-feedback').textContent='Cópia de segurança preparada. Guarde o JSON em um lugar seguro.';
+ }
+ async importSave(file){
+  if(!file)return;
+  try{
+   if(file.size>1024*1024)throw Error('O arquivo excede o limite de 1 MB.');
+   const data=JSON.parse(await file.text());
+   if(!this.game.saves.validSession(data)||data.version!==6)throw Error('Formato de salvamento incompatível ou incompleto.');
+   if(!window.confirm('Importar esta cópia substituirá o progresso atual neste navegador. Deseja continuar?'))return;
+   if(!this.game.importBackup(data))throw Error('Não foi possível gravar a cópia neste navegador.');
+   this.toast('Progresso importado! Continue sua campanha.');
+  }catch(e){$('backup-feedback').textContent='Importação não realizada: '+e.message;}
+  finally{$('save-file-input').value='';}
+ }
  updateHUD(game){
   const area=game.world.areaAt(game.player.x,game.player.y); const current=game.world.currentTreasure();
   $('area-label').textContent=area?.name||game.stage.name;
-  $('stage-label-hud').textContent=`${game.stage.number} / ${STAGES.length}`;
-  $('dig-progress').textContent=`${game.world.found.size} / ${game.stage.treasures.length}`;
+  $('stage-label-hud').textContent=game.isSecretStage?'SECRETO':`${game.stage.number} / ${STAGES.length}`;
+  $('dig-progress').textContent=game.isSecretStage?'★':`${game.world.found.size} / ${game.stage.treasures.length}`;
   $('global-progress').textContent=`${game.totalFound()} / ${TOTAL_TREASURES}`;
-  $('mission-label').textContent=current ? (game.world.dug.has(current.id) ? `Baú ${current.difficulty.toLowerCase()} encontrado! Interaja para responder à questão.` : `Siga a pista do tesouro ${current.difficulty.toLowerCase()} deste estágio.`) : 'Estágio concluído. Você já pode seguir para o próximo cenário.';
+  $('btn-next-stage').hidden=game.isSecretStage || !!current || (game.currentStageIndex===STAGES.length-1 && !game.secretUnlocked);
+  $('coins-hud').textContent=game.coinCount; $('fragments-hud').textContent=`${game.fragmentCount} / ${FRAGMENTS_NEEDED}`;
+  $('mission-label').textContent=game.isSecretStage?(game.economy.secretCompleted?'Relíquia recuperada! Explore livremente a ilha.':'Encontre o Altar do Livro e pressione AÇÃO.') : current ? (game.world.dug.has(current.id) ? `Baú ${current.difficulty.toLowerCase()} encontrado! Interaja para responder à questão.` : `Siga a pista do tesouro ${current.difficulty.toLowerCase()} deste estágio.`) : 'Estágio concluído. Você já pode seguir para o próximo cenário.';
   $('travel-time').textContent=this.formatTime(game.seconds);
   const target=game.world.nearestInteractive(game.player.x,game.player.y);
   $('interaction-prompt').hidden=!target||!!game.pendingExcavation;
@@ -50,21 +86,21 @@ export class UI {
  formatTime(seconds){ const mm=Math.floor(seconds/60),ss=Math.floor(seconds%60); return `${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`; }
  updateJournal(game){
   $('journal-title').textContent=`CAMPANHA — ${game.totalFound()} / ${TOTAL_TREASURES} TESOUROS`;
-  $('journal-count').textContent=`${game.unlockedStages.size} de ${STAGES.length} estágios desbloqueados`;
+  $('journal-count').textContent=`${game.unlockedStages.size} de ${STAGES.length} estágios desbloqueados • ${game.fragmentCount}/${FRAGMENTS_NEEDED} fragmentos`; 
   const list=$('journal-items'); list.replaceChildren();
   STAGES.forEach((stage,index)=>{
     const state=game.stageStates[stage.id] || {opened:[]}; const li=document.createElement('li');
     li.className=game.unlockedStages.has(index)?((state.opened||[]).length===3?'found':'partial'):'unknown';
     const mark=document.createElement('span'); mark.className='journal-mark'; mark.textContent=(state.opened||[]).length===3?'✓':game.unlockedStages.has(index)?stage.number:'?';
     const body=document.createElement('div'); const title=document.createElement('strong'); title.textContent=`${stage.number}. ${stage.name}`;
-    const desc=document.createElement('p'); desc.textContent=`${stage.stageHint} Progresso: ${(state.opened||[]).length}/3 tesouros.`;
+    const desc=document.createElement('p'); desc.textContent=`${stage.stageHint} Progresso desta rodada: ${(state.opened||[]).length}/3 tesouros. Fragmento: ${game.hasFragment(stage)?'conquistado':'não conquistado'}.`; 
     body.append(title,desc); li.append(mark,body); list.append(li);
   });
   const clueList=$('journal-treasure-items'); clueList.replaceChildren();
   for(const treasure of game.stage.treasures){ const found=game.world.found.has(treasure.id); const li=document.createElement('li'); li.className=found?'found':'unknown';
     const mark=document.createElement('span'); mark.className='journal-mark'; mark.textContent=found?'✦':treasure.difficulty[0];
     const body=document.createElement('div'); const title=document.createElement('strong'); title.textContent=`${treasure.difficulty} — ${found?treasure.name:'Tesouro ainda não localizado'}`;
-    const desc=document.createElement('p'); desc.textContent=found?'Baú aberto após resposta correta.':game.world.currentTreasure()?.id===treasure.id?treasure.clue:'Pista bloqueada até abrir o baú anterior.';
+    const desc=document.createElement('p'); desc.textContent=found?(`Baú aberto. ${game.stageStates[game.stage.id]?.firstTry?.[treasure.id]?'Acerto na primeira tentativa!':'Acerto após nova tentativa ou registro anterior.'}`):game.world.currentTreasure()?.id===treasure.id?treasure.clue:'Pista bloqueada até abrir o baú anterior.';
     body.append(title,desc); li.append(mark,body); clueList.append(li); }
   const landmarkList=$('journal-secret-items'); landmarkList.replaceChildren();
   for(const area of game.world.areas){ const found=game.discovered.has(area.id); const li=document.createElement('li'); li.className=found?'found':'unknown';
@@ -79,8 +115,8 @@ export class UI {
   $('map-stage-title').textContent=`ESTÁGIO ${game.stage.number} — ${game.stage.name}`;
   $('map-stage-subtitle').textContent=game.stage.stageHint;
   const current=game.world.currentTreasure();
-  $('map-difficulty').textContent=current ? current.difficulty : 'Concluído';
-  $('map-clue-text').textContent=current ? current.clue : 'Você concluiu os três tesouros deste estágio. Escolha o próximo cenário no seletor de estágios.';
+  $('map-difficulty').textContent=current ? current.difficulty : (game.isSecretStage?'Secreto':'Concluído');
+  $('map-clue-text').textContent=current ? current.clue : (game.isSecretStage?'Explore a Ilha das Palavras Perdidas. Encontre o Altar do Livro e pressione E / AÇÃO.':'Você concluiu os três tesouros deste estágio. Escolha o próximo cenário no seletor de estágios.');
   this.drawTreasureMap(game.stage, current);
  }
  drawTreasureMap(stage, treasure){
@@ -132,7 +168,7 @@ export class UI {
 
  showQuestion(game,q){
   $('question-title').textContent=`BAÚ ${game.stage.number} • ${q.dificuldade.toUpperCase()}`;
-  $('question-meta').textContent=`${q.id}  |  ${q.descritor||'Sem descritor'}  |  ${q.origem.startsWith('autoral')?'Autoral':'Coletânea 2024'}`;
+  $('question-meta').textContent=`${q.id}  |  ${q.descritor||'Sem descritor'}  |  ${q.origem.startsWith('autoral')?'Autoral':'Coletânea 2024'}  |  🪙 ${COINS_BY_DIFFICULTY[q.dificuldade]||0} moedas (primeira abertura)`;
   $('question-panel').scrollTop=0;
   const content=$('question-content');this.renderQuestionContent(content,q);
   const options=$('question-options');options.replaceChildren();
@@ -151,7 +187,7 @@ export class UI {
   target.replaceChildren();
   const heading=document.createElement('h3');heading.textContent=q.titulo||'Questão de Língua Portuguesa';target.append(heading);
   if(q.origem==='coletanea_paebes_2024'){
-   const info=document.createElement('p');info.className='source-notice';info.textContent='Reprodução visual fiel do PDF enviado, com texto-base, enunciado, alternativas e recursos gráficos. O gabarito está pendente de validação docente.';target.append(info);
+   const info=document.createElement('p');info.className='source-notice';info.textContent=this.game.questions.assessable(q)?'Reprodução visual do PDF enviado. Gabarito validado e identificado no banco.':'Reprodução visual do PDF enviado, com texto-base, enunciado e recursos gráficos. Gabarito pendente de validação docente.';target.append(info);
    for(const resource of q.imagens_original||[]){
     const figure=document.createElement('figure');figure.className='original-figure';
     const link=document.createElement('a');link.href=resource.src;link.target='_blank';link.rel='noopener';link.title='Ampliar página original';
@@ -183,11 +219,11 @@ export class UI {
   const select=$('library-question-select');select.replaceChildren();
   for(const q of this.game.questions.questions){
    const option=document.createElement('option');option.value=q.id;
-   const type=q.origem==='coletanea_paebes_2024'?'PDF • pendente':'Autoral • '+q.dificuldade;
+   const type=q.origem==='coletanea_paebes_2024'?(this.game.questions.assessable(q)?'PDF • validada':'PDF • pendente'):'Autoral • '+q.dificuldade;
    option.textContent=`${type} — ${q.id} — ${q.descritor||'—'}`;select.append(option);
   }
   const count=this.game.questions.statistics();
-  $('library-summary').textContent=`${count.originais} itens do PDF (${count.pendentes} pendentes) + ${count.autorais} autorais = ${this.game.questions.questions.length} questões. O acervo do PDF só entra na avaliação após validação do gabarito.`;
+  $('library-summary').textContent=`${count.originais} itens do PDF (${count.pendentes} pendentes) + ${count.autorais} autorais = ${this.game.questions.questions.length} questões. Somente itens com gabarito validado entram na avaliação.`;
   if(select.value)this.showLibraryQuestion(select.value);
   this.show('library');this.game.input.clear();this.hud(false);
  }
@@ -201,15 +237,86 @@ export class UI {
  closeLibrary(){this.show(this.libraryReturn);this.hud(false);}
 
  refreshStageSelect(game){
-  const grid=$('stage-grid'); grid.replaceChildren();
+  const grid=$('stage-grid');grid.replaceChildren();
   STAGES.forEach((stage,index)=>{
-    const button=document.createElement('button'); button.type='button';
-    const unlocked=game.unlockedStages.has(index); const found=game.stageStates[stage.id]?.opened?.length||0;
-    button.className='stage-card '+(unlocked?'':'locked')+(found===3?' complete':''); button.disabled=!unlocked;
-    button.innerHTML=`<span class="stage-card-top">ESTÁGIO ${stage.number}</span><strong>${stage.name}</strong><small>${found}/3 tesouros</small><span class="stage-card-foot">${unlocked?(found===3?'Concluído':'Disponível'):'Bloqueado'}</span>`;
-    if(unlocked) button.addEventListener('click',()=>game.openStage(index));
-    grid.append(button);
+    const unlocked=game.unlockedStages.has(index),state=game.stageStates[stage.id]||{opened:[]};
+    const found=(state.opened||[]).length,fragment=game.hasFragment(stage);
+    const wrapper=document.createElement('div');wrapper.className='stage-entry';
+    const button=document.createElement('button');button.type='button';button.className='stage-card '+(unlocked?'':'locked')+(fragment?' complete':'');button.disabled=!unlocked;
+    const top=document.createElement('span');top.className='stage-card-top';top.textContent=`ESTÁGIO ${stage.number}`;
+    const name=document.createElement('strong');name.textContent=stage.name;
+    const detail=document.createElement('small');detail.textContent=`Rodada atual: ${found}/3 baús • ${fragment?'🧩 Fragmento obtido':'🧩 Fragmento pendente'}`;
+    const foot=document.createElement('span');foot.className='stage-card-foot';foot.textContent=unlocked?'Explorar estágio':'Bloqueado';
+    button.append(top,name,detail,foot);if(unlocked)button.addEventListener('click',()=>game.openStage(index));wrapper.append(button);
+    if(unlocked&&found===3&&!fragment){
+      const retry=document.createElement('button');retry.type='button';retry.className='stage-retry';retry.textContent='↻ Repetir os 3 baús para tentar o fragmento';
+      retry.title='Reinicia a rodada dos três baús, preservando moedas, histórico e estágios desbloqueados';
+      retry.addEventListener('click',()=>game.retryStage(index));wrapper.append(retry);
+    }
+    grid.append(wrapper);
   });
+  const secret=document.createElement('div');secret.className='stage-entry';
+  const button=document.createElement('button');button.type='button';button.className='stage-card special'+(game.secretUnlocked?'':' locked');button.disabled=!game.secretUnlocked;
+  const top=document.createElement('span');top.className='stage-card-top';top.textContent='✧ ÁREA BÔNUS ✧';
+  const title=document.createElement('strong');title.textContent=game.secretUnlocked?SECRET_STAGE.name:'Cenário secreto bloqueado';
+  const info=document.createElement('small');info.textContent=`🧩 ${game.fragmentCount}/${FRAGMENTS_NEEDED} partes do mapa • ${game.economy.secretCompleted?'Relíquia encontrada':game.secretUnlocked?'Acesso liberado':'Acerte os 3 baús de cada estágio de primeira'}`;
+  const foot=document.createElement('span');foot.className='stage-card-foot';foot.textContent=game.secretUnlocked?'Entrar na ilha secreta':'Reúna os 10 fragmentos';
+  button.append(top,title,info,foot);if(game.secretUnlocked)button.addEventListener('click',()=>game.openStage(SECRET_STAGE_INDEX));secret.append(button);grid.append(secret);
+ }
+ updateCampaignWin(game){
+  const status=$('win-fragment-status');
+  status.textContent=game.secretUnlocked?'Os dez fragmentos foram reunidos! A Ilha das Palavras Perdidas está disponível.':
+   `Você reuniu ${game.fragmentCount}/10 fragmentos. Rejogue estágios concluídos sem fragmento para abrir os três baús com um acerto na primeira tentativa.`;
+  $('btn-win-secret').hidden=!game.secretUnlocked;
+ }
+ updateSecretWin(first){$('secret-win-text').textContent=first?
+  'Os dez fragmentos revelaram este lugar. Você encontrou o Livro das Palavras: a relíquia final foi adicionada ao inventário!':
+  'Você já encontrou o Livro das Palavras. A relíquia continua no inventário, e a ilha secreta permanece disponível.';
+ }
+ updateInventory(game){
+  $('inventory-coins').textContent=game.coinCount;
+  $('inventory-fragments').textContent=`${game.fragmentCount} / ${FRAGMENTS_NEEDED}`;
+  $('inventory-chests').textContent=`${game.totalFound()} / ${TOTAL_TREASURES}`;
+  $('inventory-message').textContent=game.secretUnlocked?'Mapa restaurado! A entrada da Ilha das Palavras Perdidas está liberada.':
+   `Faltam ${FRAGMENTS_NEEDED-game.fragmentCount} fragmentos. Para obter cada um, responda corretamente na primeira tentativa aos três baús de um mesmo estágio.`;
+  $('btn-secret-from-inventory').hidden=!game.secretUnlocked;
+  const grid=$('fragment-grid');grid.replaceChildren();
+  STAGES.forEach((stage,index)=>{
+   const obtained=game.hasFragment(stage);const tile=document.createElement('div');tile.className='fragment-tile'+(obtained?' earned':'');
+   const mark=document.createElement('span');mark.textContent=obtained?'🧩':'🔒';
+   const text=document.createElement('small');text.textContent=`Parte ${index+1}`;tile.append(mark,text);tile.title=obtained?`${stage.name}: adquirido`:`${stage.name}: pendente`;grid.append(tile);
+  });
+  const items=$('inventory-items');items.replaceChildren();
+  const tools=document.createElement('div');tools.textContent='🪏 Pá do aventureiro — permanente • 🗺 Mapas dos 10 estágios — disponíveis durante a exploração';items.append(tools);
+  const relic=document.createElement('div');relic.textContent=game.economy.relic?'✧ Livro das Palavras — relíquia secreta recuperada':'✧ Livro das Palavras — escondido na ilha secreta';items.append(relic);
+  this.drawSecretMap(game.economy.fragments);
+ }
+ drawSecretMap(fragments){
+  const canvas=$('secret-map-canvas'),ctx=canvas.getContext('2d');const width=canvas.width,height=canvas.height;
+  ctx.clearRect(0,0,width,height);ctx.fillStyle='#463d2e';ctx.fillRect(0,0,width,height);
+  const cols=5,rows=2,pad=10,tw=(width-pad*2)/cols,th=(height-pad*2)/rows;
+  const earned=new Set(fragments);
+  const route=[[38,218],[103,199],[158,165],[207,198],[258,152],[309,171],[352,119],[420,141],[469,105],[542,61]];
+  STAGES.forEach((stage,i)=>{
+   const x=pad+(i%cols)*tw,y=pad+Math.floor(i/cols)*th,have=earned.has(stage.id);
+   ctx.save();ctx.beginPath();ctx.rect(x+1,y+1,tw-2,th-2);ctx.clip();
+   ctx.fillStyle=have?'#ecd09d':'#40392e';ctx.fillRect(x,y,tw,th);
+   if(have){
+    ctx.fillStyle='#ddb87b';for(let k=0;k<18;k++){let px=x+((k*47+i*21)%Math.floor(tw)),py=y+((k*29+i*37)%Math.floor(th));ctx.fillRect(px,py,3,2);}
+    ctx.strokeStyle='#8b6843';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x+10,y+th*.76);ctx.quadraticCurveTo(x+tw*.36,y+th*.12,x+tw*.82,y+th*.51);ctx.stroke();
+    ctx.fillStyle='#715039';ctx.font='bold 12px Georgia';ctx.fillText(`✧ ${i+1}`,x+9,y+23);
+    const gx=x+tw*.59,gy=y+th*.58;
+    if(i%4===0){ctx.beginPath();ctx.moveTo(gx-14,gy+11);ctx.lineTo(gx,gy-14);ctx.lineTo(gx+13,gy+11);ctx.closePath();ctx.fill();}
+    else if(i%4===1){ctx.strokeStyle='#477b7a';ctx.beginPath();ctx.moveTo(gx-16,gy);ctx.quadraticCurveTo(gx-8,gy-8,gx,gy);ctx.quadraticCurveTo(gx+7,gy+8,gx+16,gy);ctx.stroke();}
+    else if(i%4===2){ctx.beginPath();ctx.arc(gx,gy,13,Math.PI,0);ctx.fill();ctx.fillRect(gx-6,gy-1,12,15);}
+    else{ctx.beginPath();ctx.moveTo(gx-12,gy+10);ctx.lineTo(gx-4,gy-9);ctx.lineTo(gx+5,gy-3);ctx.lineTo(gx+15,gy+10);ctx.closePath();ctx.fill();}
+   }else{ctx.fillStyle='#d7bb88';ctx.font='bold 37px Georgia';ctx.textAlign='center';ctx.fillText('?',x+tw/2,y+th/2+10);ctx.textAlign='start';}
+   ctx.strokeStyle=have?'#8d603d':'#82725f';ctx.lineWidth=2;ctx.setLineDash([3,4]);ctx.strokeRect(x+3,y+3,tw-6,th-6);ctx.setLineDash([]);ctx.restore();
+  });
+  if(earned.size===FRAGMENTS_NEEDED){
+   ctx.save();ctx.strokeStyle='#774a2d';ctx.lineWidth=3;ctx.setLineDash([6,8]);ctx.beginPath();route.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.stroke();ctx.setLineDash([]);
+   ctx.strokeStyle='#bc3b2d';ctx.lineWidth=7;ctx.beginPath();ctx.moveTo(522,50);ctx.lineTo(554,78);ctx.moveTo(554,50);ctx.lineTo(522,78);ctx.stroke();ctx.restore();
+  }
  }
  toast(message){ const wrap=$('toasts'), el=document.createElement('div'); el.className='toast'; el.textContent=message; wrap.append(el); setTimeout(()=>{el.classList.add('fade'); setTimeout(()=>el.remove(),380);},4200); if(wrap.children.length>3) wrap.firstElementChild.remove(); }
  error(msg){ $('error-message').textContent=msg; this.show('error'); this.hud(false); }

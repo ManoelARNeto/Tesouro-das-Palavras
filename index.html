@@ -4,8 +4,8 @@
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
  <meta name="theme-color" content="#172e39">
- <meta name="description" content="O Tesouro das Palavras — RPG educativo de exploração. Etapa 4 com 90 questões, 30 baús e progressão.">
- <title>O Tesouro das Palavras · Etapa 4</title>
+ <meta name="description" content="O Tesouro das Palavras — RPG educativo de exploração. Versão 1.0 com 90 questões, 30 baús, mapa secreto e backup de progresso.">
+ <title>O Tesouro das Palavras · Versão 1.0</title>
  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
  <link rel="stylesheet" href="styles/main.css">
 </head>
@@ -15,11 +15,12 @@
   <div class="screen-vignette" aria-hidden="true"></div>
 
   <header id="hud" class="hud" hidden>
-   <div class="hud-brand"><span class="hud-symbol">✦</span><div><strong class="full-brand">O TESOURO DAS PALAVRAS</strong><strong class="short-brand">TESOURO</strong><span>ETAPA 4 • BAÚS E QUESTÕES</span></div></div>
+   <div class="hud-brand"><span class="hud-symbol">✦</span><div><strong class="full-brand">O TESOURO DAS PALAVRAS</strong><strong class="short-brand">TESOURO</strong><span>VERSÃO 1.0 • EXPLORAÇÃO E LEITURA</span></div></div>
    <div class="hud-location"><span class="hud-caption">LOCALIZAÇÃO</span><strong id="area-label">Praia dos Náufragos</strong></div>
    <div class="hud-progress"><span class="hud-caption">ESTÁGIO</span><strong id="stage-label-hud">1 / 10</strong></div>
-   <div class="hud-buttons"><button type="button" id="btn-map-hud" class="hud-button" title="Abrir o mapa">🗺 <span>Mapa</span></button><button type="button" id="btn-journal-hud" class="hud-button" title="Abrir o diário">▤ <span>Diário</span></button><button type="button" id="btn-pause" class="hud-button" title="Pausar o jogo">Ⅱ <span>Pausa</span></button></div>
+   <div class="hud-buttons"><button type="button" id="btn-inventory-hud" class="hud-button" title="Abrir o inventário">🎒 <span>Inventário</span></button><button type="button" id="btn-map-hud" class="hud-button" title="Abrir o mapa">🗺 <span>Mapa</span></button><button type="button" id="btn-journal-hud" class="hud-button" title="Abrir o diário">▤ <span>Diário</span></button><button type="button" id="btn-pause" class="hud-button" title="Pausar o jogo">Ⅱ <span>Pausa</span></button><button type="button" id="btn-next-stage" class="hud-button next-stage" title="Avançar para o próximo estágio" hidden>➜ <span>Avançar</span></button></div>
   </header>
+  <div id="economy-chip" class="economy-chip" hidden><span>🪙 <strong id="coins-hud">0</strong></span><span>🧩 <strong id="fragments-hud">0 / 10</strong></span></div>
   <div class="objective-chip" id="hud-tip" hidden><span class="objective-icon">🪏</span><div><small>OBJETIVO ATUAL</small><span id="mission-label">Abra o mapa e siga a próxima pista</span><span class="dig-counter">TESOUROS DO ESTÁGIO <strong id="dig-progress">0 / 3</strong> • CAMPANHA <strong id="global-progress">0 / 30</strong></span></div><time id="travel-time">00:00</time></div>
   <div id="interaction-prompt" class="interaction-prompt" hidden><span class="keyboard-key">E</span> <span id="interaction-label">Interagir</span> <span class="mobile-hint">ou toque em Ação</span></div>
   <div id="toasts" class="toast-stack" role="status" aria-live="polite"></div>
@@ -27,7 +28,7 @@
    <div id="joystick" class="joystick" aria-label="Controle virtual direcional"><div class="joystick-ring"></div><div id="joystick-stick" class="joystick-stick"></div></div>
    <button type="button" id="mobile-action" class="action-button" aria-label="Interagir ou cavar com a pá">AÇÃO</button>
   </div>
-  <div class="desktop-controls" id="desktop-controls" aria-hidden="true">WASD / SETAS <span>•</span> CAMINHAR <span>•</span> E USAR A PÁ / INTERAGIR <span>•</span> ESC PAUSAR</div>
+  <div class="desktop-controls" id="desktop-controls" aria-hidden="true">WASD / SETAS <span>•</span> CAMINHAR <span>•</span> E / ESPAÇO INTERAGIR <span>•</span> M MAPA <span>•</span> I INVENTÁRIO <span>•</span> ESC PAUSA</div>
 
   <section id="menu-screen" class="overlay menu-overlay" aria-labelledby="game-title">
    <div class="menu-decoration" aria-hidden="true">✥</div>
@@ -36,17 +37,17 @@
     <div class="treasure-icon" aria-hidden="true">✦</div>
     <h1 id="game-title">O TESOURO<br><em>DAS PALAVRAS</em></h1>
     <div class="divider-ornament" aria-hidden="true">✧ ━━━━━ ✦ ━━━━━ ✧</div>
-    <p>Dez estágios, trinta tesouros e pistas em mapas antigos.<br>Cada descoberta aproxima o jogador do Tesouro Lendário.</p>
+    <p>Dez estágios, trinta baús e desafios de leitura.<br>Acerte os três baús de cada estágio de primeira para reunir os 10 fragmentos do mapa secreto.</p>
     <p class="shovel-info">🪏 &nbsp; A PÁ REVELA O BAÚ; UMA RESPOSTA CORRETA ABRE A FECHADURA.</p><div class="stage-label">CAMPANHA COMPLETA <span>—</span> 10 ESTÁGIOS • 3 TESOUROS CADA</div>
     <div class="main-actions"><button type="button" id="btn-new" class="button primary">✦ &nbsp; NOVA CAMPANHA</button><button type="button" id="btn-continue" class="button secondary" disabled>↳ &nbsp; CONTINUAR</button><button type="button" id="btn-stage-menu" class="button secondary">🗺 &nbsp; ESCOLHER ESTÁGIO</button><button type="button" id="btn-library-menu" class="button secondary">▤ &nbsp; ACERVO DE 90 QUESTÕES</button><button type="button" id="btn-main-settings" class="button subtle">⚙ &nbsp; CONFIGURAÇÕES</button></div>
-    <div class="panel-footer">ETAPA 4 DE 6 • 30 DESAFIOS FUNCIONAIS • 90 QUESTÕES NO ACERVO</div>
+    <div class="panel-footer">ETAPA 6 CONCLUÍDA • 30 BAÚS • 90 QUESTÕES NO ACERVO</div>
    </div>
   </section>
 
   <section id="pause-screen" class="overlay" aria-label="Jogo pausado" hidden>
    <div class="panel dialog"><div class="eyebrow">EXPEDIÇÃO INTERROMPIDA</div><h2>PAUSA</h2><p>Abra o mapa ou o seletor de estágios para decidir o próximo passo.</p>
     <button type="button" id="btn-resume" class="button primary">▶ &nbsp; VOLTAR À AVENTURA</button>
-    <button type="button" id="btn-stages-pause" class="button secondary">🗺 &nbsp; SELETOR DE ESTÁGIOS</button>
+    <button type="button" id="btn-inventory-pause" class="button secondary">🎒 &nbsp; INVENTÁRIO E MAPA SECRETO</button><button type="button" id="btn-stages-pause" class="button secondary">🗺 &nbsp; SELETOR DE ESTÁGIOS</button>
     <button type="button" id="btn-library-pause" class="button secondary">▤ &nbsp; ACERVO DE QUESTÕES</button><button type="button" id="btn-settings-pause" class="button secondary">⚙ &nbsp; CONFIGURAÇÕES</button>
     <button type="button" id="btn-go-menu" class="button subtle">⌂ &nbsp; MENU PRINCIPAL</button>
    </div>
@@ -56,6 +57,13 @@
    <div class="panel dialog"><div class="eyebrow">PREFERÊNCIAS DE JOGO</div><h2>CONFIGURAÇÕES</h2>
     <label class="setting-row" for="setting-zoom"><span><strong>Ampliação da câmera</strong><small>Altere o tamanho dos elementos do cenário.</small></span><select id="setting-zoom"><option value="1.5">Afastada</option><option value="2" selected>Normal</option><option value="2.5">Próxima</option></select></label>
     <label class="setting-row" for="setting-motion"><span><strong>Reduzir animações ambientais</strong><small>Desativa o movimento de brilho da água.</small></span><input id="setting-motion" type="checkbox"></label>
+    <div class="backup-section" role="group" aria-labelledby="backup-title">
+      <strong id="backup-title">Cópia de segurança do progresso</strong>
+      <p>Exporte sua campanha para continuar em outro navegador ou guardar o progresso antes de atualizar o jogo. O arquivo não inclui dados pessoais.</p>
+      <div class="backup-actions"><button type="button" id="btn-save-export" class="button secondary">↓ &nbsp; EXPORTAR PROGRESSO</button><button type="button" id="btn-save-import" class="button secondary">↑ &nbsp; IMPORTAR PROGRESSO</button></div>
+      <input id="save-file-input" type="file" accept=".json,application/json" hidden aria-label="Selecionar cópia de segurança do jogo">
+      <p id="backup-feedback" class="backup-feedback" role="status" aria-live="polite"></p>
+    </div>
     <button type="button" id="btn-back-settings" class="button primary">← &nbsp; VOLTAR</button>
    </div>
   </section>
@@ -66,6 +74,20 @@
      <h3>Marcos reconhecidos</h3><p id="journal-secret-count">0 de 0 marcos reconhecidos</p><ol id="journal-secret-items" class="journal-items"></ol><button type="button" id="btn-journal-close" class="button primary">← &nbsp; VOLTAR À EXPEDIÇÃO</button></div>
   </section>
 
+  <section id="inventory-screen" class="overlay" aria-label="Inventário e mapa secreto" hidden>
+   <div class="panel inventory-panel" role="dialog" aria-modal="true" aria-labelledby="inventory-title">
+    <div class="eyebrow">BOLSA DO AVENTUREIRO</div><h2 id="inventory-title">INVENTÁRIO</h2>
+    <div class="inventory-stats"><div><small>🪙 MOEDAS</small><strong id="inventory-coins">0</strong></div><div><small>🧩 FRAGMENTOS</small><strong id="inventory-fragments">0 / 10</strong></div><div><small>📦 BAÚS</small><strong id="inventory-chests">0 / 30</strong></div></div>
+    <h3>Mapa antigo dos dez fragmentos</h3>
+    <p id="inventory-message">Acerte os três baús de cada estágio na primeira tentativa para receber uma parte do mapa.</p>
+    <canvas id="secret-map-canvas" width="600" height="300" aria-label="Mapa antigo dividido em dez fragmentos, conquistados por estágio"></canvas>
+    <div id="fragment-grid" class="fragment-grid" aria-label="Situação dos dez fragmentos"></div>
+    <div id="inventory-items" class="inventory-items"></div>
+    <button type="button" id="btn-secret-from-inventory" class="button primary" hidden>✦ &nbsp; ENTRAR NA ILHA SECRETA</button>
+    <button type="button" id="btn-inventory-close" class="button secondary">← &nbsp; VOLTAR</button>
+   </div>
+  </section>
+
   <section id="map-screen" class="overlay" aria-label="Mapa do tesouro" hidden>
    <div class="panel map-panel"><div class="eyebrow">MAPA ANTIGO</div><h2 id="map-stage-title">ESTÁGIO 1 — PRAIA DOS NÁUFRAGOS</h2><p id="map-stage-subtitle">Observe os marcos e siga a rota pontilhada até o X.</p>
      <canvas id="map-canvas" width="520" height="360" aria-label="Mapa do tesouro ilustrado"></canvas>
@@ -74,7 +96,7 @@
   </section>
 
   <section id="stages-screen" class="overlay" aria-label="Seletor de estágios" hidden>
-   <div class="panel journal-panel"><div class="eyebrow">SELETOR DE ESTÁGIOS</div><h2>DEZ CENÁRIOS DE EXPLORAÇÃO</h2><p>Escolha um estágio desbloqueado para explorar. Cada estágio possui 3 baús com questões: fácil, médio e difícil.</p><div id="stage-grid" class="stage-grid"></div><button type="button" id="btn-stage-close" class="button primary">← &nbsp; VOLTAR</button></div>
+   <div class="panel journal-panel"><div class="eyebrow">SELETOR DE ESTÁGIOS</div><h2>DEZ CENÁRIOS DE EXPLORAÇÃO</h2><p>Escolha um estágio desbloqueado para explorar. Cada estágio possui três baús. Acertando os três de primeira você ganha um fragmento; os estágios concluídos podem ser repetidos para tentar o fragmento.</p><div id="stage-grid" class="stage-grid"></div><button type="button" id="btn-stage-close" class="button primary">← &nbsp; VOLTAR</button></div>
   </section>
 
 
@@ -110,7 +132,15 @@
   <section id="win-screen" class="overlay" aria-label="Vitória na campanha" hidden>
    <div class="panel dialog"><div class="eyebrow">CAMINHO DO CONHECIMENTO</div><h2>TESOURO LENDÁRIO ABERTO!</h2>
     <p>Você concluiu os 10 estágios, interpretou os mapas e abriu os 30 baús respondendo corretamente aos desafios de Língua Portuguesa.</p>
-    <button type="button" id="btn-win-menu" class="button primary">VOLTAR AO MENU</button>
+    <p id="win-fragment-status">Os fragmentos do mapa secreto continuam à sua espera.</p><button type="button" id="btn-win-secret" class="button primary" hidden>🗝 &nbsp; ENTRAR NO CENÁRIO SECRETO</button><button type="button" id="btn-win-menu" class="button primary">VOLTAR AO MENU</button>
+   </div>
+  </section>
+
+  <section id="secret-win-screen" class="overlay" aria-label="Conclusão da ilha secreta" hidden>
+   <div class="panel dialog"><div class="eyebrow">A ILHA DAS PALAVRAS PERDIDAS</div><div class="treasure-icon">✧</div><h2>O LIVRO DAS PALAVRAS!</h2>
+    <p id="secret-win-text">Você completou o mapa antigo, desvendou a ilha secreta e encontrou a Relíquia do Conhecimento.</p>
+    <button type="button" id="btn-secret-win-inventory" class="button primary">🎒 &nbsp; VER INVENTÁRIO</button>
+    <button type="button" id="btn-secret-win-menu" class="button secondary">⌂ &nbsp; VOLTAR AO MENU</button>
    </div>
   </section>
 

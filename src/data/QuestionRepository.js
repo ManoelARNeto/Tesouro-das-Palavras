@@ -32,8 +32,22 @@ export class QuestionRepository {
   find(id){ return this.byId.get(id)||null; }
   assessable(q){ return !!q && q.gabarito?.validado===true && q.alternativas.some(a=>a.id===q.gabarito.alternativa); }
   chestQuestion(chestId, difficulty, overrideId=null){
-    const q=this.find(overrideId||this.assignments[chestId]);
-    return this.assessable(q) && q.dificuldade===difficulty ? q : null;
+    const isSuitable = q => this.assessable(q) && q.dificuldade===difficulty;
+    const selected=overrideId ? this.find(overrideId) : null;
+    if(isSuitable(selected))return selected;
+    const original=this.find(this.assignments[chestId]);
+    return isSuitable(original)?original:null;
+  }
+  /** Em replay, prefere item ainda não resolvido da mesma dificuldade, se disponível. */
+  replayQuestion(chestId,difficulty,correctIds=new Set(),round=1){
+    const originalId=this.assignments[chestId];
+    const candidates=this.questions.filter(q=>q.id!==originalId && q.dificuldade===difficulty && this.assessable(q));
+    if(!candidates.length)return null;
+    const fresh=candidates.filter(q=>!correctIds.has(q.id));
+    const pool=fresh.length?fresh:candidates;
+    // Deslocamento estável entre rodadas; não precisa de random nem servidor.
+    const offset=(round+chestId.split('').reduce((n,c)=>n+c.charCodeAt(0),0))%pool.length;
+    return pool[offset];
   }
   alternative(q, excludedIds=new Set(), correctIds=new Set()){
     if(!q)return null;

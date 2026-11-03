@@ -1,13 +1,15 @@
 import { generateStageWorld } from './generator.js';
 import { TILE, TILE_ID as T } from './world-config.js';
 import { STAGES } from './stages.js';
+import {SECRET_STAGE} from './secret-stage.js';
+export const ALL_STAGES=[...STAGES,SECRET_STAGE];
 const BLOCKED = new Set([T.OCEAN,T.COAST,T.RIVER,T.SHALLOW,T.CLIFF]);
 
 export class World {
  constructor(stageIndex=0){this.loadStageByIndex(stageIndex,{dug:[],opened:[]});}
  loadStageByIndex(index=0,state={dug:[],opened:[]}){
-  if(!STAGES[index])throw Error(`Estágio inválido: ${index}`);
-  this.stageIndex=index; Object.assign(this,generateStageWorld(STAGES[index]));
+  if(!ALL_STAGES[index])throw Error(`Estágio inválido: ${index}`);
+  this.stageIndex=index; Object.assign(this,generateStageWorld(ALL_STAGES[index]));
   this.width=this.cols*TILE;this.height=this.rows*TILE;this.restoreStageState(state);this.ensureSafeStart();
  }
 
