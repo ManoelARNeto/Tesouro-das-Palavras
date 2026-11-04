@@ -1,13 +1,13 @@
-# Classificação pedagógica dos 90 itens
+# Classificação pedagógica — versão 1.0.3
 
-A coletânea PAEBES foi utilizada como referência de descritores e construção de itens. A classificação Fácil/Médio/Difícil aplicada aos itens do PDF é **estimativa do projeto**, não uma classificação publicada pela SEDU/PAEBES. Não houve análise psicométrica nem acesso a parâmetros de dificuldade estatísticos.
+A distribuição fácil, médio e difícil foi proposta no trabalho anterior com base no descritor e na complexidade de leitura, sem calibração psicométrica oficial do PAEBES.
 
-| Origem | Fácil | Médio | Difícil | Total |
-|---|---:|---:|---:|---:|
-| PDF original | 8 | 24 | 25 | 57 |
-| Autorais | 11 | 11 | 11 | 33 |
-| **Total** | **19** | **35** | **36** | **90** |
+- **Fácil:** 8 questões originais com chave disponível; 30 posições preenchidas por reutilização em baús diferentes.
+- **Médio:** 22 questões originais com chave disponível; 30 posições.
+- **Difícil:** 20 questões originais com chave disponível; 30 posições.
 
-Na campanha, a progressão de cada estágio é sempre Fácil → Médio → Difícil. Um item do PDF só poderá ser associado a um baú se o professor validar o gabarito e verificar a correspondência entre a classificação atribuída e o nível desejado.
+Os itens 2024.50 (Médio) e 2024.51–2024.56 (5 Difíceis e 1 Médio) não foram incluídos na avaliação automática, pois o gabarito recebido não fornece chave sem ressalvas. Estes registros permanecem somente no acervo.
 
-A tabela de IDs por nível encontra-se em `data/indice_por_dificuldade.json`. Os itens autorais foram escritos e organizados de acordo com a demanda de leitura exigida pela questão (localização explícita, inferência ou análise de relações discursivas/argumentação).
+Cada estágio tem um baú fácil, um médio e um difícil; os três itens dentro de um mesmo baú possuem a mesma classificação. Um mesmo item pode reaparecer em outro estágio devido à limitação do banco validado.
+
+Consulte a tabela completa em `docs/MAPA_DE_QUESTOES_POR_BAU.md`.

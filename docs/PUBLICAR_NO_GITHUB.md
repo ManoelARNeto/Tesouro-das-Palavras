@@ -1,29 +1,13 @@
-# Publicação no GitHub Pages — Versão 1.0 / Etapa 6
+# Publicar ou atualizar no GitHub Pages — versão 1.0.3 (PAEBES real)
 
-**O projeto continua modular.** Não faça conversão para HTML único: mantenha `index.html` na raiz com `src/`, `styles/`, `assets/`, `data/` e `.nojekyll`.
+1. **Faça backup da versão atual** do repositório e do progresso em **Configurações → Exportar progresso**.
+2. Extraia `O_Tesouro_das_Palavras_v1.0.3_PAEBES_GitHub_Pages.zip` e envie os **arquivos internos** para a raiz do repositório. Mantenha `index.html`, `.nojekyll`, `assets/`, `src/`, `styles/` e `data/` nos caminhos originais. Evite deixar o antigo `data/questions.autorais.json` publicado: ele não faz parte desta versão.
+3. Faça commit e acesse a URL do GitHub Pages. Recarregue ignorando o cache caso a tela anterior ainda apareça.
+4. Escolha **Nova campanha** para praticar os 30 baús com questões originais. Em **Continuar**, os baús previamente abertos continuam abertos para preservar o salvamento.
+5. Verifique a primeira questão do primeiro baú: **2024.01**, descritor D016_P. Ao errar, deve mudar para **2024.02** e, após outro erro, **2024.03**. O PDF original e suas alternativas devem continuar visíveis.
+6. Confirme as moedas **50/30/10**, os fragmentos por três acertos de primeira e a progressão do mapa secreto.
+7. Consulte `docs/AUDITORIA_GABARITO_PAEBES_2024.md` e valide manualmente as quatro divergências de descritor. Os itens 2024.50 a 2024.56 ficam apenas para consulta.
 
-## Atualização do repositório
+A versão web inclui os recortes visuais dos itens originais e o JSON com a chave de correção. **Verifique as autorizações para disponibilização pública de textos, imagens e tirinhas**. O PDF-fonte e o PDF do gabarito não são enviados no pacote web para reduzir tamanho, mas esse fato não elimina exigências de licença para os recortes incluídos.
 
-1. Em um computador, baixe e extraia **O_Tesouro_das_Palavras_Etapa6_GitHub_Pages.zip** (ou use os arquivos do ZIP completo).
-2. **Antes de atualizar**, peça a cada aluno que use `Configurações → Exportar progresso`, guardando seu arquivo `.json`.
-3. No repositório já configurado, substitua o conteúdo da versão anterior pelos arquivos internos do ZIP, preservando a localização do `index.html`.
-4. Faça commit e acesse a URL pública configurada em `Settings → Pages`.
-5. Se aparecer a versão antiga, recarregue ignorando o cache. No **mesmo endereço do repositório**, use `Continuar` para migrar o salvamento v5 → v6.
-6. Se o aluno estiver em outro dispositivo ou se a origem do site mudou, abra `Configurações → Importar progresso` e selecione o JSON exportado na v6. Backups de v5 exigem primeiro a atualização do jogo e uma nova exportação em v6.
-
-## Verificação após publicação
-
-- Tela inicial aparece sem erro de carregamento no console.
-- Iniciar campanha; mover com WASD/setas e testar joystick virtual em dispositivo físico.
-- Abrir o mapa (`M`), inventário (`I`) e diário (`J`).
-- Encontrar o primeiro monte, cavar com `E`/`AÇÃO`, visualizar a questão, errar, acertar e confirmar abertura do baú.
-- Conferir moedas, persistência após recarregar e avanço de estágio.
-- Ao terminar três baús, verificar a elegibilidade do fragmento; testar uma rodada perfeita e uma com erro.
-- Exportar e importar progresso com um arquivo real.
-- Validar a renderização em pelo menos um celular Android e um iPhone, se disponíveis.
-
-## Direitos e segurança
-
-O ZIP de implantação omite o **PDF-fonte, as prévias e os testes**, mas mantém os recursos visuais associados às questões originais que podem aparecer na biblioteca. **Omitir o PDF não equivale a obter autorização de uso dos textos/imagens.** Verifique a licença de reprodução antes de disponibilizar publicamente. A validação dos gabaritos é client-side e não protege respostas contra inspeção do código.
-
-O jogo roda inteiramente em hospedagem estática; não são necessários servidores externos, contas de aluno, tokens ou banco de dados remoto.
+A hospedagem é estática, sem API, sem servidor obrigatório e sem cobrança. O `localStorage` mantém o progresso apenas na mesma origem/navegador enquanto não for apagado. Use a exportação/importação de backup ao trocar de dispositivo.

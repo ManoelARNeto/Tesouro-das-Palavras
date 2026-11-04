@@ -34,10 +34,11 @@ globalThis.fetch=originalFetch;
 for(const stage of STAGES)for(const chest of stage.treasures){
  const known=repository.chestQuestion(chest.id,chest.difficulty);
  assert.ok(known);
- assert.equal(repository.chestQuestion(chest.id,chest.difficulty,'ID-REMOVIDO')?.id,known.id,'Uma questão removida do banco não pode bloquear o baú.');
+ assert.equal(repository.chestQuestion(chest.id,chest.difficulty,'ID-REMOVIDO')?.id,known.id,'Uma referência antiga não pode bloquear o baú.');
 }
 const original=repository.questions.find(q=>q.origem==='coletanea_paebes_2024');
-assert.equal(repository.assessable(original),false);
+assert.equal(repository.assessable(original),true);
+assert.equal(repository.assessable(repository.find('PAEBES-2024-50')),false);
 // Fluxo de campanha completa e fragmentos, com as questões efetivamente atribuídas.
 const economy=blankRewards();
 const answerIds=new Set();
@@ -53,14 +54,14 @@ for(let i=0;i<STAGES.length;i++){
   assert.ok(recordAnswerForChest(state,chest.id,true).firstTry);
   assert.equal(world.openTreasure(chest.id)?.type,'chest_opened');
   state.opened.push(chest.id);
-  grantChestCoins(economy,chest);
+  grantChestCoins(economy,chest,1);
  }
  assert.equal(world.currentTreasure(),null);
  assert.equal(awardStageFragment(economy,stage,state),true);
 }
-assert.equal(answerIds.size,30);
-assert.equal(economy.coins,1750);
+assert.ok(answerIds.size>=25 && answerIds.size<=30,'As primeiras questões variam entre baús; a repetição entre baús é permitida');
+assert.equal(economy.coins,1500);
 assert.equal(economy.rewardedChests.length,30);
 assert.equal(economy.fragments.length,10);
 assert.equal(secretUnlocked(economy),true);
-console.log('test-release.mjs: migração v5→v6, importação segura, fallback, 30 desafios e 10 fragmentos OK');
+console.log('test-release.mjs: migração v5→v6, importação segura, fallback, 30 desafios de itens originais e 10 fragmentos OK');

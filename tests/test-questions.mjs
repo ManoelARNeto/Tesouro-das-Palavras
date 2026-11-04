@@ -4,49 +4,49 @@ import path from 'node:path';
 import {QuestionRepository} from '../src/data/QuestionRepository.js';
 import {STAGES} from '../src/world/stages.js';
 import {SaveManager} from '../src/core/SaveManager.js';
-const project=path.resolve(import.meta.dirname,'..');
-function read(relative){return JSON.parse(fs.readFileSync(path.join(project,relative),'utf8'));}
-const data=read('data/questions.json');
-assert.equal(data.schemaVersion,2);
-assert.equal(data.questions.length,90);
-const original=data.questions.filter(q=>q.origem==='coletanea_paebes_2024');
-const authored=data.questions.filter(q=>q.origem.startsWith('autoral'));
-assert.equal(original.length,57);assert.equal(authored.length,33);
-assert.equal(original.filter(q=>q.numero_original).length,56);
-assert.deepEqual(['Fácil','Médio','Difícil'].map(d=>authored.filter(q=>q.dificuldade===d).length),[11,11,11]);
-for(const q of data.questions){
- assert.equal(q.alternativas.length,5,`${q.id} deve ter cinco alternativas`);
- assert.equal(new Set(q.alternativas.map(a=>a.id)).size,5,`${q.id} tem alternativas repetidas`);
- if(q.origem==='coletanea_paebes_2024'){
-  assert.equal(q.gabarito.validado,false,`${q.id} não deve ser avaliada sem gabarito`);
-  assert.ok(q.imagens_original.length>0,`${q.id} sem imagens do PDF`);
-  for(const im of q.imagens_original)assert.ok(fs.existsSync(path.join(project,im.src)),`${q.id} tem asset faltando`);
- }else{
-  assert.equal(q.gabarito.validado,true);
-  assert.ok(q.justificativa);
-  assert.ok(q.alternativas.some(a=>a.id===q.gabarito.alternativa));
+const root=path.resolve(import.meta.dirname,'..');
+const read=rel=>JSON.parse(fs.readFileSync(path.join(root,rel),'utf8'));
+const source=read('data/questions.json'),original=read('data/questions.original.json'),key=read('data/gabaritos-professor.json');
+assert.equal(source.schemaVersion,2);assert.equal(source.questions.length,57);
+assert.equal(source.autorais,0);assert.equal(key.schemaVersion,2);
+assert.deepEqual(source.questions,original.questions,'As 57 questões originais devem permanecer sem alterações');
+assert.equal(Object.values(key.gabaritos).filter(a=>a?.validado).length,50);
+assert.equal(Object.values(key.gabaritos).filter(a=>!a).length,7);
+assert.equal(key.divergencias_descritor.length,4);
+for(const q of original.questions){
+ assert.equal(q.origem,'coletanea_paebes_2024');assert.equal(q.alternativas.length,5);
+ assert.equal(new Set(q.alternativas.map(a=>a.id)).size,5);
+ for(const asset of q.imagens_original)assert.ok(fs.existsSync(path.join(root,asset.src)),`Imagem original ausente: ${asset.src}`);
+}
+const placed=read('data/atribuicoes.json');assert.equal(placed.schemaVersion,3);
+assert.equal(Object.keys(placed.treasureQuestions).length,30);
+const used=new Set();
+for(const stage of STAGES)for(const chest of stage.treasures){
+ const ids=placed.treasureQuestions[chest.id];
+ assert.equal(ids.length,3,`Três itens no baú ${chest.id}`);
+ assert.equal(new Set(ids).size,3,`Três itens diferentes no baú ${chest.id}`);
+ for(const id of ids){
+  const q=original.questions.find(x=>x.id===id);assert.ok(q,`Item PAEBES não encontrado: ${id}`);
+  assert.ok(key.gabaritos[id]?.validado,`Item sem gabarito: ${id}`);
+  assert.equal(q.dificuldade,chest.difficulty,`Dificuldade incompatível no baú ${chest.id}`);used.add(id);
  }
 }
-const placements=read('data/atribuicoes.json').treasureQuestions;
-assert.equal(Object.keys(placements).length,30);
-for(const [si,s] of STAGES.entries())for(const [ti,t] of s.treasures.entries()){
- const q=authored.find(q=>q.id===placements[t.id]);
- assert.ok(q,`sem questão para ${t.id}`);
- assert.equal(q.dificuldade,t.difficulty);
-}
-const stored={};const storage={getItem:key=>stored[key]??null,setItem:(key,value)=>{stored[key]=value},removeItem:key=>{delete stored[key]}};
-const saver=new SaveManager(storage);
-stored['tesouro-das-palavras-v3']=JSON.stringify({version:3,currentStage:0,unlockedStages:[0],stageStates:{'praia-naufragos':{found:['s1-t1'],x:200,y:300,seconds:42}},settings:{zoom:2}});
-const migrated=saver.load();
-assert.deepEqual(migrated.stageStates['praia-naufragos'].dug,['s1-t1']);
-assert.deepEqual(migrated.stageStates['praia-naufragos'].opened,[],'Baús já cavados na etapa 3 não são considerados respondidos');
-saver.save(migrated);assert.equal(saver.load().version,6);
-// Mock fetch to check public API
-const oldFetch=globalThis.fetch;
+assert.equal(used.size,50,'Todas as 50 questões com gabarito devem aparecer nos 30 baús');
+const store={};const storage={getItem:k=>store[k]??null,setItem(k,v){store[k]=v},removeItem(k){delete store[k]}};
+const save=new SaveManager(storage);
+store['tesouro-das-palavras-v3']=JSON.stringify({version:3,currentStage:0,unlockedStages:[0],stageStates:{'praia-naufragos':{found:['s1-t1'],x:200,y:300,seconds:42}},settings:{zoom:2}});
+const migrated=save.load();assert.deepEqual(migrated.stageStates['praia-naufragos'].dug,['s1-t1']);
+assert.deepEqual(migrated.stageStates['praia-naufragos'].opened,[]);
+save.save(migrated);assert.equal(save.load().version,6);
+const originalFetch=globalThis.fetch;
 globalThis.fetch=async url=>({ok:true,json:async()=>read(url)});
-const repository=new QuestionRepository();await repository.load();
-assert.deepEqual(repository.statistics(),{originais:57,autorais:33,validas:33,pendentes:57});
-for(const s of STAGES)for(const t of s.treasures)assert.ok(repository.chestQuestion(t.id,t.difficulty));
-assert.equal(repository.assessable(original[0]),false);
-globalThis.fetch=oldFetch;
-console.log('test-questions.mjs: 90 itens, 57 originais, 33 autorais, 30 baús, validação e migração OK');
+const repo=new QuestionRepository();await repo.load();
+globalThis.fetch=originalFetch;
+assert.deepEqual(repo.statistics(),{originais:57,autorais:0,validas:50,pendentes:7});
+assert.equal(repo.assessable(repo.find('PAEBES-2024-01')),true);
+for(const id of key.pendentes)assert.equal(repo.assessable(repo.find(id)),false,id);
+for(const stage of STAGES)for(const chest of stage.treasures){
+ const list=repo.questionsForChest(chest.id,chest.difficulty);
+ assert.equal(list.length,3);list.forEach(q=>assert.equal(repo.assessable(q),true));
+}
+console.log('test-questions.mjs: 57 itens íntegros, 50 respostas conferidas, 7 pendências, 90 posições, 30 baús e migração OK');

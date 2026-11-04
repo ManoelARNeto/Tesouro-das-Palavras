@@ -1,5 +1,7 @@
 # Relatório de validação — Etapa 6
 
+**Nota sobre a versão 1.0.1:** este relatório registra a campanha original de 30/10/2026, antes da correção de moedas. O total histórico de 1.750 moedas mencionado abaixo pertence à versão 1.0. Para a correção 1.0.1, consulte `docs/REGRAS_MOEDAS_1.0.1.md` e os testes atualizados (teto de 1.500 moedas).
+
 **Escopo:** revisão de conteúdo, jogabilidade, performance básica, migração de progresso, acessibilidade funcional e publicação estática. **Data de teste:** 30/10/2026. **Base:** Etapa 5. **Versão:** 1.0 / salvamento v6.
 
 ## Testes automatizados (Node.js)

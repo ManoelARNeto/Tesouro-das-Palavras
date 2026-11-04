@@ -1,5 +1,13 @@
 import {STAGES} from '../world/stages.js';
-export const COINS_BY_DIFFICULTY=Object.freeze({'Fácil':25,'Médio':50,'Difícil':100});
+// Recompensa única por baú, calculada pela tentativa do primeiro acerto.
+// A dificuldade pedagógica não altera o valor da recompensa.
+export const COINS_BY_ATTEMPT=Object.freeze({first:50,second:30,thirdOrMore:10});
+// Apenas para preservar o saldo das versões antigas na migração v4 → v6.
+const LEGACY_COINS_BY_DIFFICULTY=Object.freeze({'Fácil':25,'Médio':50,'Difícil':100});
+export function coinsForAttempt(attempts){
+ if(!Number.isInteger(attempts)||attempts<1)return 0;
+ return attempts===1?COINS_BY_ATTEMPT.first:attempts===2?COINS_BY_ATTEMPT.second:COINS_BY_ATTEMPT.thirdOrMore;
+}
 export const FRAGMENTS_NEEDED=STAGES.length;
 export const SECRET_STAGE_INDEX=STAGES.length;
 export function blankRewards(){return {coins:0,rewardedChests:[],fragments:[],secretCompleted:false,relic:false};}
@@ -18,9 +26,10 @@ export function recordAnswerForChest(stageState, chestId, correct){
  if(correct)stageState.firstTry[chestId]=(count===1);
  return {attempts:count,firstTry:correct && count===1};
 }
-export function grantChestCoins(economy,chest){
+export function grantChestCoins(economy,chest,successfulAttempt){
  if(economy.rewardedChests.includes(chest.id))return 0;
- const amount=COINS_BY_DIFFICULTY[chest.difficulty]||0;
+ const amount=coinsForAttempt(successfulAttempt);
+ if(!amount)return 0; // Nunca creditar moedas por tentativa ausente ou inválida.
  economy.rewardedChests.push(chest.id);economy.coins+=amount;
  return amount;
 }
@@ -41,7 +50,11 @@ export function migrateRewardsFromV4(stageStates={}){
  for(const stage of STAGES){
   const state=stageStates[stage.id]; if(!state)continue;
   ensureStageAttempt(state,stage);
-  for(const treasure of stage.treasures)if((state.opened||[]).includes(treasure.id))grantChestCoins(rewards,treasure);
+  // O saldo já adquirido nas versões antigas não deve ser recalculado.
+  for(const treasure of stage.treasures)if((state.opened||[]).includes(treasure.id)){
+   rewards.rewardedChests.push(treasure.id);
+   rewards.coins+=LEGACY_COINS_BY_DIFFICULTY[treasure.difficulty]||0;
+  }
  }
  return rewards;
 }

@@ -1,13 +1,8 @@
 {
-  "descricao": "Integridade do conteúdo pedagógico herdado da Etapa 5. Hash SHA-256 dos arquivos preservados sem alterações de redação ou imagens.",
-  "totalArquivos": 111,
+  "descricao": "v1.0.3: verifica preservação literal do JSON original e dos recortes visuais da coletânea; não valida o gabarito enviado.",
+  "totalArquivos": 106,
   "arquivos": {
-    "data/questions.json": "28be7139154f4f2c7b57f4766916e33b222914216ff704e288d2545a29b3b751",
     "data/questions.original.json": "a4f170e8b218b3df098250846b61ce00b1a96307cf84508b70c4692955d4df41",
-    "data/questions.autorais.json": "2e207918766632d252117843faf8fa31e2c89e8220406f144b9a4602428990e0",
-    "data/atribuicoes.json": "81329505624896c3eab85104410a781479492ddff7d4a1b9fdc8ff021e3795a4",
-    "data/indice_por_dificuldade.json": "b6f0b71bcd1a2b797e09a5ce7880200200fe0caa0a110ff9a443e8d69b9cc3b2",
-    "data/gabaritos-professor.json": "65bc8fc59f003cecbf244a246d0ab7877239e8e910839faa0e4f8325a5ab3df3",
     "docs/fonte/Coletanea_Itens_PAEBES_2024_Original.pdf": "a5b6f6409ce977b752d509f52d7e86e1905098aeffe65d64956ee8a337750f9f",
     "assets/questoes/paebes2024/paebes-2024-01-parte-1.webp": "2138e7fa7a80a9f8dce281f1f7aab3e5f8cc3c376860a6176ab5bb1609c373f2",
     "assets/questoes/paebes2024/paebes-2024-02-parte-1.webp": "ed7a46778b893e303a435c9fb298f0b293b8a7ebbffab071caa31e3b08256878",

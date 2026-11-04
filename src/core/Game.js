@@ -100,11 +100,7 @@ export class Game {
   const stage=STAGES[index];if(!stage||!this.unlockedStages.has(index)||this.hasFragment(stage))return false;
   if(this.state!=='menu')this.saveCurrentStage();
   const st=this.stageStates[stage.id];if(!st||!resetStageChallenge(st,stage))return false;
-  for(const chest of stage.treasures){
-   delete this.chestQuestionOverrides[chest.id];
-   const fresh=this.questions.replayQuestion(chest.id,chest.difficulty,this.answeredCorrect,st.replays);
-   if(fresh)this.chestQuestionOverrides[chest.id]=fresh.id;
-  }
+  for(const chest of stage.treasures)delete this.chestQuestionOverrides[chest.id];
   this.loadStage(index,true);this.ui.toast('Nova tentativa de fragmento: acerte os três baús de primeira. As moedas e conquistas anteriores foram preservadas.');return true;
  }
  finishSecret(){
@@ -176,7 +172,9 @@ export class Game {
  openChestQuestion(id){
   const t=this.stage.treasures.find(t=>t.id===id);
   if(!t||!this.world.dug.has(id)||this.world.opened.has(id)||this.world.currentTreasure()?.id!==id)return;
-  const q=this.questions.chestQuestion(id,t.difficulty,this.chestQuestionOverrides[id]);
+  const st=this.stageStates[this.stage.id]||this.defaultStageState(this.stage);
+  const attempts=Number(st.attempts?.[id])||0;
+  const q=this.questions.chestQuestion(id,t.difficulty,attempts,Number(st.replays)||0);
   if(!q){this.ui.toast('O gabarito deste desafio não está validado. O baú continuará fechado.');return;}
   this.activeQuestion=q;this.activeChestId=id;this.answeredThisChallenge=false;
   this.state='question';this.input.clear();this.ui.showQuestion(this,q);this.ui.show('question');this.ui.hud(false);this.save();
@@ -190,12 +188,22 @@ export class Game {
   const ok=letter===q.gabarito.alternativa;
   const st=this.stageStates[this.stage.id]||this.defaultStageState(this.stage);
   const attempt=recordAnswerForChest(st,this.activeChestId,ok);this.stageStates[this.stage.id]=st;
-  if(!ok){stats.erros++;this.questionStats[q.id]=stats;this.save();return {accepted:true,correct:false,message:'Ainda não é essa a resposta. Releia o texto e compare as alternativas.',hint:q.dica||'Procure no texto elementos que comprovem a resposta.'};}
+  if(!ok){
+   stats.erros++;this.questionStats[q.id]=stats;
+   // A próxima questão vem exclusivamente do trio vinculado ao baú.
+   // O índice deriva do número de tentativas salvo e permanece estável após reload.
+   const nextQuestion=this.questions.chestQuestion(this.activeChestId,q.dificuldade,attempt.attempts,Number(st.replays)||0);
+   if(!nextQuestion || nextQuestion.id===q.id)return {accepted:false,message:'Não foi possível carregar a próxima questão deste baú.'};
+   this.activeQuestion=nextQuestion;this.save();
+   return {accepted:true,correct:false,nextQuestion,attempts:attempt.attempts,
+    message:'Resposta incorreta. O baú continua fechado; uma nova questão foi apresentada.',
+    hint:'Leia o novo texto e as alternativas. As tentativas anteriores continuam registradas.'};
+  }
   stats.acertos++;this.questionStats[q.id]=stats;this.answeredCorrect.add(q.id);
   const result=this.world.openTreasure(this.activeChestId);
   if(!result)return {accepted:false,message:'Não foi possível confirmar o estado do baú.'};
   this.answeredThisChallenge=true;const next=this.currentStageIndex+1;
-  const coinsEarned=grantChestCoins(this.economy,result.treasure);
+  const coinsEarned=grantChestCoins(this.economy,result.treasure,attempt.attempts);
   this.saveCurrentStage();
   const fragmentEarned=result.stageComplete&&awardStageFragment(this.economy,this.stage,this.stageStates[this.stage.id]);
   const secretOpened=fragmentEarned&&this.secretUnlocked;
@@ -211,14 +219,7 @@ export class Game {
    firstTry:attempt.firstTry,fragmentEarned,secretOpened,coinsEarned,
    message:base+rewardText,why:q.justificativa||''};
  }
- changeQuestion(){
-  if(this.state!=='question'||!this.activeQuestion||this.answeredThisChallenge)return false;
-  const previous=this.activeQuestion;const excluded=new Set([previous.id,...Object.keys(this.questionStats).filter(id=>this.questionStats[id].ultimaEtapa===this.stage.id)]);
-  const alternate=this.questions.alternative(previous,excluded,this.answeredCorrect);
-  if(!alternate)return false;
-  this.chestQuestionOverrides[this.activeChestId]=alternate.id;this.activeQuestion=alternate;
-  this.ui.showQuestion(this,alternate);this.save();return true;
- }
+ // A troca manual foi eliminada: questões alternam exclusivamente após erro.
  closeQuestion(){
   if(this.state!=='question')return;
   const completed=this.answeredThisChallenge;

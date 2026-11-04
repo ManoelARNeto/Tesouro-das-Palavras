@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {World} from '../src/world/World.js';
 import {STAGES} from '../src/world/stages.js';
 import {SECRET_STAGE} from '../src/world/secret-stage.js';
-import {blankRewards,recordAnswerForChest,ensureStageAttempt,grantChestCoins,awardStageFragment,secretUnlocked,resetStageChallenge,migrateRewardsFromV4} from '../src/core/Rewards.js';
+import {blankRewards,recordAnswerForChest,ensureStageAttempt,grantChestCoins,awardStageFragment,secretUnlocked,resetStageChallenge,migrateRewardsFromV4,coinsForAttempt} from '../src/core/Rewards.js';
 import {SaveManager} from '../src/core/SaveManager.js';
 
 // 1 - A primeira resposta conta; reabrir a janela e trocar a questão não reiniciam o contador.
@@ -16,13 +16,13 @@ for(const stage of STAGES){
   const attempt=recordAnswerForChest(state,chest.id,true);
   assert.equal(attempt.attempts,1);
   assert.ok(world.openTreasure(chest.id));state.opened.push(chest.id);
-  assert.equal(grantChestCoins(economy,chest),{Fácil:25,Médio:50,Difícil:100}[chest.difficulty]);
+  assert.equal(grantChestCoins(economy,chest,attempt.attempts),50);
  }
  assert.ok(awardStageFragment(economy,stage,state));
  assert.equal(awardStageFragment(economy,stage,state),false,'Fragmento concedido uma única vez');
 }
 assert.equal(economy.fragments.length,10);
-assert.equal(economy.coins,1750,'10 x 175 moedas');
+assert.equal(economy.coins,1500,'30 baús x 50 moedas no primeiro acerto');
 assert.equal(economy.rewardedChests.length,30);
 assert.ok(secretUnlocked(economy));
 
@@ -37,10 +37,31 @@ const reward2=blankRewards();
 assert.equal(awardStageFragment(reward2,mixed,failed),false);
 assert.ok(resetStageChallenge(failed,mixed),'Deve ser possível repetir o estágio após completá-lo');
 assert.equal(failed.opened.length,0);assert.deepEqual(failed.attempts,{});
-for(const chest of mixed.treasures){recordAnswerForChest(failed,chest.id,true);failed.opened.push(chest.id);grantChestCoins(reward2,chest);}
+for(const chest of mixed.treasures){const a=recordAnswerForChest(failed,chest.id,true);failed.opened.push(chest.id);grantChestCoins(reward2,chest,a.attempts);}
 assert.ok(awardStageFragment(reward2,mixed,failed));
-for(const chest of mixed.treasures)assert.equal(grantChestCoins(reward2,chest),0,'Não duplicar moedas ao repetir');
-assert.equal(reward2.coins,175);
+for(const chest of mixed.treasures)assert.equal(grantChestCoins(reward2,chest,1),0,'Não duplicar moedas ao repetir');
+assert.equal(reward2.coins,150);
+// A quantidade de tentativas define a recompensa independentemente do nível do desafio.
+assert.equal(coinsForAttempt(0),0);
+assert.equal(coinsForAttempt(1),50);
+assert.equal(coinsForAttempt(2),30);
+for(const n of [3,4,6,100])assert.equal(coinsForAttempt(n),10);
+const mixedPayout=blankRewards(),chests=STAGES[1].treasures;
+for(const [i,chest] of chests.entries()){
+ const round={attempts:{},firstTry:{}};
+ for(let wrong=0;wrong<i;wrong++){
+  const answer=recordAnswerForChest(round,chest.id,false);
+  assert.equal(mixedPayout.coins, [0,50,80][i]||0,'Responder incorretamente não credita nem desconta moedas');
+  assert.equal(round.firstTry[chest.id]||false,false);
+ }
+ const correct=recordAnswerForChest(round,chest.id,true);
+ assert.equal(grantChestCoins(mixedPayout,chest,correct.attempts),[50,30,10][i]);
+}
+assert.equal(mixedPayout.coins,90);
+assert.equal(grantChestCoins(mixedPayout,chests[2],1),0,'Baú já pago não concede moedas de novo');
+const persistent={attempts:{'s3-t1':2},firstTry:{}};
+assert.equal(recordAnswerForChest(persistent,'s3-t1',true).attempts,3,'Tentativas persistem após reabertura');
+assert.equal(coinsForAttempt(3),10);
 assert.equal(resetStageChallenge(failed,mixed),true,'Lógica de nova rodada independente da interface');
 
 // 3 - Migração conservadora da Etapa 4, sem fragmento por acerto não verificável.
@@ -64,7 +85,7 @@ for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
 }
 assert.ok(access.length>0,'O altar deve ter local adjacente para interação');
 assert.equal(STAGES.length,10);
-console.log('test-rewards.mjs: 10 fragmentos, 30 baús, primeira tentativa, replay, moedas, migração, ilha secreta OK');
+console.log('test-rewards.mjs: 10 fragmentos, 30 baús, primeira tentativa, 50/30/10 moedas, replay, migração, ilha secreta OK');
 // 5 - Verifica que é possível caminhar do portal ao altar sem atravessar obstáculos.
 const origin={col:Math.floor(secret.start.x/32),row:Math.floor(secret.start.y/32)};
 const destination={col:Math.floor(altar.x/32),row:Math.floor(altar.y/32)};

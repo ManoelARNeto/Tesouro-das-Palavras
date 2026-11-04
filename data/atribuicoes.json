@@ -1,42 +1,162 @@
 {
-  "schemaVersion": 1,
-  "version": "Etapa 4",
+  "schemaVersion": 3,
+  "version": "v1.0.3",
+  "strategy": "reuso_de_itens_originais_validados_em_baus_diferentes",
+  "observacao": "90 posições de desafio, preenchidas com 50 questões originais validadas. Um mesmo item pode aparecer em baús diferentes, mas nunca duas vezes no mesmo baú. Sem questões autorais.",
+  "totalBaus": 30,
+  "questoesPorBau": 3,
+  "posicoes": 90,
+  "questoesUnicas": 50,
   "treasureQuestions": {
-    "s1-t1": "AUT-2026-001",
-    "s1-t2": "AUT-2026-002",
-    "s1-t3": "AUT-2026-003",
-    "s2-t1": "AUT-2026-004",
-    "s2-t2": "AUT-2026-005",
-    "s2-t3": "AUT-2026-006",
-    "s3-t1": "AUT-2026-007",
-    "s3-t2": "AUT-2026-008",
-    "s3-t3": "AUT-2026-009",
-    "s4-t1": "AUT-2026-010",
-    "s4-t2": "AUT-2026-011",
-    "s4-t3": "AUT-2026-012",
-    "s5-t1": "AUT-2026-013",
-    "s5-t2": "AUT-2026-014",
-    "s5-t3": "AUT-2026-015",
-    "s6-t1": "AUT-2026-016",
-    "s6-t2": "AUT-2026-017",
-    "s6-t3": "AUT-2026-018",
-    "s7-t1": "AUT-2026-019",
-    "s7-t2": "AUT-2026-020",
-    "s7-t3": "AUT-2026-021",
-    "s8-t1": "AUT-2026-022",
-    "s8-t2": "AUT-2026-023",
-    "s8-t3": "AUT-2026-024",
-    "s9-t1": "AUT-2026-025",
-    "s9-t2": "AUT-2026-026",
-    "s9-t3": "AUT-2026-027",
-    "s10-t1": "AUT-2026-028",
-    "s10-t2": "AUT-2026-029",
-    "s10-t3": "AUT-2026-030"
-  },
-  "reserveQuestions": [
-    "AUT-2026-031",
-    "AUT-2026-032",
-    "AUT-2026-033"
-  ],
-  "nota": "Uma questão autoral validada por baú; itens do PDF aguardam gabarito oficial para serem sorteados."
+    "s1-t1": [
+      "PAEBES-2024-01",
+      "PAEBES-2024-02",
+      "PAEBES-2024-03"
+    ],
+    "s1-t2": [
+      "PAEBES-2024-05",
+      "PAEBES-2024-06",
+      "PAEBES-2024-07"
+    ],
+    "s1-t3": [
+      "PAEBES-2024-16",
+      "PAEBES-2024-17",
+      "PAEBES-2024-18"
+    ],
+    "s2-t1": [
+      "PAEBES-2024-04",
+      "PAEBES-2024-08",
+      "PAEBES-2024-09"
+    ],
+    "s2-t2": [
+      "PAEBES-2024-12",
+      "PAEBES-2024-13",
+      "PAEBES-2024-14"
+    ],
+    "s2-t3": [
+      "PAEBES-2024-24",
+      "PAEBES-2024-25",
+      "PAEBES-2024-EXTRA-D032"
+    ],
+    "s3-t1": [
+      "PAEBES-2024-10",
+      "PAEBES-2024-11",
+      "PAEBES-2024-01"
+    ],
+    "s3-t2": [
+      "PAEBES-2024-15",
+      "PAEBES-2024-19",
+      "PAEBES-2024-20"
+    ],
+    "s3-t3": [
+      "PAEBES-2024-26",
+      "PAEBES-2024-27",
+      "PAEBES-2024-28"
+    ],
+    "s4-t1": [
+      "PAEBES-2024-02",
+      "PAEBES-2024-03",
+      "PAEBES-2024-04"
+    ],
+    "s4-t2": [
+      "PAEBES-2024-21",
+      "PAEBES-2024-22",
+      "PAEBES-2024-23"
+    ],
+    "s4-t3": [
+      "PAEBES-2024-29",
+      "PAEBES-2024-39",
+      "PAEBES-2024-40"
+    ],
+    "s5-t1": [
+      "PAEBES-2024-08",
+      "PAEBES-2024-09",
+      "PAEBES-2024-10"
+    ],
+    "s5-t2": [
+      "PAEBES-2024-30",
+      "PAEBES-2024-31",
+      "PAEBES-2024-32"
+    ],
+    "s5-t3": [
+      "PAEBES-2024-41",
+      "PAEBES-2024-42",
+      "PAEBES-2024-43"
+    ],
+    "s6-t1": [
+      "PAEBES-2024-11",
+      "PAEBES-2024-01",
+      "PAEBES-2024-02"
+    ],
+    "s6-t2": [
+      "PAEBES-2024-33",
+      "PAEBES-2024-34",
+      "PAEBES-2024-35"
+    ],
+    "s6-t3": [
+      "PAEBES-2024-44",
+      "PAEBES-2024-45",
+      "PAEBES-2024-46"
+    ],
+    "s7-t1": [
+      "PAEBES-2024-03",
+      "PAEBES-2024-04",
+      "PAEBES-2024-08"
+    ],
+    "s7-t2": [
+      "PAEBES-2024-36",
+      "PAEBES-2024-37",
+      "PAEBES-2024-38"
+    ],
+    "s7-t3": [
+      "PAEBES-2024-47",
+      "PAEBES-2024-48",
+      "PAEBES-2024-16"
+    ],
+    "s8-t1": [
+      "PAEBES-2024-09",
+      "PAEBES-2024-10",
+      "PAEBES-2024-11"
+    ],
+    "s8-t2": [
+      "PAEBES-2024-49",
+      "PAEBES-2024-05",
+      "PAEBES-2024-06"
+    ],
+    "s8-t3": [
+      "PAEBES-2024-17",
+      "PAEBES-2024-18",
+      "PAEBES-2024-24"
+    ],
+    "s9-t1": [
+      "PAEBES-2024-01",
+      "PAEBES-2024-02",
+      "PAEBES-2024-03"
+    ],
+    "s9-t2": [
+      "PAEBES-2024-07",
+      "PAEBES-2024-12",
+      "PAEBES-2024-13"
+    ],
+    "s9-t3": [
+      "PAEBES-2024-25",
+      "PAEBES-2024-EXTRA-D032",
+      "PAEBES-2024-26"
+    ],
+    "s10-t1": [
+      "PAEBES-2024-04",
+      "PAEBES-2024-08",
+      "PAEBES-2024-09"
+    ],
+    "s10-t2": [
+      "PAEBES-2024-14",
+      "PAEBES-2024-15",
+      "PAEBES-2024-19"
+    ],
+    "s10-t3": [
+      "PAEBES-2024-27",
+      "PAEBES-2024-28",
+      "PAEBES-2024-29"
+    ]
+  }
 }

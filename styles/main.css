@@ -23,7 +23,7 @@ h1,h2{margin:0;line-height:1.04;color:#f5e2b9;text-shadow:0 3px 1px #0c282c,0 0 
 .short-brand{display:none!important}@media(max-width:720px){.hud-brand{width:93px;min-width:93px;max-width:93px;gap:5px;padding:7px}.hud-brand .full-brand{display:none!important}.hud-brand .short-brand{display:block!important;font-size:10px;letter-spacing:.3px}.hud-brand span:not(.hud-symbol){display:none!important}.hud-location{min-width:0;padding:7px}.hud-location strong{font-size:11px;line-height:1.15;display:block}.hud-progress{min-width:49px;padding:8px 4px;display:grid;place-items:center}.hud-progress .hud-caption{display:none}.hud-progress strong{font-size:17px}.hud-buttons{padding:2px}.hud-button{padding:7px 5px}}
 
 
-/* Etapa 4 — leitura, acessibilidade e banco de 90 questões */
+/* Leitura e acessibilidade do acervo pedagógico */
 .question-panel,.library-panel{width:min(96vw,860px);max-height:94dvh;overflow-y:auto;overscroll-behavior:contain;padding:26px 34px;color:#f2e7cc}
 .question-panel>h2,.library-panel>h2{font-size:clamp(20px,3vw,29px);margin:6px 0 8px}
 .question-meta{font:700 11px/1.4 system-ui,Arial,sans-serif;letter-spacing:.5px;color:#c6cdbf;margin:8px 0 16px}
@@ -87,3 +87,6 @@ button,select,input[type="radio"]{touch-action:manipulation}
  .touch-controls{bottom:calc(26px + env(safe-area-inset-bottom))}
  @media (max-width:720px) and (pointer:coarse){.objective-chip{bottom:calc(6px + env(safe-area-inset-bottom))}.touch-controls{bottom:calc(86px + env(safe-area-inset-bottom))}}
 }
+
+/* v1.0.2: feedback acessível no topo ao trocar a questão após erro. */
+.question-notice:not(:empty){margin:9px 0 15px;padding:12px 14px;border:1px solid #e7ba78;background:#68462d;color:#fff3d4;font:700 14px/1.45 system-ui,Arial,sans-serif;border-radius:4px;}

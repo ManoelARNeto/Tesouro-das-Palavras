@@ -1,67 +1,63 @@
-# O Tesouro das Palavras — Etapa 6: versão 1.0
+# O Tesouro das Palavras — versão 1.0.3 · Itens reais PAEBES 2024
 
-Jogo educativo 2D para a 3ª série do Ensino Médio. Esta é a **versão consolidada** das seis etapas, executável como site estático no navegador e compatível com GitHub Pages. Continua utilizando **Canvas 2D nativo, HTML/CSS/JavaScript ES Modules**, sem bibliotecas pagas, APIs, contas ou servidor de aplicação.
+Esta versão substitui **todas as questões autorais dos baús por itens originais da Coletânea de Itens PAEBES 2024 – Língua Portuguesa, 3ª série do Ensino Médio**, usando o gabarito entregue pelo professor.
 
-## Conteúdo consolidado
+## Conteúdo pedagógico
 
-- **10 estágios jogáveis** com cenários distintos e **3 baús por estágio** (Fácil, Médio, Difícil).
-- **Mapa antigo com pistas de localização**, exploração, pá permanente, escavação, colisões, câmera, movimentação WASD/setas e joystick virtual.
-- **90 questões**: 57 itens da coletânea PAEBES 2024 e 33 questões demonstrativas autorais. Os originais do PDF permanecem fiéis ao material fornecido e **não entram na correção sem gabarito validado**.
-- A resposta correta abre o baú; erros preservam o progresso. Cada baú concede **25 / 50 / 100 moedas** (conforme dificuldade) apenas na primeira abertura histórica.
-- **Um fragmento por estágio** se os três baús forem respondidos corretamente na primeira tentativa da rodada. Em caso de erro, é possível **repetir o estágio** para tentar o fragmento sem duplicar moedas.
-- **10 fragmentos** desbloqueiam a **Ilha das Palavras Perdidas**, com altar final e relíquia.
-- Inventário, diário, seleção de estágios, biblioteca de questões, pausa e configurações.
+| Categoria | Quantidade |
+|---|---:|
+| Questões originais do PDF, preservadas | 57 |
+| Questões com gabarito utilizável do PDF enviado | 50 |
+| Questões sem gabarito utilizável | 7 |
+| Questões autorais na versão atual | 0 |
+| Baús | 30 |
+| Posições de questões (3 por baú) | 90 |
 
-## Melhorias da Etapa 6
+**Atenção:** 90 posições ≠ 90 questões originais diferentes. Existem apenas 50 questões com chave de correção utilizável no documento enviado. Todas as 50 aparecem no jogo, algumas em baús diferentes; **dentro do mesmo baú, as três questões são distintas**. A dificuldade é a classificação pedagógica estimada usada desde a Etapa 4, não uma dificuldade oficial da avaliação.
 
-1. **Salvamento v6**: migração de v5 e anteriores, validação básica dos dados e correções de retomada. A seleção de estágio no menu agora mantém histórico de questões, respostas e recompensas.
-2. **Backup portátil**: `Configurações → Exportar progresso` cria um `.json`; `Importar progresso` permite recuperar a campanha em outro navegador (na mesma versão), substituindo o progresso local após confirmação. Não contém dados de identificação pessoal.
-3. **Banco resiliente**: se uma questão alternativa de uma rodada anterior não existir ou perder a validação, o sistema tenta recuperar a atribuição original validada; nunca aprova uma questão sem gabarito válido.
-4. **Atalhos**: `M` mapa, `I` inventário, `J` diário, `Esc` pausa/voltar. `E` e `Espaço` continuam sendo a única interação com pá e objetos.
-5. **Avançar estágio**: após a conclusão, botão de acesso direto ao estágio seguinte (ou à área secreta, quando liberada).
-6. **Otimização**: HUD atualizado a intervalos curtos em vez de cada frame; renderização em menus reduzida, sem alterar fluidez da exploração.
-7. **Acessibilidade**: opção de animação reduzida, respeito à preferência de movimento reduzido do dispositivo, ajustes de contraste e rolagem, botões maiores e adequação às áreas seguras do celular.
-8. **Testes e integridade**: verificações em Node, simulação de campanha completa em Chromium, teste de migração e manifesto de hashes SHA-256 para todos os arquivos pedagógicos preservados.
+O gabarito entregue contém 51 linhas: 48 itens numerados entre 2024.01 e 2024.49 (sem a linha 2024.25), dois itens extras — “Q. Extra 1” corresponde a 2024.25 e “Q. Extra 2” é uma questão não numerada —, mais o item 2024.50* marcado como incompleto. Assim, **50 respostas foram utilizadas**. O **2024.50** e os **2024.51 a 2024.56** permanecem somente no acervo consultável, sem correção automática.
 
-## Executar no computador
+A tabela de respostas possui **quatro divergências de código de descritor** em relação ao PDF original. A identificação de descritor da coletânea foi preservada, e o cruzamento por conteúdo e número está registrado em `docs/AUDITORIA_GABARITO_PAEBES_2024.md`. Embora o PDF de respostas se intitule “oficial”, essa procedência não foi verificada independentemente.
 
-1. Extraia a pasta e mantenha `index.html`, `styles/`, `src/`, `assets/` e `data/` juntos.
-2. Execute `INICIAR_NO_WINDOWS.bat` ou `./INICIAR_NO_MAC_LINUX.sh` com Python instalado; ou:
+## Funcionamento dos baús
 
-   ```bash
-   python -m http.server 8000
-   ```
+1. Encontre um baú pelas pistas e use a pá com `E`, `Espaço` ou **AÇÃO**.
+2. O baú apresenta uma questão **original do PDF** (texto, alternativas e recortes visuais preservados).
+3. Uma resposta incorreta mantém o baú fechado e alterna automaticamente para a próxima questão daquele baú: **Q1 → Q2 → Q3 → Q1**. O total de tentativas é conservado no salvamento.
+4. Uma resposta correta abre o baú e concede **50 moedas na primeira tentativa, 30 na segunda, 10 na terceira ou posterior**.
+5. Abrir os três baús de um estágio acertando cada um na primeira tentativa concede um fragmento; os dez fragmentos liberam a ilha secreta.
 
-3. Abra `http://localhost:8000`. **Não abra `index.html` por `file://`** porque o jogo utiliza módulos ES e `fetch`.
+**Reutilização entre baús:** é necessária para preencher 90 posições com 50 itens validados. A lista exata está em `docs/MAPA_DE_QUESTOES_POR_BAU.md` e `data/atribuicoes.json`.
 
-## Atualizar no GitHub Pages
+## Publicação no GitHub Pages
 
-Consulte `docs/PUBLICAR_NO_GITHUB.md`. Há um ZIP completo, para edição/auditoria, e um ZIP leve com os arquivos necessários ao site. **Não altere a URL ou origem da página se precisar manter o mesmo `localStorage`.** Antes da atualização, peça aos estudantes que exportem o progresso.
+Use o **ZIP GitHub Pages** com `index.html` na raiz. Não suba uma pasta contendo a raiz do projeto dentro do repositório, a menos que seu Pages esteja configurado para ela. Veja `docs/PUBLICAR_NO_GITHUB.md`.
 
-## Testes automatizados
+Compatível com o salvamento `tesouro-das-palavras-v6`: moedas, fragmentos e baús já abertos não são apagados. **Uma partida que já abriu baús com questões autorais manterá esses baús abertos.** Para treinar todos os baús com questões PAEBES, inicie **Nova campanha** (após exportar seu progresso, se desejar guardá-lo), ou use a função de repetição dos estágios concluídos.
 
-Na raiz do projeto (Node.js 22 ou compatível):
+## Origem e integridade
+
+- `data/questions.json`: somente os **57 itens originais**.
+- `data/questions.original.json`: registro original da versão anterior, preservado byte a byte.
+- `data/gabaritos-professor.json`: **50 respostas** do gabarito fornecido, 7 pendentes; nunca edita os enunciados e alternativas.
+- `data/atribuicoes.json`: os **30 trios** de questões originais.
+- `assets/questoes/paebes2024/`: reproduções gráficas originais, incluindo itens com mais de uma página.
+- `docs/fonte/`: os PDFs-fonte no pacote completo; não enviados no ZIP do GitHub Pages.
+
+## Testes
+
+No diretório do projeto, com Node.js:
 
 ```bash
-for f in tests/*.mjs; do node "$f" || exit 1; done
+for arquivo in tests/*.mjs; do node "$arquivo" || exit 1; done
 ```
 
-Os testes verificam integridade do acervo, 90 questões, 10 estágios, 30 baús, colisões e trajetos, recompensa por primeira tentativa, 1.750 moedas, 10 fragmentos, replay, acesso ao altar, migrações, recuperação de questão e validade de backups.
+Teste em Chromium isolado (Playwright instalado):
 
-**Validação em navegador:** foi realizada em Chromium headless com HTML, módulos, JSON e imagens incorporados temporariamente, porque o ambiente de teste não permite navegar pelo servidor HTTP local. Foram exercitados desktop (1365×768), celular simulado (390×844), questão, mapa, configurações e download de backup. Um segundo teste completou os 30 baús, obteve os 10 fragmentos, entrou na ilha secreta, recuperou a relíquia, importou o backup e executou replay após erro, sem erros JS detectados. O servidor estático também foi validado via `curl` local. **Não foi possível verificar o GitHub Pages publicado nem celulares físicos.**
+```bash
+/opt/pyvenv/bin/python tests/test-browser-rotation.py
+```
 
-## Limitações e publicação responsável
+O teste Chromium utiliza HTML/JS e imagens incorporados por limitações administrativas de acesso HTTP do ambiente de teste. A publicação no GitHub Pages, os controles em aparelhos físicos e permissões de reprodução dos textos/imagens de terceiros ainda devem ser conferidos antes do uso público.
 
-- `localStorage` é **local ao navegador**; pode ser apagado pelo usuário ou políticas do dispositivo. Use o backup antes de limpar dados ou mudar de aparelho. Não há sincronização multiusuário.
-- A validação das respostas ocorre no próprio navegador e os JSON são públicos na hospedagem estática: o jogo **não é uma prova segura contra consulta ao gabarito**.
-- As **57 questões reproduzidas do PDF** continuam pendentes de gabarito oficial/conferência do professor; as 30 atribuídas aos baús são autorais validadas. A classificação de dificuldade dos itens originais não é oficial.
-- PDF original e imagens/textos reproduzidos incluem material de terceiros. **Confirme autorização de publicação** antes de enviar o repositório e, se necessário, substitua/remova os conteúdos sem autorização antes de disponibilizar o site publicamente.
-- Não houve teste em hardware real, auditoria externa de acessibilidade ou medição comparativa de FPS em diversos aparelhos.
-
-## Arquivos importantes
-
-- `src/core/Game.js`, `src/core/SaveManager.js`, `src/core/Rewards.js` — fluxo do jogo, salvamento, economia.
-- `src/data/QuestionRepository.js` — validação das questões e compatibilidade do banco.
-- `data/questions.json`, `data/atribuicoes.json`, `data/gabaritos-professor.json` — banco da versão final (texto e imagens preservados).
-- `docs/RELATORIO_TESTES_ETAPA6.md` — testes, limitações e critérios de aceite.
-- `docs/MANIFESTO_INTEGRIDADE.json` — hash dos arquivos de acervo sem alterações.
+O jogo é um recurso de **treinamento**, não uma aplicação segura contra consulta ao JSON ou alteração de salvamento no navegador.

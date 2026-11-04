@@ -4,8 +4,8 @@
  <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
  <meta name="theme-color" content="#172e39">
- <meta name="description" content="O Tesouro das Palavras — RPG educativo de exploração. Versão 1.0 com 90 questões, 30 baús, mapa secreto e backup de progresso.">
- <title>O Tesouro das Palavras · Versão 1.0</title>
+ <meta name="description" content="O Tesouro das Palavras — RPG educativo de exploração. Versão 1.0.3 com 50 questões PAEBES validadas em 30 baús, troca automática após erros, mapa secreto e backup.">
+ <title>O Tesouro das Palavras · Versão 1.0.3</title>
  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
  <link rel="stylesheet" href="styles/main.css">
 </head>
@@ -15,7 +15,7 @@
   <div class="screen-vignette" aria-hidden="true"></div>
 
   <header id="hud" class="hud" hidden>
-   <div class="hud-brand"><span class="hud-symbol">✦</span><div><strong class="full-brand">O TESOURO DAS PALAVRAS</strong><strong class="short-brand">TESOURO</strong><span>VERSÃO 1.0 • EXPLORAÇÃO E LEITURA</span></div></div>
+   <div class="hud-brand"><span class="hud-symbol">✦</span><div><strong class="full-brand">O TESOURO DAS PALAVRAS</strong><strong class="short-brand">TESOURO</strong><span>VERSÃO 1.0.3 • EXPLORAÇÃO E LEITURA</span></div></div>
    <div class="hud-location"><span class="hud-caption">LOCALIZAÇÃO</span><strong id="area-label">Praia dos Náufragos</strong></div>
    <div class="hud-progress"><span class="hud-caption">ESTÁGIO</span><strong id="stage-label-hud">1 / 10</strong></div>
    <div class="hud-buttons"><button type="button" id="btn-inventory-hud" class="hud-button" title="Abrir o inventário">🎒 <span>Inventário</span></button><button type="button" id="btn-map-hud" class="hud-button" title="Abrir o mapa">🗺 <span>Mapa</span></button><button type="button" id="btn-journal-hud" class="hud-button" title="Abrir o diário">▤ <span>Diário</span></button><button type="button" id="btn-pause" class="hud-button" title="Pausar o jogo">Ⅱ <span>Pausa</span></button><button type="button" id="btn-next-stage" class="hud-button next-stage" title="Avançar para o próximo estágio" hidden>➜ <span>Avançar</span></button></div>
@@ -39,8 +39,8 @@
     <div class="divider-ornament" aria-hidden="true">✧ ━━━━━ ✦ ━━━━━ ✧</div>
     <p>Dez estágios, trinta baús e desafios de leitura.<br>Acerte os três baús de cada estágio de primeira para reunir os 10 fragmentos do mapa secreto.</p>
     <p class="shovel-info">🪏 &nbsp; A PÁ REVELA O BAÚ; UMA RESPOSTA CORRETA ABRE A FECHADURA.</p><div class="stage-label">CAMPANHA COMPLETA <span>—</span> 10 ESTÁGIOS • 3 TESOUROS CADA</div>
-    <div class="main-actions"><button type="button" id="btn-new" class="button primary">✦ &nbsp; NOVA CAMPANHA</button><button type="button" id="btn-continue" class="button secondary" disabled>↳ &nbsp; CONTINUAR</button><button type="button" id="btn-stage-menu" class="button secondary">🗺 &nbsp; ESCOLHER ESTÁGIO</button><button type="button" id="btn-library-menu" class="button secondary">▤ &nbsp; ACERVO DE 90 QUESTÕES</button><button type="button" id="btn-main-settings" class="button subtle">⚙ &nbsp; CONFIGURAÇÕES</button></div>
-    <div class="panel-footer">ETAPA 6 CONCLUÍDA • 30 BAÚS • 90 QUESTÕES NO ACERVO</div>
+    <div class="main-actions"><button type="button" id="btn-new" class="button primary">✦ &nbsp; NOVA CAMPANHA</button><button type="button" id="btn-continue" class="button secondary" disabled>↳ &nbsp; CONTINUAR</button><button type="button" id="btn-stage-menu" class="button secondary">🗺 &nbsp; ESCOLHER ESTÁGIO</button><button type="button" id="btn-library-menu" class="button secondary">▤ &nbsp; ACERVO PEDAGÓGICO</button><button type="button" id="btn-main-settings" class="button subtle">⚙ &nbsp; CONFIGURAÇÕES</button></div>
+    <div class="panel-footer">30 BAÚS • 50 QUESTÕES REAIS COM GABARITO • 7 ITENS PENDENTES</div>
    </div>
   </section>
 
@@ -105,13 +105,13 @@
     <div class="eyebrow">FECHADURA DO CONHECIMENTO</div>
     <h2 id="question-title">BAÚ 1 • FÁCIL</h2>
     <p id="question-meta" class="question-meta"></p>
+    <div id="question-notice" class="question-notice" role="status" aria-live="polite"></div>
     <div id="question-content" class="question-content"></div>
     <form id="question-form">
      <fieldset class="question-fieldset"><legend>Escolha uma alternativa</legend><div id="question-options" class="question-options"></div></fieldset>
      <div id="question-feedback" class="question-feedback" aria-live="polite" role="status"></div>
      <div class="question-actions">
       <button type="submit" id="btn-question-confirm" class="button primary">CONFIRMAR RESPOSTA</button>
-      <button type="button" id="btn-question-switch" class="button secondary" hidden>OUTRA QUESTÃO DO DESCRITOR</button>
       <button type="button" id="btn-question-close" class="button subtle">VOLTAR À EXPLORAÇÃO</button>
      </div>
     </form>
@@ -120,7 +120,7 @@
 
   <section id="library-screen" class="overlay" aria-label="Acervo de questões" hidden>
    <div class="panel library-panel" role="dialog" aria-modal="true" aria-label="Banco de questões">
-    <div class="eyebrow">BANCO PEDAGÓGICO</div><h2>ACERVO DE 90 QUESTÕES</h2>
+    <div class="eyebrow">BANCO PEDAGÓGICO</div><h2>ACERVO PEDAGÓGICO</h2>
     <p id="library-summary"></p><label class="library-label" for="library-question-select">Selecione uma questão</label>
     <select id="library-question-select"></select><p id="library-item-meta" class="question-meta"></p>
     <div id="library-item-preview" class="question-content"></div>

@@ -1,57 +1,410 @@
 {
-  "schemaVersion": 1,
-  "aviso": "Preencha APENAS respostas verificadas em gabarito oficial ou revisão docente. Não invente respostas.",
+  "schemaVersion": 2,
+  "titulo": "Gabarito fornecido para Coletânea PAEBES 2024 – 3ª série do EM",
+  "fonte_arquivo": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf",
+  "fonte_sha256": "aac6aceb10c66cb37cdd20d35bb3ba9df2d5860ad1c44cc8f4fe9835f514e115",
+  "observacao": "Respostas transcritas exclusivamente do arquivo fornecido pelo professor; não houve verificação externa da autoria oficial. Quatro divergências de descritores foram mantidas em nota. O item 2024.50* está marcado como incompleto no próprio gabarito e não é avaliável.",
   "gabaritos": {
-    "PAEBES-2024-01": null,
-    "PAEBES-2024-02": null,
-    "PAEBES-2024-03": null,
-    "PAEBES-2024-04": null,
-    "PAEBES-2024-05": null,
-    "PAEBES-2024-06": null,
-    "PAEBES-2024-07": null,
-    "PAEBES-2024-08": null,
-    "PAEBES-2024-09": null,
-    "PAEBES-2024-10": null,
-    "PAEBES-2024-11": null,
-    "PAEBES-2024-12": null,
-    "PAEBES-2024-13": null,
-    "PAEBES-2024-14": null,
-    "PAEBES-2024-15": null,
-    "PAEBES-2024-16": null,
-    "PAEBES-2024-17": null,
-    "PAEBES-2024-18": null,
-    "PAEBES-2024-19": null,
-    "PAEBES-2024-20": null,
-    "PAEBES-2024-21": null,
-    "PAEBES-2024-22": null,
-    "PAEBES-2024-23": null,
-    "PAEBES-2024-24": null,
-    "PAEBES-2024-25": null,
-    "PAEBES-2024-EXTRA-D032": null,
-    "PAEBES-2024-26": null,
-    "PAEBES-2024-27": null,
-    "PAEBES-2024-28": null,
-    "PAEBES-2024-29": null,
-    "PAEBES-2024-30": null,
-    "PAEBES-2024-31": null,
-    "PAEBES-2024-32": null,
-    "PAEBES-2024-33": null,
-    "PAEBES-2024-34": null,
-    "PAEBES-2024-35": null,
-    "PAEBES-2024-36": null,
-    "PAEBES-2024-37": null,
-    "PAEBES-2024-38": null,
-    "PAEBES-2024-39": null,
-    "PAEBES-2024-40": null,
-    "PAEBES-2024-41": null,
-    "PAEBES-2024-42": null,
-    "PAEBES-2024-43": null,
-    "PAEBES-2024-44": null,
-    "PAEBES-2024-45": null,
-    "PAEBES-2024-46": null,
-    "PAEBES-2024-47": null,
-    "PAEBES-2024-48": null,
-    "PAEBES-2024-49": null,
+    "PAEBES-2024-01": {
+      "alternativa": "B",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.01",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.01",
+      "descritor_no_gabarito": "D016_P"
+    },
+    "PAEBES-2024-02": {
+      "alternativa": "A",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.02",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.02",
+      "descritor_no_gabarito": "D016_P"
+    },
+    "PAEBES-2024-03": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.03",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.03",
+      "descritor_no_gabarito": "D017_P"
+    },
+    "PAEBES-2024-04": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.04",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.04",
+      "descritor_no_gabarito": "D017_P"
+    },
+    "PAEBES-2024-05": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.05",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.05",
+      "descritor_no_gabarito": "D019_P"
+    },
+    "PAEBES-2024-06": {
+      "alternativa": "A",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.06",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.06",
+      "descritor_no_gabarito": "D019_P"
+    },
+    "PAEBES-2024-07": {
+      "alternativa": "D",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.07",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.07",
+      "descritor_no_gabarito": "D019_P"
+    },
+    "PAEBES-2024-08": {
+      "alternativa": "C",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.08",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.08",
+      "descritor_no_gabarito": "D021_P"
+    },
+    "PAEBES-2024-09": {
+      "alternativa": "A",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.09",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.09",
+      "descritor_no_gabarito": "D021_P"
+    },
+    "PAEBES-2024-10": {
+      "alternativa": "A",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.10",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.10",
+      "descritor_no_gabarito": "D021_P"
+    },
+    "PAEBES-2024-11": {
+      "alternativa": "B",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.11",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.11",
+      "descritor_no_gabarito": "D021_P"
+    },
+    "PAEBES-2024-12": {
+      "alternativa": "D",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.12",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.12",
+      "descritor_no_gabarito": "D022_P"
+    },
+    "PAEBES-2024-13": {
+      "alternativa": "D",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.13",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.13",
+      "descritor_no_gabarito": "D023_P"
+    },
+    "PAEBES-2024-14": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.14",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.14",
+      "descritor_no_gabarito": "D023_P"
+    },
+    "PAEBES-2024-15": {
+      "alternativa": "A",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.15",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.15",
+      "descritor_no_gabarito": "D023_P"
+    },
+    "PAEBES-2024-16": {
+      "alternativa": "B",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.16",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.16",
+      "descritor_no_gabarito": "D024_P"
+    },
+    "PAEBES-2024-17": {
+      "alternativa": "A",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.17",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.17",
+      "descritor_no_gabarito": "D025_P"
+    },
+    "PAEBES-2024-18": {
+      "alternativa": "B",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.18",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.18",
+      "descritor_no_gabarito": "D025_P"
+    },
+    "PAEBES-2024-19": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.19",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.19",
+      "descritor_no_gabarito": "D027_P"
+    },
+    "PAEBES-2024-20": {
+      "alternativa": "B",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.20",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.20",
+      "descritor_no_gabarito": "D027_P"
+    },
+    "PAEBES-2024-21": {
+      "alternativa": "B",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.21",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.21",
+      "descritor_no_gabarito": "D028_P"
+    },
+    "PAEBES-2024-22": {
+      "alternativa": "A",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.22",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.22",
+      "descritor_no_gabarito": "D028_P"
+    },
+    "PAEBES-2024-23": {
+      "alternativa": "B",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.23",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.23",
+      "descritor_no_gabarito": "D028_P"
+    },
+    "PAEBES-2024-24": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.24",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.24",
+      "descritor_no_gabarito": "D030_P"
+    },
+    "PAEBES-2024-25": {
+      "alternativa": "D",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item Q. Extra 1",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "Q. Extra 1",
+      "descritor_no_gabarito": "D030_P"
+    },
+    "PAEBES-2024-EXTRA-D032": {
+      "alternativa": "A",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item Q. Extra 2",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "Q. Extra 2",
+      "descritor_no_gabarito": "D032_P"
+    },
+    "PAEBES-2024-26": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.26",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.26",
+      "descritor_no_gabarito": "D032_P"
+    },
+    "PAEBES-2024-27": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.27",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.27",
+      "descritor_no_gabarito": "D033_P"
+    },
+    "PAEBES-2024-28": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.28",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.28",
+      "descritor_no_gabarito": "D033_P"
+    },
+    "PAEBES-2024-29": {
+      "alternativa": "B",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.29",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.29",
+      "descritor_no_gabarito": "D037_P"
+    },
+    "PAEBES-2024-30": {
+      "alternativa": "C",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.30",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.30",
+      "descritor_no_gabarito": "D037_P"
+    },
+    "PAEBES-2024-31": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.31",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.31",
+      "descritor_no_gabarito": "D037_P"
+    },
+    "PAEBES-2024-32": {
+      "alternativa": "A",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.32",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.32",
+      "descritor_no_gabarito": "D038_P"
+    },
+    "PAEBES-2024-33": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.33",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.33",
+      "descritor_no_gabarito": "D038_P"
+    },
+    "PAEBES-2024-34": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.34",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.34",
+      "descritor_no_gabarito": "D039_P"
+    },
+    "PAEBES-2024-35": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.35",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.35",
+      "descritor_no_gabarito": "D039_P"
+    },
+    "PAEBES-2024-36": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.36",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.36",
+      "descritor_no_gabarito": "D039_P"
+    },
+    "PAEBES-2024-37": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.37",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.37",
+      "descritor_no_gabarito": "D039_P"
+    },
+    "PAEBES-2024-38": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.38",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.38",
+      "descritor_no_gabarito": "D039_P"
+    },
+    "PAEBES-2024-39": {
+      "alternativa": "C",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.39",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.39",
+      "descritor_no_gabarito": "D043_P"
+    },
+    "PAEBES-2024-40": {
+      "alternativa": "A",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.40",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.40",
+      "descritor_no_gabarito": "D053_P"
+    },
+    "PAEBES-2024-41": {
+      "alternativa": "B",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.41",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.41",
+      "descritor_no_gabarito": "D053_P"
+    },
+    "PAEBES-2024-42": {
+      "alternativa": "D",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.42",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.42",
+      "descritor_no_gabarito": "D055_P"
+    },
+    "PAEBES-2024-43": {
+      "alternativa": "C",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.43",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.43",
+      "descritor_no_gabarito": "D055_P"
+    },
+    "PAEBES-2024-44": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.44",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.44",
+      "descritor_no_gabarito": "D057_P"
+    },
+    "PAEBES-2024-45": {
+      "alternativa": "B",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.45",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.45",
+      "descritor_no_gabarito": "D057_P"
+    },
+    "PAEBES-2024-46": {
+      "alternativa": "D",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.46",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.46",
+      "descritor_no_gabarito": "D057_P"
+    },
+    "PAEBES-2024-47": {
+      "alternativa": "C",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.47",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.47",
+      "descritor_no_gabarito": "D060_P"
+    },
+    "PAEBES-2024-48": {
+      "alternativa": "A",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.48",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.48",
+      "descritor_no_gabarito": "D060_P"
+    },
+    "PAEBES-2024-49": {
+      "alternativa": "E",
+      "validado": true,
+      "referencia": "Gabarito Coletânea PAEBES 2024 - Língua Portuguesa.pdf, tabela de respostas, item 2024.49",
+      "fonte_correcao": "gabarito_enviado_pelo_professor",
+      "item_no_gabarito": "2024.49",
+      "descritor_no_gabarito": "D061_P"
+    },
     "PAEBES-2024-50": null,
     "PAEBES-2024-51": null,
     "PAEBES-2024-52": null,
@@ -59,5 +412,40 @@
     "PAEBES-2024-54": null,
     "PAEBES-2024-55": null,
     "PAEBES-2024-56": null
-  }
+  },
+  "pendentes": [
+    "PAEBES-2024-50",
+    "PAEBES-2024-51",
+    "PAEBES-2024-52",
+    "PAEBES-2024-53",
+    "PAEBES-2024-54",
+    "PAEBES-2024-55",
+    "PAEBES-2024-56"
+  ],
+  "divergencias_descritor": [
+    {
+      "questao": "PAEBES-2024-27",
+      "descritor_coletanea": "D032_P",
+      "descritor_no_gabarito": "D033_P",
+      "resposta": "E"
+    },
+    {
+      "questao": "PAEBES-2024-29",
+      "descritor_coletanea": "D033_P",
+      "descritor_no_gabarito": "D037_P",
+      "resposta": "B"
+    },
+    {
+      "questao": "PAEBES-2024-32",
+      "descritor_coletanea": "D037_P",
+      "descritor_no_gabarito": "D038_P",
+      "resposta": "A"
+    },
+    {
+      "questao": "PAEBES-2024-34",
+      "descritor_coletanea": "D038_P",
+      "descritor_no_gabarito": "D039_P",
+      "resposta": "E"
+    }
+  ]
 }

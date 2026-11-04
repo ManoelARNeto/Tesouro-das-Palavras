@@ -17,14 +17,14 @@ O mapa antigo está rasgado em **dez partes**, uma por estágio. Cada estágio t
 
 ## Recompensas
 
-| Baú | Moedas ao abrir pela primeira vez |
+| Tentativa do acerto, em qualquer dificuldade | Recompensa |
 |---|---:|
-| Fácil | 25 |
-| Médio | 50 |
-| Difícil | 100 |
-| Total da campanha sem repetir recompensas | 1.750 |
+| Primeira | 50 moedas |
+| Segunda | 30 moedas |
+| Terceira ou posterior | 10 moedas |
+| Máximo para 30 baús abertos de primeira | 1.500 moedas |
 
-Não há moeda adicional ao repetir um baú já recompensado. O histórico por questão continua registrando acertos, erros e número de tentativas para uma análise pedagógica posterior.
+Errar reduz apenas o valor da futura recompensa do baú; não retira moedas já acumuladas. Não há moeda adicional ao repetir um baú já recompensado. Os saldos históricos das versões anteriores são preservados. O histórico por questão continua registrando acertos, erros e número de tentativas para uma análise pedagógica posterior.
 
 ## Persistência
 

@@ -1,6 +1,6 @@
 import { STAGES, TOTAL_TREASURES } from '../world/stages.js';
 import {SECRET_STAGE} from '../world/secret-stage.js';
-import {FRAGMENTS_NEEDED,COINS_BY_DIFFICULTY,SECRET_STAGE_INDEX} from '../core/Rewards.js';
+import {FRAGMENTS_NEEDED,coinsForAttempt,SECRET_STAGE_INDEX} from '../core/Rewards.js';
 const $=id=>document.getElementById(id);
 
 export class UI {
@@ -15,7 +15,6 @@ export class UI {
   $('btn-library-close').addEventListener('click',()=>this.closeLibrary());
   $('library-question-select').addEventListener('change',e=>this.showLibraryQuestion(e.target.value));
   $('btn-question-close').addEventListener('click',()=>game.closeQuestion());
-  $('btn-question-switch').addEventListener('click',()=>game.changeQuestion());
   $('question-form').addEventListener('submit',e=>{e.preventDefault(); const selected=document.querySelector('input[name=question-answer]:checked');this.showQuestionResult(game.answerQuestion(selected?.value));});
   $('btn-win-menu').addEventListener('click',()=>game.backToMenu());
   $('btn-settings-pause').addEventListener('click',()=>this.openSettings('pause'));
@@ -168,7 +167,7 @@ export class UI {
 
  showQuestion(game,q){
   $('question-title').textContent=`BAÚ ${game.stage.number} • ${q.dificuldade.toUpperCase()}`;
-  $('question-meta').textContent=`${q.id}  |  ${q.descritor||'Sem descritor'}  |  ${q.origem.startsWith('autoral')?'Autoral':'Coletânea 2024'}  |  🪙 ${COINS_BY_DIFFICULTY[q.dificuldade]||0} moedas (primeira abertura)`;
+  this.updateQuestionReward(game,q);
   $('question-panel').scrollTop=0;
   const content=$('question-content');this.renderQuestionContent(content,q);
   const options=$('question-options');options.replaceChildren();
@@ -180,14 +179,13 @@ export class UI {
   }
   $('btn-question-confirm').disabled=false;$('btn-question-close').textContent='Voltar à exploração';
   $('question-feedback').replaceChildren();$('question-feedback').className='question-feedback';
-  const alternative=game.questions.alternative(q,new Set([q.id,...Object.keys(game.questionStats).filter(id=>game.questionStats[id].ultimaEtapa===game.stage.id)]),game.answeredCorrect);
-  $('btn-question-switch').hidden=!alternative;
+  $('question-notice').textContent='';
  }
  renderQuestionContent(target,q){
   target.replaceChildren();
   const heading=document.createElement('h3');heading.textContent=q.titulo||'Questão de Língua Portuguesa';target.append(heading);
   if(q.origem==='coletanea_paebes_2024'){
-   const info=document.createElement('p');info.className='source-notice';info.textContent=this.game.questions.assessable(q)?'Reprodução visual do PDF enviado. Gabarito validado e identificado no banco.':'Reprodução visual do PDF enviado, com texto-base, enunciado e recursos gráficos. Gabarito pendente de validação docente.';target.append(info);
+   const info=document.createElement('p');info.className='source-notice';info.textContent=this.game.questions.assessable(q)?'Item original da coletânea. Resposta conferida com o gabarito fornecido pelo professor.':'Item original da coletânea, com gabarito pendente: disponível somente para consulta.';target.append(info);
    for(const resource of q.imagens_original||[]){
     const figure=document.createElement('figure');figure.className='original-figure';
     const link=document.createElement('a');link.href=resource.src;link.target='_blank';link.rel='noopener';link.title='Ampliar página original';
@@ -199,13 +197,36 @@ export class UI {
    const prompt=document.createElement('p');prompt.className='question-stem';prompt.textContent=q.enunciado||'';target.append(prompt);
   }
  }
+ updateQuestionReward(game,q,result=null){
+  if(!q||!game.activeChestId)return;
+  const id=game.activeChestId;
+  const attempts=Number(game.stageStates[game.stage.id]?.attempts?.[id])||0;
+  const claimed=game.economy.rewardedChests.includes(id);
+  const reward=result?.correct
+   ? `🪙 ${result.coinsEarned} moedas recebidas na ${attempts}ª tentativa`
+   : claimed
+     ? '🪙 Recompensa deste baú já recebida em rodada anterior'
+     : `🪙 Próximo acerto: ${coinsForAttempt(attempts+1)} moedas (${attempts+1}ª tentativa)`;
+  const position=game.questions.positionInChest(id,q.id);
+  $('question-meta').textContent=`QUESTÃO ${position} DE 3  |  ${q.id}  |  ${q.descritor||'Sem descritor'}  |  ${reward}`;
+ }
  showQuestionResult(result){
   if(!result)return;
+  if(result.accepted && result.correct===false && result.nextQuestion){
+   // Renderiza imediatamente a questão seguinte e elimina a alternativa selecionada.
+   this.showQuestion(this.game,result.nextQuestion);
+   const pos=this.game.questions.positionInChest(this.game.activeChestId,result.nextQuestion.id);
+   $('question-notice').textContent=`Resposta incorreta. Agora você está na questão ${pos} de 3 deste baú. Tente novamente; o baú permanece fechado.`;
+   $('question-panel').scrollTop=0;
+   this.updateQuestionReward(this.game,result.nextQuestion);
+   return;
+  }
+  if(result.accepted)this.updateQuestionReward(this.game,this.game.activeQuestion,result);
   const feedback=$('question-feedback');feedback.replaceChildren();feedback.className='question-feedback '+(result.correct?'correct':'incorrect');
   const title=document.createElement('strong');title.textContent=result.message||'';feedback.append(title);
   if(result.correct){
    const why=document.createElement('p');why.textContent=result.why||'O desafio foi concluído.';feedback.append(why);
-   $('btn-question-confirm').disabled=true;$('btn-question-switch').hidden=true;
+   $('btn-question-confirm').disabled=true;
    document.querySelectorAll('input[name=question-answer]').forEach(input=>input.disabled=true);
    $('btn-question-close').textContent=result.campaignComplete?'Ver conclusão':'Continuar aventura';
   }else{
@@ -219,11 +240,11 @@ export class UI {
   const select=$('library-question-select');select.replaceChildren();
   for(const q of this.game.questions.questions){
    const option=document.createElement('option');option.value=q.id;
-   const type=q.origem==='coletanea_paebes_2024'?(this.game.questions.assessable(q)?'PDF • validada':'PDF • pendente'):'Autoral • '+q.dificuldade;
+   const type=q.origem==='coletanea_paebes_2024'?(this.game.questions.assessable(q)?'PAEBES • gabarito conferido':'PAEBES • pendente'):'Origem não prevista';
    option.textContent=`${type} — ${q.id} — ${q.descritor||'—'}`;select.append(option);
   }
   const count=this.game.questions.statistics();
-  $('library-summary').textContent=`${count.originais} itens do PDF (${count.pendentes} pendentes) + ${count.autorais} autorais = ${this.game.questions.questions.length} questões. Somente itens com gabarito validado entram na avaliação.`;
+  $('library-summary').textContent=`${count.originais} questões originais do PDF • ${count.validas} com resposta conferida no gabarito fornecido • ${count.pendentes} pendentes. Os baús usam exclusivamente questões reais e podem repetir itens entre baús diferentes.`;
   if(select.value)this.showLibraryQuestion(select.value);
   this.show('library');this.game.input.clear();this.hud(false);
  }
